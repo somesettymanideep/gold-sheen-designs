@@ -54,7 +54,7 @@ export function SiteFooter() {
           {/* Contact row */}
           <div className="mt-14">
             <div className="mx-auto mb-10 h-px w-24 bg-gold/50" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
               <a
                 href={`mailto:${SITE.email}`}
                 className="group flex items-start gap-4"
@@ -97,20 +97,6 @@ export function SiteFooter() {
                   </div>
                 </div>
               </a>
-
-              <div className="group flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full gradient-gold shadow-gold transition">
-                  <Clock className="h-5 w-5 text-white" />
-                </span>
-                <div className="min-w-0 text-left">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Hours</div>
-                  {SITE.hours.map((h) => (
-                    <div key={h.day} className="mt-0.5 text-sm text-white leading-snug">
-                      <span className="text-white/70">{h.day}:</span> {h.time}
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
