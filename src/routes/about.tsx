@@ -1,11 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Eye, Target, Gem } from "lucide-react";
+import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamLakshmi from "@/assets/team-lakshmi.jpg";
+import awardFeatured from "@/assets/award-featured.jpg";
+import award1 from "@/assets/award-1.jpg";
+import award2 from "@/assets/award-2.jpg";
+import award3 from "@/assets/award-3.jpg";
+import award4 from "@/assets/award-4.jpg";
 
 
 export const Route = createFileRoute("/about")({
