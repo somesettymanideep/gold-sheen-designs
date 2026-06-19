@@ -6,8 +6,7 @@ import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamLakshmi from "@/assets/team-lakshmi.jpg";
-import teamKarthik from "@/assets/team-karthik.jpg";
-import teamRamesh from "@/assets/team-ramesh.jpg";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -93,9 +92,8 @@ function AboutPage() {
   const team = [
     { name: "Mr. Durga Prasad", role: "Founder & Managing Director", photo: teamDurga },
     { name: "Mrs. Lakshmi", role: "Showroom Director", photo: teamLakshmi },
-    { name: "Mr. Karthik", role: "Head of Sales", photo: teamKarthik },
-    { name: "Mr. Ramesh", role: "Operations Lead", photo: teamRamesh },
   ];
+
 
   return (
     <PageLayout>
@@ -183,7 +181,7 @@ function AboutPage() {
               The people behind <span className="text-gradient-gold">Durga</span>
             </h2>
           </div>
-          <div className="mt-14 grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:gap-7 sm:grid-cols-2 max-w-2xl mx-auto">
             {team.map(({ name, role, photo }) => (
               <div
                 key={name}
@@ -209,6 +207,7 @@ function AboutPage() {
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
