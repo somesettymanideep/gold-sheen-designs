@@ -497,7 +497,7 @@ function Testimonials() {
         <div className="absolute inset-y-0 left-0 w-16 sm:w-24 z-10 bg-gradient-to-r from-[#f0ebe5] to-transparent" />
         <div className="absolute inset-y-0 right-0 w-16 sm:w-24 z-10 bg-gradient-to-l from-[#f0ebe5] to-transparent" />
         <div
-          className={`flex gap-6 w-max ${isHovered ? "" : "animate-marquee-slow hover-pause"}`}
+          className="flex gap-6 w-max animate-marquee-slow"
           style={{ animationPlayState: isHovered ? "paused" : "running" }}
         >
           {[...testimonials, ...testimonials].map((t, idx) => (
