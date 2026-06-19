@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Eye, Target, Gem } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
+import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamLakshmi from "@/assets/team-lakshmi.jpg";
 import teamKarthik from "@/assets/team-karthik.jpg";
@@ -103,6 +104,7 @@ function AboutPage() {
         title="A Legacy of Trust, Craftsmanship & Quality"
         subtitle="More than a decade of serving Vijayawada's homes, builders and interior designers with premium materials."
         crumb="About"
+        bgImage={bannerAbout}
       />
 
       {/* Our Story */}

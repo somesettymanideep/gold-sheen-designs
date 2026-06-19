@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { SITE } from "@/lib/site";
+import bannerContact from "@/assets/banner-contact.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -48,6 +49,7 @@ function ContactPage() {
         title="We'd love to hear from you"
         subtitle="Visit our showroom, give us a call, or drop a message — we usually reply within the hour."
         crumb="Contact"
+        bgImage={bannerContact}
       />
 
       {/* Info Cards */}
