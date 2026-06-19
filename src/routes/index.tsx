@@ -61,6 +61,16 @@ const PLYWOOD_BRAND_LOGOS = [
   { name: "Deco Bond", logo: brandDecobond.url },
 ];
 
+const HARDWARE_BRAND_LOGOS = [
+  { name: "Häfele", logo: brandHafele.url },
+  { name: "Hettich", logo: brandHettich.url },
+  { name: "Blum", logo: brandBlum.url },
+  { name: "Kesseböhmer", logo: brandKessebohmer.url },
+  { name: "Ebco", logo: brandEbco.url },
+  { name: "Ozone", logo: brandOzone.url },
+  { name: "Decofit", logo: brandDecofit.url },
+];
+
 const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
   laminates: catLaminates,
