@@ -20,7 +20,7 @@ import { SITE, CATEGORIES, PLYWOOD_BRANDS, HARDWARE_BRANDS } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
-import aboutStore from "@/assets/about-store.jpg";
+import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import catPlywood from "@/assets/cat-plywood.jpg";
 import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
@@ -191,8 +191,8 @@ function About() {
           <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-full border-2 border-gold/30 hidden md:block" />
           <div className="relative overflow-hidden rounded-2xl shadow-elevated">
             <img
-              src={aboutStore}
-              alt="Durga Hardware showroom"
+              src={aboutStore.url}
+              alt="Durga Hardware and Plywood storefront on M.G. Road, Vijayawada"
               loading="lazy"
               className="w-full h-[460px] object-cover hover:scale-105 transition duration-700"
             />
