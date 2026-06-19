@@ -416,21 +416,92 @@ function AboutPage() {
       <AwardsSection />
 
 
-      <section className="py-24 bg-charcoal text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 60%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 grid-cols-2 lg:grid-cols-4">
-          <Stat n={5000} label="Happy Customers" />
-          <Stat n={100} label="Brands" />
-          <Stat n={10} label="Years Experience" />
-          <Stat n={10000} label="Projects Supported" />
-        </div>
-      </section>
+      {/* Stats — circular highlights */}
+      <StatsSection />
     </PageLayout>
+  );
+}
+
+function formatStat(v: number) {
+  if (v >= 1000) {
+    const k = v / 1000;
+    return `${Number.isInteger(k) ? k : k.toFixed(1)}k`;
+  }
+  return `${v}`;
+}
+
+function CircleStat({
+  n,
+  suffix = "+",
+  title,
+  subtitle,
+  delay,
+}: {
+  n: number;
+  suffix?: string;
+  title: string;
+  subtitle: string;
+  delay: number;
+}) {
+  const { val, ref: countRef } = useCounter(n);
+  const { ref: viewRef, inView } = useInView<HTMLDivElement>();
+  return (
+    <div
+      ref={viewRef}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`flex flex-col items-center text-center transition-all duration-700 ease-out ${
+        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90"
+      }`}
+    >
+      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-gold">
+        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500" />
+        <div ref={countRef} className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
+          {formatStat(val)}
+          {suffix}
+        </div>
+      </div>
+      <h3 className="mt-5 font-display text-lg font-bold text-charcoal leading-tight">{title}</h3>
+      <p className="mt-1 text-sm text-muted-foreground max-w-[12rem]">{subtitle}</p>
+    </div>
+  );
+}
+
+function StatsSection() {
+  const header = useInView<HTMLDivElement>();
+  const stats = [
+    { n: 10000, suffix: "+", title: "Projects", subtitle: "Supported & completed" },
+    { n: 5000, suffix: "+", title: "Customers", subtitle: "Happy & returning" },
+    { n: 10, suffix: "+", title: "Years", subtitle: "Of trusted service" },
+    { n: 100, suffix: "+", title: "Brands", subtitle: "Premium partners" },
+    { n: 50, suffix: "+", title: "Categories", subtitle: "Hardware & plywood" },
+  ];
+  return (
+    <section className="section-pad bg-background relative overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 30%, var(--gold) 0%, transparent 40%), radial-gradient(circle at 80% 70%, var(--gold) 0%, transparent 40%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          ref={header.ref}
+          className={`max-w-2xl mx-auto text-center transition-all duration-700 ${
+            header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <span className="eyebrow justify-center">By The Numbers</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+            A decade of <span className="text-gradient-gold">measurable trust</span>
+          </h2>
+        </div>
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 sm:gap-8 justify-items-center">
+          {stats.map((s, i) => (
+            <CircleStat key={s.title} {...s} delay={i * 120} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
