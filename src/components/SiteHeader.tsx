@@ -37,14 +37,6 @@ export function SiteHeader() {
             height={56}
             className="h-12 w-12 sm:h-14 sm:w-14 object-contain shrink-0"
           />
-          <div className="hidden sm:flex flex-col leading-tight min-w-0">
-            <span className="font-display text-lg font-bold text-secondary truncate">
-              DURGA
-            </span>
-            <span className="text-[10px] tracking-[0.22em] text-charcoal/70 uppercase">
-              Hardware &amp; Plywood
-            </span>
-          </div>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
