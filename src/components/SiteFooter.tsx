@@ -52,8 +52,8 @@ export function SiteFooter() {
           </nav>
 
           {/* Contact row */}
-          <div className="mt-14">
-            <div className="mx-auto mb-10 h-px w-24 bg-gold/50" />
+          <div className="mt-8">
+            <div className="mx-auto mb-6 h-px w-24 bg-gold/50" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
               <a
                 href={`mailto:${SITE.email}`}
