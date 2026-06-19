@@ -186,7 +186,7 @@ function AwardsSection() {
   const featured = useInView<HTMLDivElement>();
 
   return (
-    <section className="section-pad relative overflow-hidden bg-charcoal text-white">
+    <section className="section-pad relative overflow-hidden bg-[#f7f4ef] text-charcoal">
       {/* decorative background */}
       <div
         className="absolute inset-0 opacity-10"
@@ -195,8 +195,8 @@ function AwardsSection() {
             "radial-gradient(circle at 15% 20%, var(--gold) 0%, transparent 45%), radial-gradient(circle at 85% 80%, var(--gold) 0%, transparent 45%)",
         }}
       />
-      <Trophy className="pointer-events-none absolute -left-10 top-16 h-56 w-56 text-gold/5 animate-float" />
-      <Award className="pointer-events-none absolute -right-8 bottom-24 h-64 w-64 text-gold/5" />
+      <Trophy className="pointer-events-none absolute -left-10 top-16 h-56 w-56 text-gold/10 animate-float" />
+      <Award className="pointer-events-none absolute -right-8 bottom-24 h-64 w-64 text-gold/10" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
