@@ -472,7 +472,6 @@ function CircleStat({
 function StatsSection() {
   const header = useInView<HTMLDivElement>();
   const stats = [
-    { n: 10000, suffix: "+", title: "Projects", subtitle: "Supported & completed" },
     { n: 5000, suffix: "+", title: "Customers", subtitle: "Happy & returning" },
     { n: 10, suffix: "+", title: "Years", subtitle: "Of trusted service" },
     { n: 100, suffix: "+", title: "Brands", subtitle: "Premium partners" },
@@ -493,7 +492,7 @@ function StatsSection() {
             A decade of <span className="text-gradient-gold">measurable trust</span>
           </h2>
         </div>
-        <div className="mt-12 sm:mt-16 flex overflow-x-auto pb-4 sm:pb-0 snap-x snap-mandatory sm:justify-center sm:overflow-visible [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="mt-12 sm:mt-16 flex overflow-x-auto pb-4 sm:pb-0 snap-x snap-mandatory sm:justify-center sm:overflow-visible gap-4 sm:gap-6 lg:gap-8 [-ms-overflow-style:none] [scrollbar-width:none]">
           {stats.map((s, i) => (
             <CircleStat key={s.title} {...s} delay={i * 120} />
           ))}
@@ -502,4 +501,5 @@ function StatsSection() {
     </section>
   );
 }
+
 
