@@ -701,7 +701,7 @@ function HomePage() {
       <Categories />
       <WhyUs />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
-      <BrandMarquee title="Hardware Brands" brands={HARDWARE_BRANDS} variant="warm" />
+      <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
       <Consultation />
       <Testimonials />
       <CallToAction />
