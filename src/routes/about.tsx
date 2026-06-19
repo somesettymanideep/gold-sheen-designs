@@ -232,10 +232,10 @@ function AwardsSection() {
             <span className="inline-flex items-center gap-2 rounded-full bg-gold/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold">
               <Crown className="h-4 w-4" /> Featured Award
             </span>
-            <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-charcoal">
               Lifetime Achievement in Excellence
             </h3>
-            <p className="mt-4 text-white/70 leading-relaxed">
+            <p className="mt-4 text-charcoal/70 leading-relaxed">
               Our highest honour — awarded for a sustained legacy of quality, integrity and
               service that has shaped homes across Andhra Pradesh for over a decade.
             </p>
@@ -243,7 +243,7 @@ function AwardsSection() {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-white/80">Prestige Honour 2024</span>
+              <span className="ml-2 text-sm font-semibold text-charcoal/80">Prestige Honour 2024</span>
             </div>
           </div>
         </div>
