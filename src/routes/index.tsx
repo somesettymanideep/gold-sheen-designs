@@ -394,7 +394,7 @@ function BrandMarquee({
     ? [...logos, ...logos]
     : [...(brands ?? []), ...(brands ?? [])].map((name) => ({ name, logo: undefined }));
   return (
-    <section className={`py-16 ${variant === "warm" ? "gradient-warm" : "bg-background"}`}>
+    <section className={`py-10 ${variant === "warm" ? "gradient-warm" : "bg-background"}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="eyebrow">Brands We Deal With</span>
