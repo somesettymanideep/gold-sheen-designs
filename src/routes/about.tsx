@@ -75,7 +75,203 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
   );
 }
 
-function AboutPage() {
+function useInView<T extends HTMLElement>(threshold = 0.2) {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setInView(true);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+type AwardItem = {
+  image: string;
+  title: string;
+  year: string;
+  desc: string;
+  tier: "gold" | "silver" | "bronze";
+};
+
+const tierStyles: Record<AwardItem["tier"], { badge: string; ring: string }> = {
+  gold: { badge: "bg-gold text-white", ring: "group-hover:shadow-gold" },
+  silver: { badge: "bg-[#9aa0a6] text-white", ring: "group-hover:shadow-soft" },
+  bronze: { badge: "bg-[#a9744f] text-white", ring: "group-hover:shadow-soft" },
+};
+
+function AwardCard({ award, delay }: { award: AwardItem; delay: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const tier = tierStyles[award.tier];
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`group relative shrink-0 w-[80%] sm:w-auto snap-center rounded-2xl bg-card border border-border overflow-hidden shadow-soft transition-all duration-700 hover:-translate-y-2 ${tier.ring} ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+    >
+      {/* glowing brand border on hover */}
+      <span className="pointer-events-none absolute inset-0 rounded-2xl ring-2 ring-gold/0 group-hover:ring-gold/60 transition duration-500" />
+      <div className="relative overflow-hidden">
+        <img
+          src={award.image}
+          alt={award.title}
+          loading="lazy"
+          width={768}
+          height={768}
+          className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <span
+          className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-bold shadow ${tier.badge}`}
+        >
+          {award.year}
+        </span>
+      </div>
+      <div className="p-6">
+        <h3 className="font-display text-xl font-bold text-charcoal leading-snug">
+          {award.title}
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{award.desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function AwardsSection() {
+  const awards: AwardItem[] = [
+    {
+      image: award1,
+      title: "Best Hardware Retailer",
+      year: "2023",
+      desc: "Recognised as the top hardware & plywood retailer in the Vijayawada region.",
+      tier: "gold",
+    },
+    {
+      image: award2,
+      title: "Customer Excellence Award",
+      year: "2022",
+      desc: "Honoured for outstanding service quality and customer satisfaction.",
+      tier: "silver",
+    },
+    {
+      image: award3,
+      title: "Trusted Brand Partner",
+      year: "2021",
+      desc: "Awarded by leading brands for consistent sales and trusted partnership.",
+      tier: "bronze",
+    },
+    {
+      image: award4,
+      title: "Excellence in Quality",
+      year: "2020",
+      desc: "Celebrated for an uncompromising commitment to premium materials.",
+      tier: "gold",
+    },
+  ];
+
+  const counters = [
+    { n: 25, label: "Awards Won", suffix: "+" },
+    { n: 15, label: "Years Excellence", suffix: "+" },
+    { n: 500, label: "Happy Clients", suffix: "+" },
+  ];
+
+  const featured = useInView<HTMLDivElement>();
+
+  return (
+    <section className="section-pad relative overflow-hidden bg-charcoal text-white">
+      {/* decorative background */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 15% 20%, var(--gold) 0%, transparent 45%), radial-gradient(circle at 85% 80%, var(--gold) 0%, transparent 45%)",
+        }}
+      />
+      <Trophy className="pointer-events-none absolute -left-10 top-16 h-56 w-56 text-gold/5 animate-float" />
+      <Award className="pointer-events-none absolute -right-8 bottom-24 h-64 w-64 text-gold/5" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="eyebrow justify-center text-gold">Our Achievements</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            Awards &amp; <span className="text-gold">Recognition</span>
+          </h2>
+          <p className="mt-5 text-white/70 leading-relaxed">
+            A decade of dedication, celebrated across the industry. Our shelves hold more than
+            premium products — they hold the trust and recognition we've earned.
+          </p>
+        </div>
+
+        {/* Featured award */}
+        <div
+          ref={featured.ref}
+          className={`mt-14 grid gap-8 lg:grid-cols-2 items-center rounded-2xl glass-dark p-6 sm:p-10 transition-all duration-700 ${
+            featured.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="relative overflow-hidden rounded-2xl">
+            <div className="absolute inset-0 gradient-gold opacity-20" />
+            <img
+              src={awardFeatured}
+              alt="Hall of Fame — Lifetime Achievement Award"
+              loading="lazy"
+              width={1024}
+              height={1024}
+              className="relative w-full h-72 sm:h-80 object-cover"
+            />
+          </div>
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-gold/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold">
+              <Crown className="h-4 w-4" /> Featured Award
+            </span>
+            <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-white">
+              Lifetime Achievement in Excellence
+            </h3>
+            <p className="mt-4 text-white/70 leading-relaxed">
+              Our highest honour — awarded for a sustained legacy of quality, integrity and
+              service that has shaped homes across Andhra Pradesh for over a decade.
+            </p>
+            <div className="mt-6 flex items-center gap-3 text-gold">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-current" />
+              ))}
+              <span className="ml-2 text-sm font-semibold text-white/80">Prestige Honour 2024</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Awards grid — mobile carousel, tablet 2-col, desktop 4-col */}
+        <div className="mt-10 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none]">
+          {awards.map((a, i) => (
+            <AwardCard key={a.title} award={a} delay={i * 120} />
+          ))}
+        </div>
+
+        {/* Counters */}
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-white/10 pt-12">
+          {counters.map((c) => (
+            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
   const vmv = [
     {
       icon: Eye,
