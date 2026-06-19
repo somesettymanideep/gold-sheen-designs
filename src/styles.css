@@ -180,3 +180,5 @@
 @utility animate-slow-zoom { animation: slow-zoom 12s ease-out forwards; }
 @utility animate-float { animation: float-y 6s ease-in-out infinite; }
 @utility animate-marquee { animation: marquee 35s linear infinite; }
+@utility animate-marquee-slow { animation: marquee 70s linear infinite; }
+@utility hover-pause:hover { animation-play-state: paused; }

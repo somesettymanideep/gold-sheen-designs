@@ -477,28 +477,11 @@ const testimonials = [
 ];
 
 function Testimonials() {
-  const [page, setPage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  const perPage = 3;
-  const totalPages = Math.ceil(testimonials.length / perPage);
-  const current = testimonials.slice(page * perPage, (page + 1) * perPage);
-
-  const prev = () => setPage((p) => (p > 0 ? p - 1 : totalPages - 1));
-  const next = () => setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
-
-  useEffect(() => {
-    if (isHovered) return;
-    const t = setInterval(() => {
-      setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
-    }, 5000);
-    return () => clearInterval(t);
-  }, [isHovered, totalPages]);
 
   return (
     <section
-      ref={sectionRef}
-      className="section-pad gradient-warm"
+      className="section-pad gradient-warm overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -509,12 +492,19 @@ function Testimonials() {
             What The People Thinks About Us
           </h2>
         </div>
+      </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {current.map((t, idx) => (
+      <div className="mt-14 relative">
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-24 z-10 bg-gradient-to-r from-[#f0ebe5] to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-24 z-10 bg-gradient-to-l from-[#f0ebe5] to-transparent" />
+        <div
+          className={`flex gap-6 w-max ${isHovered ? "" : "animate-marquee-slow hover-pause"}`}
+          style={{ animationPlayState: isHovered ? "paused" : "running" }}
+        >
+          {[...testimonials, ...testimonials].map((t, idx) => (
             <div
-              key={page * perPage + idx}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft transition-all duration-500 animate-fade-in"
+              key={idx}
+              className="shrink-0 w-[340px] sm:w-[400px] bg-white rounded-2xl p-6 sm:p-8 shadow-soft"
             >
               <div className="flex items-center gap-4">
                 <img
@@ -536,37 +526,6 @@ function Testimonials() {
               </p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <button
-            onClick={prev}
-            aria-label="Previous testimonials"
-            className="grid h-10 w-10 place-items-center rounded-full border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          <div className="flex items-center gap-3 text-sm font-medium text-charcoal/60">
-            {Array.from({ length: totalPages }).map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setPage(idx)}
-                className={`transition-colors ${
-                  idx === page ? "text-gold font-bold text-lg" : "hover:text-charcoal"
-                }`}
-                aria-label={`Go to page ${idx + 1}`}
-              >
-                {String(idx + 1).padStart(2, "0")}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={next}
-            aria-label="Next testimonials"
-            className="grid h-10 w-10 place-items-center rounded-full border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white transition-colors"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
         </div>
       </div>
     </section>
