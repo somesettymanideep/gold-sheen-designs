@@ -68,7 +68,7 @@ function Stat({ n, label, suffix = "+", triggerOffset = "0px 0px -5% 0px" }: { n
 
 
 
-function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px -5% 0px") {
+function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -90,6 +90,7 @@ function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px
   }, [threshold, rootMargin]);
   return { ref, inView };
 }
+
 
 
 type AwardItem = {
