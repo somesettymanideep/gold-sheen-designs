@@ -52,25 +52,25 @@ function ContactPage() {
 
       {/* Info Cards */}
       <section className="section-pad bg-[#F4F0EA] -mt-16 relative z-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {info.map(({ icon: Icon, title, lines, href }) => (
             <a
               key={title}
               href={href}
               target={title === "Our Address" ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="group flex items-start gap-5 rounded-2xl bg-cream p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-gold"
+              className="group flex items-start gap-5 rounded-2xl bg-white p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-gold"
             >
               <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gold text-white shadow-gold">
                 <Icon className="h-7 w-7" />
               </span>
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 text-left">
                 <h3 className="font-display text-xl font-bold text-charcoal">
                   {title}
                 </h3>
-                <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground break-words">
                   {lines.map((l, i) => (
-                    <div key={i}>{l}</div>
+                    <div key={i} className="break-words">{l}</div>
                   ))}
                 </div>
               </div>
