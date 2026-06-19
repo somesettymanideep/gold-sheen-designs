@@ -1,0 +1,158 @@
+import catPlywood from "@/assets/cat-plywood.jpg";
+import catLaminates from "@/assets/cat-laminates.jpg";
+import catHardware from "@/assets/cat-hardware.jpg";
+import catVeneers from "@/assets/cat-veneers.jpg";
+import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
+import catDoors from "@/assets/cat-doors.jpg";
+
+export const CAT_IMG: Record<string, string> = {
+  plywood: catPlywood,
+  laminates: catLaminates,
+  hardware: catHardware,
+  veneers: catVeneers,
+  kitchen: catKitchen.url,
+  doors: catDoors,
+};
+
+export type ProductDetail = {
+  features: string[];
+  description: string;
+  highlights: string[];
+  specs: { label: string; value: string }[];
+  brands: string[];
+};
+
+export const PRODUCT_DETAILS: Record<string, ProductDetail> = {
+  plywood: {
+    description:
+      "Our plywood range is engineered for strength, stability and long life. From everyday commercial-grade boards to fully waterproof marine plywood, every sheet is sourced from ISI-certified mills and tested for moisture, termites and load-bearing performance — so your furniture and interiors stay true for decades.",
+    features: [
+      "BWP, MR & Marine grade options",
+      "ISI-certified and IS:710 compliant",
+      "Termite & borer resistant",
+      "Available in multiple thicknesses",
+    ],
+    highlights: [
+      "Zero-gap, void-free core construction",
+      "Calibrated for uniform thickness",
+      "Boiling water proof bonding on marine grades",
+    ],
+    specs: [
+      { label: "Thickness", value: "4mm – 25mm" },
+      { label: "Sizes", value: "8x4, 7x4, 6x4 ft" },
+      { label: "Grades", value: "MR, BWR, BWP / Marine" },
+      { label: "Warranty", value: "Up to 25 years (brand-dependent)" },
+    ],
+    brands: ["Greenply", "CenturyPly", "Kitply", "Action TESA", "Austin", "Archidply"],
+  },
+  laminates: {
+    description:
+      "Transform any surface with our decorative laminate collection. With over a thousand designs spanning woodgrains, solids, stones and abstracts in matte, gloss, suede and textured finishes, you'll find the perfect surface for wardrobes, shutters, panels and tabletops — all scratch, stain and heat resistant.",
+    features: [
+      "1mm & 0.8mm decorative laminates",
+      "Matte, gloss, suede & textured finishes",
+      "Scratch & stain resistant",
+      "1000+ designs in stock",
+    ],
+    highlights: [
+      "High-pressure laminates (HPL) for durability",
+      "Anti-fingerprint & anti-bacterial options",
+      "Color-matched edge banding available",
+    ],
+    specs: [
+      { label: "Thickness", value: "0.8mm & 1mm" },
+      { label: "Sizes", value: "8x4 ft standard" },
+      { label: "Finishes", value: "Matte, Gloss, Suede, Textured" },
+      { label: "Designs", value: "1000+ in stock" },
+    ],
+    brands: ["Greenlam", "Merino", "Century", "Sunmica", "Royale Touche"],
+  },
+  hardware: {
+    description:
+      "Quality hardware is what makes interiors function beautifully every day. We stock a complete range of architectural and furniture fittings — drawer channels, hinges, handles, locks and modular kitchen accessories — from the world's most trusted brands, built for smooth, silent and lasting performance.",
+    features: [
+      "Drawer channels, hinges & handles",
+      "Door locks & bathroom fittings",
+      "Modular kitchen accessories",
+      "From Hettich, Hafele, Ebco & more",
+    ],
+    highlights: [
+      "Soft-close hinges & telescopic channels",
+      "Corrosion-resistant finishes",
+      "Genuine, warranty-backed products",
+    ],
+    specs: [
+      { label: "Categories", value: "Hinges, Channels, Handles, Locks" },
+      { label: "Finish", value: "SS, Chrome, Matte, Antique" },
+      { label: "Load Rating", value: "Up to 40 kg drawer channels" },
+      { label: "Warranty", value: "Brand-backed warranty" },
+    ],
+    brands: ["Hettich", "Hafele", "Ebco", "Blum", "Ozone", "Kessebohmer"],
+  },
+  veneers: {
+    description:
+      "Bring the warmth of real wood to your interiors with our natural and engineered veneers. From classic teak and walnut to exotic burls, each leaf is hand-selected for grain consistency and can be pre-polished or custom-matched for large-scale projects.",
+    features: [
+      "Natural & engineered veneers",
+      "Teak, walnut, oak, oak burl & exotic species",
+      "Pre-polished options available",
+      "Custom matching for large projects",
+    ],
+    highlights: [
+      "Book-matched & quarter-cut options",
+      "Consistent grain across large runs",
+      "Ready-to-polish & pre-finished sheets",
+    ],
+    specs: [
+      { label: "Thickness", value: "0.5mm – 4mm" },
+      { label: "Sizes", value: "8x4 ft standard" },
+      { label: "Species", value: "Teak, Walnut, Oak, Burl & more" },
+      { label: "Finish", value: "Natural / Pre-polished" },
+    ],
+    brands: ["CenturyVeneers", "Greenply", "Decowood", "Archidply"],
+  },
+  "modular-kitchens": {
+    description:
+      "From concept to installation, we design modular kitchens that blend everyday function with timeless style. Our team handles layout planning, material selection, premium shutters and certified on-site installation — delivering a kitchen that works as beautifully as it looks.",
+    features: [
+      "End-to-end design consultation",
+      "Premium shutters & finishes",
+      "Soft-close hinges & channels",
+      "On-site installation by certified team",
+    ],
+    highlights: [
+      "3D design visualization before you buy",
+      "Moisture-resistant carcass material",
+      "Tailored storage & corner solutions",
+    ],
+    specs: [
+      { label: "Layouts", value: "L, U, Parallel, Island" },
+      { label: "Shutters", value: "Acrylic, Laminate, PU, Membrane" },
+      { label: "Carcass", value: "BWP Ply / HDHMR" },
+      { label: "Service", value: "Design + Supply + Install" },
+    ],
+    brands: ["Hettich", "Hafele", "Blum", "Kessebohmer", "Ebco"],
+  },
+  "profile-doors": {
+    description:
+      "Make a lasting first impression with our designer profile doors. Available in solid wood and engineered options with membrane, PU and veneer finishes, every door is built for strength, sound insulation and moisture resistance — and can be made to custom sizes and designs.",
+    features: [
+      "Solid wood & engineered options",
+      "Membrane, PU & veneer finishes",
+      "Custom sizes and designs",
+      "Sound & moisture resistant",
+    ],
+    highlights: [
+      "Warp-resistant engineered cores",
+      "Designer membrane & PU finishes",
+      "Custom sizes for any opening",
+    ],
+    specs: [
+      { label: "Types", value: "Flush, Panel, Designer" },
+      { label: "Finish", value: "Membrane, PU, Veneer, Laminate" },
+      { label: "Core", value: "Solid Wood / Engineered" },
+      { label: "Sizes", value: "Standard & custom" },
+    ],
+    brands: ["Greenply", "CenturyDoors", "Austin", "Archidply"],
+  },
+};
