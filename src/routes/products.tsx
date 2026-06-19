@@ -6,7 +6,7 @@ import catPlywood from "@/assets/cat-plywood.jpg";
 import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
-import catKitchen from "@/assets/cat-kitchen.jpg";
+import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
 import bannerProducts from "@/assets/banner-products.jpg";
 
@@ -15,7 +15,7 @@ const CAT_IMG: Record<string, string> = {
   laminates: catLaminates,
   hardware: catHardware,
   veneers: catVeneers,
-  kitchen: catKitchen,
+  kitchen: catKitchen.url,
   doors: catDoors,
 };
 
