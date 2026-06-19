@@ -20,7 +20,7 @@ export function SiteFooter() {
           <img src={footerBanner} alt="Footer background" loading="lazy" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-charcoal/70" />
         </div>
-        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-12 text-center">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-8 text-center">
           {/* Logo pill */}
           <div className="flex justify-center">
             <div className="inline-flex items-center justify-center rounded-full bg-white px-6 py-5 shadow-elevated">
@@ -52,8 +52,8 @@ export function SiteFooter() {
           </nav>
 
           {/* Contact row */}
-          <div className="mt-14">
-            <div className="mx-auto mb-10 h-px w-24 bg-gold/50" />
+          <div className="mt-8">
+            <div className="mx-auto mb-6 h-px w-24 bg-gold/50" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
               <a
                 href={`mailto:${SITE.email}`}
