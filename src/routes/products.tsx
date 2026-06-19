@@ -1,23 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { CATEGORIES, SITE } from "@/lib/site";
-import catPlywood from "@/assets/cat-plywood.jpg";
-import catLaminates from "@/assets/cat-laminates.jpg";
-import catHardware from "@/assets/cat-hardware.jpg";
-import catVeneers from "@/assets/cat-veneers.jpg";
-import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
-import catDoors from "@/assets/cat-doors.jpg";
+import { CAT_IMG } from "@/lib/product-data";
 import bannerProducts from "@/assets/banner-products.jpg";
-
-const CAT_IMG: Record<string, string> = {
-  plywood: catPlywood,
-  laminates: catLaminates,
-  hardware: catHardware,
-  veneers: catVeneers,
-  kitchen: catKitchen.url,
-  doors: catDoors,
-};
 
 const FEATURES: Record<string, string[]> = {
   plywood: [
