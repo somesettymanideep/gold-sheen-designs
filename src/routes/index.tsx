@@ -25,7 +25,7 @@ import catPlywood from "@/assets/cat-plywood.jpg";
 import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
-import catKitchen from "@/assets/cat-kitchen.jpg";
+import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
 import ctaBg from "@/assets/cta-bg.jpg";
 import consultBg from "@/assets/consultation-bg.jpg";
