@@ -112,8 +112,8 @@ function AboutPage() {
             <div className="absolute -top-6 -left-6 w-32 h-32 rounded-2xl gradient-gold opacity-20" />
             <div className="relative overflow-hidden rounded-2xl shadow-elevated">
               <img
-                src={aboutStore}
-                alt="Showroom"
+                src={aboutStore.url}
+                alt="Durga Hardware and Plywood storefront on M.G. Road, Vijayawada"
                 loading="lazy"
                 className="w-full h-[480px] object-cover"
               />
