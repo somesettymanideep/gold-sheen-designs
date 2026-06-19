@@ -340,7 +340,7 @@ function WhyUs() {
     { icon: Wrench, t: "Expert Support", n: "10+ Yrs" },
   ];
   return (
-    <section className="section-pad bg-charcoal text-white relative overflow-hidden">
+    <section className="section-pad bg-[#f7f4ef] text-charcoal relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -359,7 +359,7 @@ function WhyUs() {
           {items.map(({ icon: Icon, t, n }) => (
             <div
               key={t}
-              className="group glass-dark rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
+              className="group glass-card border border-charcoal/10 rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
             >
               <div className="flex items-start gap-5">
                 <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold">
@@ -367,7 +367,7 @@ function WhyUs() {
                 </span>
                 <div className="min-w-0">
                   <div className="font-display text-2xl font-bold text-gold">{n}</div>
-                  <div className="mt-1 text-white/80 font-medium">{t}</div>
+                  <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
                 </div>
               </div>
             </div>
