@@ -1,0 +1,182 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ===========================
+   DURGA HARDWARE & PLYWOOD
+   Brand colors:
+   - Gold     #ac8647
+   - Brown    #64371a
+   - Charcoal #323433
+   - Beige    #f0ebe5
+=========================== */
+
+@theme inline {
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-brown: var(--brown);
+  --color-charcoal: var(--charcoal);
+  --color-beige: var(--beige);
+  --color-cream: var(--cream);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand */
+  --gold: #ac8647;
+  --gold-soft: #c9a76a;
+  --brown: #64371a;
+  --charcoal: #323433;
+  --beige: #f0ebe5;
+  --cream: #f8f5f0;
+
+  /* Semantic */
+  --background: #ffffff;
+  --foreground: #1f1d1b;
+  --card: #ffffff;
+  --card-foreground: #1f1d1b;
+  --popover: #ffffff;
+  --popover-foreground: #1f1d1b;
+  --primary: #ac8647;
+  --primary-foreground: #ffffff;
+  --secondary: #64371a;
+  --secondary-foreground: #ffffff;
+  --muted: #f0ebe5;
+  --muted-foreground: #6b6357;
+  --accent: #f0ebe5;
+  --accent-foreground: #323433;
+  --destructive: #b1311f;
+  --destructive-foreground: #ffffff;
+  --border: #e6dfd4;
+  --input: #e6dfd4;
+  --ring: #ac8647;
+
+  /* Gradients & shadows */
+  --gradient-gold: linear-gradient(135deg, #ac8647 0%, #d4ad6a 50%, #8c6a35 100%);
+  --gradient-dark: linear-gradient(135deg, #323433 0%, #1b1a19 100%);
+  --gradient-warm: linear-gradient(180deg, #f8f5f0 0%, #f0ebe5 100%);
+  --gradient-overlay: linear-gradient(90deg, rgba(28,24,20,0.85) 0%, rgba(28,24,20,0.5) 60%, rgba(28,24,20,0.2) 100%);
+
+  --shadow-soft: 0 10px 30px -12px rgba(50, 52, 51, 0.18);
+  --shadow-gold: 0 20px 50px -20px rgba(172, 134, 71, 0.45);
+  --shadow-elevated: 0 30px 60px -25px rgba(28, 24, 20, 0.4);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@utility gradient-gold { background-image: var(--gradient-gold); }
+@utility gradient-dark { background-image: var(--gradient-dark); }
+@utility gradient-warm { background-image: var(--gradient-warm); }
+@utility text-gradient-gold {
+  color: #6a3611;
+}
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility shadow-gold { box-shadow: var(--shadow-gold); }
+@utility shadow-elevated { box-shadow: var(--shadow-elevated); }
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+@utility glass-dark {
+  background: rgba(28, 24, 20, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(172, 134, 71, 0.25);
+}
+
+@utility section-pad { padding-block: clamp(4rem, 8vw, 7rem); }
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+}
+
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slow-zoom {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.18); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@utility animate-fade-up { animation: fade-up 0.8s ease-out both; }
+@utility animate-slow-zoom { animation: slow-zoom 12s ease-out forwards; }
+@utility animate-float { animation: float-y 6s ease-in-out infinite; }
+@utility animate-marquee { animation: marquee 35s linear infinite; }
