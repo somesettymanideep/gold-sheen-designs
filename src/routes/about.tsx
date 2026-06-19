@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Eye, Target, Gem } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
-import aboutStore from "@/assets/about-store.jpg";
+import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamLakshmi from "@/assets/team-lakshmi.jpg";
 import teamKarthik from "@/assets/team-karthik.jpg";
