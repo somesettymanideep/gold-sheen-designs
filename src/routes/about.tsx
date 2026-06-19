@@ -258,9 +258,10 @@ function AwardsSection() {
         {/* Counters */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-white/10 pt-12">
           {counters.map((c) => (
-            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} />
+            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} triggerOffset="0px 0px -5% 0px" />
           ))}
         </div>
+
       </div>
     </section>
   );
