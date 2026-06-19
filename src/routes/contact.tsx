@@ -22,22 +22,22 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const info = [
     {
+      icon: MapPin,
+      title: "Our Address",
+      lines: [SITE.address.line1, SITE.address.line2, SITE.address.city],
+      href: SITE.mapsHref,
+    },
+    {
       icon: Phone,
-      label: "Call",
+      title: "Phone Numbers",
       lines: [SITE.phone],
       href: SITE.phoneHref,
     },
     {
       icon: Mail,
-      label: "Email",
+      title: "Email Addresses",
       lines: [SITE.email],
       href: `mailto:${SITE.email}`,
-    },
-    {
-      icon: MapPin,
-      label: "Visit",
-      lines: [SITE.address.line1, SITE.address.line2, SITE.address.city],
-      href: SITE.mapsHref,
     },
   ];
 
@@ -53,29 +53,26 @@ function ContactPage() {
       {/* Info Cards */}
       <section className="section-pad bg-[#F4F0EA] -mt-16 relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-3">
-          {info.map(({ icon: Icon, label, lines, href }) => (
+          {info.map(({ icon: Icon, title, lines, href }) => (
             <a
-              key={label}
+              key={title}
               href={href}
-              target={label === "Visit" ? "_blank" : undefined}
+              target={title === "Our Address" ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="group glass-card rounded-3xl p-6 shadow-soft hover:shadow-gold hover:-translate-y-1 transition duration-500 flex items-start gap-5"
+              className="group flex items-start gap-5 rounded-2xl bg-cream p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-gold"
             >
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl gradient-gold shadow-gold">
-                <Icon className="h-6 w-6 text-white" />
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gold text-white shadow-gold">
+                <Icon className="h-7 w-7" />
               </span>
               <div className="min-w-0 flex-1">
-                <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                  {label}
-                </div>
-                <div className="mt-2 font-display text-lg font-semibold text-charcoal leading-snug">
+                <h3 className="font-display text-xl font-bold text-charcoal">
+                  {title}
+                </h3>
+                <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                   {lines.map((l, i) => (
                     <div key={i}>{l}</div>
                   ))}
                 </div>
-                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold group-hover:translate-x-1 transition">
-                  {label === "Visit" ? "Get Directions" : "Open"} <ArrowRight className="h-3 w-3" />
-                </span>
               </div>
             </a>
           ))}
