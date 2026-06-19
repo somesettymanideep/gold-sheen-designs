@@ -19,14 +19,29 @@ export function PageHero({
   title,
   subtitle,
   crumb,
+  bgImage,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   crumb: string;
+  bgImage?: string;
 }) {
   return (
     <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark">
+      {bgImage && (
+        <>
+          <img
+            src={bgImage}
+            alt=""
+            aria-hidden="true"
+            width={1920}
+            height={640}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-charcoal/75" />
+        </>
+      )}
       <div className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:

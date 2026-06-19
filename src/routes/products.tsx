@@ -8,6 +8,7 @@ import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/cat-kitchen.jpg";
 import catDoors from "@/assets/cat-doors.jpg";
+import bannerProducts from "@/assets/banner-products.jpg";
 
 const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
@@ -84,6 +85,7 @@ function ProductsPage() {
         title="Premium Materials for Premium Interiors"
         subtitle="Six categories, hundreds of SKUs, only the brands we trust enough to use ourselves."
         crumb="Products"
+        bgImage={bannerProducts}
       />
 
       {/* Category Grid */}
