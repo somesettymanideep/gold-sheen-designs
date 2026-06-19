@@ -292,12 +292,43 @@ function Categories() {
 
 function WhyUs() {
   const items = [
-    { icon: Award, t: "Premium Quality", n: "100%" },
-    { icon: ShieldCheck, t: "Genuine Products", n: "Verified" },
-    { icon: Sparkles, t: "Wide Range", n: "500+ SKUs" },
-    { icon: Star, t: "Trusted Brands", n: "100+" },
-    { icon: Truck, t: "Affordable Pricing", n: "Best Rates" },
-    { icon: Wrench, t: "Expert Support", n: "10+ Yrs" },
+    {
+      icon: Award,
+      t: "Premium Quality",
+      n: "100%",
+      d: "Only top-grade plywood, laminates and hardware make it to our shelves.",
+      featured: true,
+    },
+    {
+      icon: ShieldCheck,
+      t: "Genuine Products",
+      n: "Verified",
+      d: "Every brand sourced direct — no fakes, ever.",
+    },
+    {
+      icon: Sparkles,
+      t: "Wide Range",
+      n: "500+ SKUs",
+      d: "One roof for every interior need.",
+    },
+    {
+      icon: Star,
+      t: "Trusted Brands",
+      n: "100+",
+      d: "India's most respected names in one showroom.",
+    },
+    {
+      icon: Truck,
+      t: "Affordable Pricing",
+      n: "Best Rates",
+      d: "Honest, transparent and competitive.",
+    },
+    {
+      icon: Wrench,
+      t: "Expert Support",
+      n: "10+ Yrs",
+      d: "Guidance from a team that knows materials inside out.",
+    },
   ];
   return (
     <section className="section-pad bg-charcoal text-white relative overflow-hidden">
@@ -309,26 +340,69 @@ function WhyUs() {
         }}
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Why Choose Us</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
-          </h2>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Why Choose Us</span>
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+              Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
+            </h2>
+          </div>
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 self-start rounded-full glass-dark px-6 py-3 text-sm font-semibold text-white hover:border-gold/60 transition"
+          >
+            Explore Products <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ icon: Icon, t, n }) => (
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+          {items.map(({ icon: Icon, t, n, d, featured }, idx) => (
             <div
               key={t}
-              className="group glass-dark rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
+              className={`group relative overflow-hidden rounded-3xl p-8 transition-all duration-500 hover:-translate-y-1.5 ${
+                featured
+                  ? "gradient-gold text-charcoal shadow-gold sm:col-span-2 lg:row-span-2 flex flex-col justify-between"
+                  : "glass-dark hover:border-gold/60"
+              }`}
             >
-              <div className="flex items-start gap-5">
-                <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold">
-                  <Icon className="h-6 w-6 text-white" />
+              <span
+                className={`font-display text-6xl font-bold leading-none transition ${
+                  featured ? "text-charcoal/15" : "text-white/10 group-hover:text-gold/25"
+                }`}
+              >
+                0{idx + 1}
+              </span>
+              <div className={featured ? "mt-auto pt-10" : "mt-6"}>
+                <span
+                  className={`grid h-14 w-14 place-items-center rounded-2xl shrink-0 transition ${
+                    featured
+                      ? "bg-charcoal text-gold shadow-soft"
+                      : "gradient-gold text-white shadow-gold group-hover:scale-110"
+                  }`}
+                >
+                  <Icon className="h-6 w-6" />
                 </span>
-                <div className="min-w-0">
-                  <div className="font-display text-2xl font-bold text-gold">{n}</div>
-                  <div className="mt-1 text-white/80 font-medium">{t}</div>
+                <div
+                  className={`mt-5 font-display font-bold ${
+                    featured ? "text-charcoal text-4xl" : "text-gold text-2xl"
+                  }`}
+                >
+                  {n}
                 </div>
+                <h3
+                  className={`mt-1 font-semibold ${
+                    featured ? "text-charcoal text-2xl" : "text-white text-lg"
+                  }`}
+                >
+                  {t}
+                </h3>
+                <p
+                  className={`mt-2 text-sm leading-relaxed ${
+                    featured ? "text-charcoal/75 max-w-md" : "text-white/65"
+                  }`}
+                >
+                  {d}
+                </p>
               </div>
             </div>
           ))}
