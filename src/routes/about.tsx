@@ -52,8 +52,8 @@ function useCounter(target: number, duration = 1800, inView = true) {
 }
 
 
-function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.4);
+function Stat({ n, label, suffix = "+", triggerOffset = "0px 0px -5% 0px" }: { n: number; label: string; suffix?: string; triggerOffset?: string }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.4, triggerOffset);
   const val = useCounter(n, 1800, inView);
   return (
     <div ref={ref} className="text-center">
@@ -65,6 +65,7 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
     </div>
   );
 }
+
 
 
 function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px -5% 0px") {
