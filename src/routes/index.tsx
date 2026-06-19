@@ -683,7 +683,7 @@ function HomePage() {
       <About />
       <Categories />
       <WhyUs />
-      <BrandMarquee title="Plywood Brands" brands={PLYWOOD_BRANDS} />
+      <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
       <BrandMarquee title="Hardware Brands" brands={HARDWARE_BRANDS} variant="warm" />
       <Consultation />
       <Testimonials />
