@@ -36,6 +36,23 @@ import t3 from "@/assets/testimonial-3.jpg";
 import t4 from "@/assets/testimonial-4.jpg";
 import t5 from "@/assets/testimonial-5.jpg";
 import t6 from "@/assets/testimonial-6.jpg";
+import brandGreenply from "@/assets/brands/greenply.png.asset.json";
+import brandArchidply from "@/assets/brands/archidply.png.asset.json";
+import brandAustin from "@/assets/brands/austin.png.asset.json";
+import brandCenturyply from "@/assets/brands/centuryply.png.asset.json";
+import brandDecobond from "@/assets/brands/decobond.png.asset.json";
+import brandDuroply from "@/assets/brands/duroply.png.asset.json";
+import brandMikasa from "@/assets/brands/mikasa.png.asset.json";
+
+const PLYWOOD_BRAND_LOGOS = [
+  { name: "Greenply", logo: brandGreenply.url },
+  { name: "CenturyPly", logo: brandCenturyply.url },
+  { name: "Austin Plywood", logo: brandAustin.url },
+  { name: "Archidply", logo: brandArchidply.url },
+  { name: "Duroply", logo: brandDuroply.url },
+  { name: "Mikasa", logo: brandMikasa.url },
+  { name: "Deco Bond", logo: brandDecobond.url },
+];
 
 const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
