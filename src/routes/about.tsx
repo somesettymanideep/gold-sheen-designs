@@ -442,20 +442,25 @@ function CircleStat({
     <div
       ref={viewRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
-        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
+      className={`group relative w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 shrink-0 flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ml-0 sm:-ml-4 md:-ml-6 lg:-ml-10 xl:-ml-12 first:sm:ml-0 hover:z-10 ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
     >
-      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-gold">
+      <div className="relative grid aspect-square w-full place-items-center rounded-full bg-cream border border-border/40 shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:shadow-gold">
         <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
-        <div className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
+        <div className="font-sans text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-charcoal">
           {formatStat(val)}
           {suffix}
         </div>
       </div>
-      <h3 className="mt-5 font-display text-lg font-bold text-charcoal leading-tight">{title}</h3>
-      <p className="mt-1 text-sm text-muted-foreground max-w-[12rem]">{subtitle}</p>
+      <h3 className="mt-4 sm:mt-5 font-sans text-sm sm:text-base lg:text-lg font-semibold text-charcoal leading-tight">
+        {title}
+      </h3>
+      <p className="mt-1 text-xs text-muted-foreground max-w-[7rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[8rem] xl:max-w-[10rem] leading-tight">
+        {subtitle}
+      </p>
     </div>
+
   );
 }
 
@@ -471,13 +476,6 @@ function StatsSection() {
   ];
   return (
     <section className="section-pad bg-background relative overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, var(--gold) 0%, transparent 40%), radial-gradient(circle at 80% 70%, var(--gold) 0%, transparent 40%)",
-        }}
-      />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={header.ref}
@@ -486,13 +484,12 @@ function StatsSection() {
             header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-
           <span className="eyebrow justify-center">By The Numbers</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
             A decade of <span className="text-gradient-gold">measurable trust</span>
           </h2>
         </div>
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 sm:gap-8 justify-items-center">
+        <div className="mt-12 sm:mt-16 flex overflow-x-auto pb-4 sm:pb-0 snap-x snap-mandatory sm:justify-center sm:overflow-visible [-ms-overflow-style:none] [scrollbar-width:none]">
           {stats.map((s, i) => (
             <CircleStat key={s.title} {...s} delay={i * 120} />
           ))}
@@ -501,3 +498,4 @@ function StatsSection() {
     </section>
   );
 }
+
