@@ -491,7 +491,7 @@ function Testimonials() {
     if (isHovered) return;
     const t = setInterval(() => {
       setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
-    }, 5000);
+    }, 7000);
     return () => clearInterval(t);
   }, [isHovered, totalPages]);
 
