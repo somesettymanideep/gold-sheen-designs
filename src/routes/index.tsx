@@ -578,8 +578,8 @@ function HomePage() {
       <WhyUs />
       <BrandMarquee title="Plywood Brands" brands={PLYWOOD_BRANDS} />
       <BrandMarquee title="Hardware Brands" brands={HARDWARE_BRANDS} variant="warm" />
-      <Testimonials />
       <Consultation />
+      <Testimonials />
       <CallToAction />
     </PageLayout>
   );
