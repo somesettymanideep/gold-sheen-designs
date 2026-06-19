@@ -17,7 +17,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { SITE, CATEGORIES, HARDWARE_BRANDS } from "@/lib/site";
+import { SITE, CATEGORIES } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
@@ -43,6 +43,13 @@ import brandCenturyply from "@/assets/brands/centuryply.png.asset.json";
 import brandDecobond from "@/assets/brands/decobond.png.asset.json";
 import brandDuroply from "@/assets/brands/duroply.png.asset.json";
 import brandMikasa from "@/assets/brands/mikasa.png.asset.json";
+import brandHafele from "@/assets/brands/hafele.png.asset.json";
+import brandKessebohmer from "@/assets/brands/kessebohmer.png.asset.json";
+import brandBlum from "@/assets/brands/blum.png.asset.json";
+import brandEbco from "@/assets/brands/ebco.png.asset.json";
+import brandDecofit from "@/assets/brands/decofit.png.asset.json";
+import brandHettich from "@/assets/brands/hettich.png.asset.json";
+import brandOzone from "@/assets/brands/ozone.png.asset.json";
 
 const PLYWOOD_BRAND_LOGOS = [
   { name: "Greenply", logo: brandGreenply.url },
@@ -52,6 +59,16 @@ const PLYWOOD_BRAND_LOGOS = [
   { name: "Duroply", logo: brandDuroply.url },
   { name: "Mikasa", logo: brandMikasa.url },
   { name: "Deco Bond", logo: brandDecobond.url },
+];
+
+const HARDWARE_BRAND_LOGOS = [
+  { name: "Häfele", logo: brandHafele.url },
+  { name: "Hettich", logo: brandHettich.url },
+  { name: "Blum", logo: brandBlum.url },
+  { name: "Kesseböhmer", logo: brandKessebohmer.url },
+  { name: "Ebco", logo: brandEbco.url },
+  { name: "Ozone", logo: brandOzone.url },
+  { name: "Decofit", logo: brandDecofit.url },
 ];
 
 const CAT_IMG: Record<string, string> = {
@@ -377,7 +394,7 @@ function BrandMarquee({
     ? [...logos, ...logos]
     : [...(brands ?? []), ...(brands ?? [])].map((name) => ({ name, logo: undefined }));
   return (
-    <section className={`py-16 ${variant === "warm" ? "gradient-warm" : "bg-background"}`}>
+    <section className={`py-10 ${variant === "warm" ? "gradient-warm" : "bg-background"}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="eyebrow">Brands We Deal With</span>
@@ -684,7 +701,7 @@ function HomePage() {
       <Categories />
       <WhyUs />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
-      <BrandMarquee title="Hardware Brands" brands={HARDWARE_BRANDS} variant="warm" />
+      <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
       <Consultation />
       <Testimonials />
       <CallToAction />
