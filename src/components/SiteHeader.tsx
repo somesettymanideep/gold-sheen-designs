@@ -30,12 +30,12 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
         <Link to="/" className="flex items-center gap-3 min-w-0">
-          <img
+        <img
             src={logo.url}
             alt="Durga Hardware and Plywood"
-            width={56}
-            height={56}
-            className="h-12 w-12 sm:h-14 sm:w-14 object-contain shrink-0"
+            width={72}
+            height={72}
+            className="h-16 w-16 sm:h-18 sm:w-18 object-contain shrink-0"
           />
         </Link>
 
