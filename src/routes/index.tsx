@@ -17,7 +17,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { SITE, CATEGORIES, PLYWOOD_BRANDS, HARDWARE_BRANDS } from "@/lib/site";
+import { SITE, CATEGORIES, HARDWARE_BRANDS } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
