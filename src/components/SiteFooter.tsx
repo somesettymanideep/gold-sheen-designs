@@ -52,47 +52,56 @@ export function SiteFooter() {
           </nav>
 
           {/* Contact row */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <a
-              href={`mailto:${SITE.email}`}
-              className="flex items-start gap-4 group"
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
-                <Mail className="h-5 w-5 text-white" />
-              </span>
-              <div className="min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Email</div>
-                <div className="mt-1 text-sm text-white break-all group-hover:text-gold-soft transition">{SITE.email}</div>
-              </div>
-            </a>
-            <a
-              href={SITE.phoneHref}
-              className="flex items-start gap-4 group"
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
-                <Phone className="h-5 w-5 text-white" />
-              </span>
-              <div className="min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Phone</div>
-                <div className="mt-1 text-sm text-white group-hover:text-gold-soft transition">+91 {SITE.phone}</div>
-              </div>
-            </a>
-            <a
-              href={SITE.mapsHref}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-start gap-4 group"
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
-                <MapPin className="h-5 w-5 text-white" />
-              </span>
-              <div className="min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Address</div>
-                <div className="mt-1 text-sm text-white leading-snug group-hover:text-gold-soft transition">
-                  {SITE.address.line1}, {SITE.address.line2}, {SITE.address.city}
+          <div className="mt-14">
+            <div className="mx-auto mb-10 h-px w-24 bg-gold/50" />
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
+              <a
+                href={`mailto:${SITE.email}`}
+                className="group flex items-center gap-4 md:px-8"
+              >
+                <span className="grid h-12 w-12 place-items-center rounded-full gradient-gold shadow-gold shrink-0 transition group-hover:scale-105">
+                  <Mail className="h-5 w-5 text-white" />
+                </span>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Email</div>
+                  <div className="mt-0.5 text-sm text-white break-all group-hover:text-gold-soft transition">{SITE.email}</div>
                 </div>
-              </div>
-            </a>
+              </a>
+
+              <div className="hidden md:block h-10 w-px bg-gold/30" />
+
+              <a
+                href={SITE.phoneHref}
+                className="group flex items-center gap-4 md:px-8"
+              >
+                <span className="grid h-12 w-12 place-items-center rounded-full gradient-gold shadow-gold shrink-0 transition group-hover:scale-105">
+                  <Phone className="h-5 w-5 text-white" />
+                </span>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Phone</div>
+                  <div className="mt-0.5 text-sm text-white group-hover:text-gold-soft transition">+91 {SITE.phone}</div>
+                </div>
+              </a>
+
+              <div className="hidden md:block h-10 w-px bg-gold/30" />
+
+              <a
+                href={SITE.mapsHref}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-4 md:px-8"
+              >
+                <span className="grid h-12 w-12 place-items-center rounded-full gradient-gold shadow-gold shrink-0 transition group-hover:scale-105">
+                  <MapPin className="h-5 w-5 text-white" />
+                </span>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Address</div>
+                  <div className="mt-0.5 text-sm text-white leading-snug group-hover:text-gold-soft transition">
+                    {SITE.address.line1}, {SITE.address.line2}, {SITE.address.city}
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
