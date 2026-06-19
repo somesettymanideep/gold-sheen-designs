@@ -106,7 +106,6 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Bottom bar */}
       <div className="relative z-10 bg-black/40 border-t border-white/5">
