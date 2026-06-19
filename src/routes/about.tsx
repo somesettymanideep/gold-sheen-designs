@@ -412,7 +412,10 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Awards & Recognition */}
+      <AwardsSection />
+
+
       <section className="py-24 bg-charcoal text-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-15"
