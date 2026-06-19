@@ -201,10 +201,10 @@ function AwardsSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <span className="eyebrow justify-center text-gold">Our Achievements</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
             Awards &amp; <span className="text-gold">Recognition</span>
           </h2>
-          <p className="mt-5 text-white/70 leading-relaxed">
+          <p className="mt-5 text-charcoal/70 leading-relaxed">
             A decade of dedication, celebrated across the industry. Our shelves hold more than
             premium products — they hold the trust and recognition we've earned.
           </p>
@@ -213,7 +213,7 @@ function AwardsSection() {
         {/* Featured award */}
         <div
           ref={featured.ref}
-          className={`mt-14 grid gap-8 lg:grid-cols-2 items-center rounded-2xl glass-dark p-6 sm:p-10 transition-all duration-700 ${
+          className={`mt-14 grid gap-8 lg:grid-cols-2 items-center rounded-2xl glass p-6 sm:p-10 transition-all duration-700 ${
             featured.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
