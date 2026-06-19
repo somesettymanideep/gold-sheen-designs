@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   ArrowRight,
   ArrowLeft,
@@ -430,6 +430,8 @@ const testimonials = [
 
 function Testimonials() {
   const [page, setPage] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const perPage = 3;
   const totalPages = Math.ceil(testimonials.length / perPage);
   const current = testimonials.slice(page * perPage, (page + 1) * perPage);
@@ -437,8 +439,21 @@ function Testimonials() {
   const prev = () => setPage((p) => (p > 0 ? p - 1 : totalPages - 1));
   const next = () => setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
 
+  useEffect(() => {
+    if (isHovered) return;
+    const t = setInterval(() => {
+      setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
+    }, 5000);
+    return () => clearInterval(t);
+  }, [isHovered, totalPages]);
+
   return (
-    <section className="section-pad gradient-warm">
+    <section
+      ref={sectionRef}
+      className="section-pad gradient-warm"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="eyebrow">Testimonial</span>
@@ -451,7 +466,7 @@ function Testimonials() {
           {current.map((t, idx) => (
             <div
               key={page * perPage + idx}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft transition-all duration-500"
+              className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft transition-all duration-500 animate-fade-in"
             >
               <div className="flex items-center gap-4">
                 <img
