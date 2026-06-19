@@ -442,24 +442,25 @@ function CircleStat({
     <div
       ref={viewRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`group relative w-28 sm:w-36 md:w-44 lg:w-48 shrink-0 flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ml-0 sm:-ml-8 md:-ml-10 lg:-ml-12 first:sm:ml-0 hover:z-10 ${
+      className={`group relative w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 shrink-0 flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ml-0 sm:-ml-4 md:-ml-6 lg:-ml-10 xl:-ml-12 first:sm:ml-0 hover:z-10 ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
     >
       <div className="relative grid aspect-square w-full place-items-center rounded-full bg-cream border border-border/40 shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:shadow-gold">
         <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
-        <div className="font-sans text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal">
+        <div className="font-sans text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-charcoal">
           {formatStat(val)}
           {suffix}
         </div>
       </div>
-      <h3 className="mt-4 sm:mt-5 font-sans text-sm sm:text-base font-semibold text-charcoal leading-tight">
+      <h3 className="mt-4 sm:mt-5 font-sans text-sm sm:text-base lg:text-lg font-semibold text-charcoal leading-tight">
         {title}
       </h3>
-      <p className="mt-1 text-xs text-muted-foreground max-w-[7rem] sm:max-w-[7rem] md:max-w-[8rem] lg:max-w-[9rem] leading-tight">
+      <p className="mt-1 text-xs text-muted-foreground max-w-[7rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[8rem] xl:max-w-[10rem] leading-tight">
         {subtitle}
       </p>
     </div>
+
   );
 }
 
