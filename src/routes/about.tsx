@@ -67,7 +67,7 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
 }
 
 
-function useInView<T extends HTMLElement>(threshold = 0.2) {
+function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px -5% 0px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -82,13 +82,14 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
           }
         });
       },
-      { threshold },
+      { threshold, rootMargin },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, rootMargin]);
   return { ref, inView };
 }
+
 
 type AwardItem = {
   image: string;
@@ -480,10 +481,12 @@ function StatsSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={header.ref}
-          className={`max-w-2xl mx-auto text-center transition-all duration-700 ${
-            header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          style={{ transitionDelay: "100ms" }}
+          className={`max-w-2xl mx-auto text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+            header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
+
           <span className="eyebrow justify-center">By The Numbers</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
             A decade of <span className="text-gradient-gold">measurable trust</span>
