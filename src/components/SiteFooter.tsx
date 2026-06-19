@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin, Clock } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import footerBanner from "@/assets/footer-banner.jpg";
 import { SITE } from "@/lib/site";
