@@ -341,29 +341,35 @@ function WhyUs() {
   ];
   return (
     <section className="section-pad bg-[#f7f4ef] text-charcoal relative overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 10% 20%, var(--gold) 0%, transparent 35%), radial-gradient(circle at 90% 80%, var(--brown) 0%, transparent 35%)",
+        }}
+      />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="max-w-2xl">
           <span className="eyebrow">Why Choose Us</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold italic leading-tight">
-            Six reasons customers <span className="not-italic">choose Durga</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
           </h2>
-          <div className="mt-8 h-[1px] w-24 bg-gold mx-auto opacity-60" />
         </div>
-
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-          {items.map(({ icon: Icon, t, n }, idx) => (
-            <div key={t} className="group cursor-default">
-              <div className="relative mb-6 overflow-hidden">
-                <span className="font-display text-6xl font-light text-charcoal/10 transition-colors duration-500 group-hover:text-gold/10 select-none">
-                  {String(idx + 1).padStart(2, "0")}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map(({ icon: Icon, t, n }) => (
+            <div
+              key={t}
+              className="group glass-card border border-charcoal/10 rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
+            >
+              <div className="flex items-start gap-5">
+                <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold">
+                  <Icon className="h-6 w-6 text-white" />
                 </span>
-                <div className="absolute bottom-2 left-0 w-8 h-[1px] bg-gold origin-left transition-transform duration-500 group-hover:scale-x-150" />
+                <div className="min-w-0">
+                  <div className="font-display text-2xl font-bold text-gold">{n}</div>
+                  <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
+                </div>
               </div>
-              <div className="flex items-center gap-3 mb-2">
-                <Icon className="h-5 w-5 text-gold" strokeWidth={1.5} />
-                <h3 className="font-display text-xl font-medium tracking-wide">{t}</h3>
-              </div>
-              <div className="text-2xl font-bold text-gold font-display">{n}</div>
             </div>
           ))}
         </div>
