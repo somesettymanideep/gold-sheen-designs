@@ -79,9 +79,10 @@ function ProductsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORIES.map((c) => (
-              <a
+              <Link
                 key={c.slug}
-                href={`#${c.slug}`}
+                to="/products/$slug"
+                params={{ slug: c.slug }}
                 className="group relative overflow-hidden rounded-2xl bg-charcoal shadow-soft hover:shadow-elevated transition duration-500"
               >
                 <div className="aspect-[4/5] overflow-hidden">
@@ -97,10 +98,10 @@ function ProductsPage() {
                   <h3 className="font-display text-2xl font-bold text-white">{c.title}</h3>
                   <p className="mt-2 text-sm text-white/75">{c.blurb}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold">
-                    Explore <ArrowRight className="h-3 w-3" />
+                    View Details <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
