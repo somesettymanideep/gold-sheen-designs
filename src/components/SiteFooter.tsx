@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
-import footerBanner from "@/assets/footer-banner.jpg";
+import footerBanner from "@/assets/footer-banner-kitchen.webp.asset.json";
 import { SITE } from "@/lib/site";
 
 export function SiteFooter() {
