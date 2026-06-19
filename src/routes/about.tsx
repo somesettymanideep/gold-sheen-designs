@@ -32,38 +32,29 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-function useCounter(target: number, duration = 1800) {
+function useCounter(target: number, duration = 1800, inView = true) {
   const [val, setVal] = useState(0);
-  const ref = useRef<HTMLDivElement | null>(null);
   const started = useRef(false);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && !started.current) {
-            started.current = true;
-            const start = performance.now();
-            const step = (t: number) => {
-              const p = Math.min(1, (t - start) / duration);
-              setVal(Math.floor(target * (1 - Math.pow(1 - p, 3))));
-              if (p < 1) requestAnimationFrame(step);
-            };
-            requestAnimationFrame(step);
-          }
-        });
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [target, duration]);
-  return { val, ref };
+    if (!inView || started.current) return;
+    started.current = true;
+    const start = performance.now();
+    const step = (t: number) => {
+      const p = Math.min(1, (t - start) / duration);
+      // easeOutCubic — smooth, premium deceleration
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(Math.floor(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, inView]);
+  return val;
 }
 
+
 function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: string }) {
-  const { val, ref } = useCounter(n);
+  const { ref, inView } = useInView<HTMLDivElement>(0.4);
+  const val = useCounter(n, 1800, inView);
   return (
     <div ref={ref} className="text-center">
       <div className="font-display text-5xl sm:text-6xl font-bold text-gradient-gold">
@@ -75,7 +66,8 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
   );
 }
 
-function useInView<T extends HTMLElement>(threshold = 0.2) {
+
+function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px -5% 0px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -90,13 +82,14 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
           }
         });
       },
-      { threshold },
+      { threshold, rootMargin },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, rootMargin]);
   return { ref, inView };
 }
+
 
 type AwardItem = {
   image: string;
@@ -443,19 +436,19 @@ function CircleStat({
   subtitle: string;
   delay: number;
 }) {
-  const { val, ref: countRef } = useCounter(n);
-  const { ref: viewRef, inView } = useInView<HTMLDivElement>();
+  const { ref: viewRef, inView } = useInView<HTMLDivElement>(0.3);
+  const val = useCounter(n, 1800, inView);
   return (
     <div
       ref={viewRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`flex flex-col items-center text-center transition-all duration-700 ease-out ${
-        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90"
+      className={`flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
       }`}
     >
-      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-gold">
-        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500" />
-        <div ref={countRef} className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
+      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-gold">
+        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
+        <div className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
           {formatStat(val)}
           {suffix}
         </div>
@@ -465,6 +458,7 @@ function CircleStat({
     </div>
   );
 }
+
 
 function StatsSection() {
   const header = useInView<HTMLDivElement>();
@@ -487,10 +481,12 @@ function StatsSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={header.ref}
-          className={`max-w-2xl mx-auto text-center transition-all duration-700 ${
-            header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          style={{ transitionDelay: "100ms" }}
+          className={`max-w-2xl mx-auto text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+            header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
+
           <span className="eyebrow justify-center">By The Numbers</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
             A decade of <span className="text-gradient-gold">measurable trust</span>
