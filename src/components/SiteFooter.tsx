@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
-import footerBanner from "@/assets/footer-banner.jpg";
+import footerBanner from "@/assets/footer-banner-kitchen.webp.asset.json";
 import { SITE } from "@/lib/site";
 
 export function SiteFooter() {
@@ -17,7 +17,7 @@ export function SiteFooter() {
       {/* Background banner image across the entire footer */}
       <div className="absolute inset-0">
         <img
-          src={footerBanner}
+          src={footerBanner.url}
           alt="Footer background"
           loading="lazy"
           className="h-full w-full object-cover"
