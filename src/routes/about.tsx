@@ -52,8 +52,8 @@ function useCounter(target: number, duration = 1800, inView = true) {
 }
 
 
-function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.4);
+function Stat({ n, label, suffix = "+", triggerOffset = "0px 0px -5% 0px" }: { n: number; label: string; suffix?: string; triggerOffset?: string }) {
+  const { ref, inView } = useInView<HTMLDivElement>(0.4, triggerOffset);
   const val = useCounter(n, 1800, inView);
   return (
     <div ref={ref} className="text-center">
@@ -67,7 +67,8 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
 }
 
 
-function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px -5% 0px") {
+
+function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -89,6 +90,7 @@ function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px 0px
   }, [threshold, rootMargin]);
   return { ref, inView };
 }
+
 
 
 type AwardItem = {
@@ -256,9 +258,10 @@ function AwardsSection() {
         {/* Counters */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-white/10 pt-12">
           {counters.map((c) => (
-            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} />
+            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} triggerOffset="0px 0px -5% 0px" />
           ))}
         </div>
+
       </div>
     </section>
   );
