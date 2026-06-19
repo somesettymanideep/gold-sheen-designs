@@ -96,6 +96,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
       { property: "og:description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
       { name: "twitter:description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
