@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
+  ArrowLeft,
   Phone,
   MessageCircle,
   CheckCircle2,
@@ -29,6 +30,12 @@ import catKitchen from "@/assets/cat-kitchen.jpg";
 import catDoors from "@/assets/cat-doors.jpg";
 import ctaBg from "@/assets/cta-bg.jpg";
 import consultBg from "@/assets/consultation-bg.jpg";
+import t1 from "@/assets/testimonial-1.jpg";
+import t2 from "@/assets/testimonial-2.jpg";
+import t3 from "@/assets/testimonial-3.jpg";
+import t4 from "@/assets/testimonial-4.jpg";
+import t5 from "@/assets/testimonial-5.jpg";
+import t6 from "@/assets/testimonial-6.jpg";
 
 const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
@@ -382,67 +389,121 @@ const testimonials = [
     role: "Homeowner, Vijayawada",
     text: "Outstanding selection and the team genuinely guides you to the right product. My modular kitchen looks stunning.",
     rating: 5,
+    img: t1,
   },
   {
     name: "Lakshmi Devi",
     role: "Interior Designer",
     text: "My go-to for premium plywood and veneers. Stock is always fresh, brands are genuine, pricing is transparent.",
     rating: 5,
+    img: t2,
   },
   {
     name: "Suresh Babu",
     role: "Contractor",
     text: "Reliable supply, on-time delivery and the best hardware brands under one roof. Highly recommended.",
     rating: 5,
+    img: t3,
+  },
+  {
+    name: "Anita Reddy",
+    role: "Architect",
+    text: "The quality of materials and range of brands at Durga is unmatched in Vijayawada. A trusted partner for all my projects.",
+    rating: 5,
+    img: t4,
+  },
+  {
+    name: "Karthik Rao",
+    role: "Business Owner",
+    text: "Excellent customer service and competitive pricing. Their hardware section saved us so much time on our office renovation.",
+    rating: 5,
+    img: t5,
+  },
+  {
+    name: "Padma Sree",
+    role: "Homeowner, Guntur",
+    text: "From laminates to door fittings, everything under one roof. The staff helped us pick the perfect color combinations.",
+    rating: 5,
+    img: t6,
   },
 ];
 
 function Testimonials() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % testimonials.length), 6000);
-    return () => clearInterval(t);
-  }, []);
+  const [page, setPage] = useState(0);
+  const perPage = 3;
+  const totalPages = Math.ceil(testimonials.length / perPage);
+  const current = testimonials.slice(page * perPage, (page + 1) * perPage);
+
+  const prev = () => setPage((p) => (p > 0 ? p - 1 : totalPages - 1));
+  const next = () => setPage((p) => (p < totalPages - 1 ? p + 1 : 0));
+
   return (
     <section className="section-pad gradient-warm">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        <span className="eyebrow">Testimonials</span>
-        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
-          What our <span className="text-gradient-gold">customers say</span>
-        </h2>
-        <div className="mt-14 relative">
-          <div className="glass-card rounded-3xl p-8 sm:p-14 shadow-soft relative">
-            <Quote className="h-12 w-12 text-gold/40 mx-auto" />
-            <p className="mt-6 text-lg sm:text-xl text-charcoal/85 leading-relaxed font-display italic min-h-[7rem]">
-              "{testimonials[i].text}"
-            </p>
-            <div className="mt-6 flex items-center justify-center gap-1">
-              {Array.from({ length: testimonials[i].rating }).map((_, k) => (
-                <Star key={k} className="h-4 w-4 fill-gold text-gold" />
-              ))}
-            </div>
-            <div className="mt-6 flex flex-col items-center gap-2">
-              <div className="grid h-14 w-14 place-items-center rounded-full gradient-gold text-white font-display text-lg font-bold shadow-gold">
-                {testimonials[i].name.charAt(0)}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <span className="eyebrow">Testimonial</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+            What The People Thinks About Us
+          </h2>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {current.map((t, idx) => (
+            <div
+              key={page * perPage + idx}
+              className="bg-white rounded-2xl p-6 sm:p-8 shadow-soft transition-all duration-500"
+            >
+              <div className="flex items-center gap-4">
+                <img
+                  src={t.img}
+                  alt={t.name}
+                  className="h-14 w-14 rounded-full object-cover"
+                  loading="lazy"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-charcoal text-base sm:text-lg truncate">
+                    {t.name}
+                  </div>
+                  <div className="text-sm text-gold">{t.role}</div>
+                </div>
+                <Quote className="h-10 w-10 text-gold/30 flex-shrink-0" />
               </div>
-              <div className="font-semibold text-charcoal">{testimonials[i].name}</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                {testimonials[i].role}
-              </div>
+              <p className="mt-5 text-charcoal/70 leading-relaxed text-sm sm:text-base">
+                {t.text}
+              </p>
             </div>
-          </div>
-          <div className="mt-6 flex justify-center gap-2">
-            {testimonials.map((_, idx) => (
+          ))}
+        </div>
+
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <button
+            onClick={prev}
+            aria-label="Previous testimonials"
+            className="grid h-10 w-10 place-items-center rounded-full border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <div className="flex items-center gap-3 text-sm font-medium text-charcoal/60">
+            {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
-                aria-label={`Testimonial ${idx + 1}`}
-                onClick={() => setI(idx)}
-                className={`h-1.5 rounded-full transition-all ${
-                  idx === i ? "w-10 gradient-gold" : "w-4 bg-charcoal/20"
+                onClick={() => setPage(idx)}
+                className={`transition-colors ${
+                  idx === page ? "text-gold font-bold text-lg" : "hover:text-charcoal"
                 }`}
-              />
+                aria-label={`Go to page ${idx + 1}`}
+              >
+                {String(idx + 1).padStart(2, "0")}
+              </button>
             ))}
           </div>
+          <button
+            onClick={next}
+            aria-label="Next testimonials"
+            className="grid h-10 w-10 place-items-center rounded-full border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </section>
