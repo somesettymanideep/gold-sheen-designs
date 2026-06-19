@@ -55,40 +55,40 @@ export function SiteFooter() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <a
               href={`mailto:${SITE.email}`}
-              className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/10 p-5 hover:border-gold/50 transition"
+              className="flex items-start gap-4 group"
             >
               <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
                 <Mail className="h-5 w-5 text-white" />
               </span>
               <div className="min-w-0">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Email</div>
-                <div className="mt-1 text-sm text-white break-all">{SITE.email}</div>
+                <div className="mt-1 text-sm text-white break-all group-hover:text-gold-soft transition">{SITE.email}</div>
               </div>
             </a>
             <a
               href={SITE.phoneHref}
-              className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/10 p-5 hover:border-gold/50 transition"
+              className="flex items-start gap-4 group"
             >
               <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
                 <Phone className="h-5 w-5 text-white" />
               </span>
               <div className="min-w-0">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Phone</div>
-                <div className="mt-1 text-sm text-white">+91 {SITE.phone}</div>
+                <div className="mt-1 text-sm text-white group-hover:text-gold-soft transition">+91 {SITE.phone}</div>
               </div>
             </a>
             <a
               href={SITE.mapsHref}
               target="_blank"
               rel="noreferrer"
-              className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/10 p-5 hover:border-gold/50 transition"
+              className="flex items-start gap-4 group"
             >
               <span className="grid h-11 w-11 place-items-center rounded-lg gradient-gold shrink-0">
                 <MapPin className="h-5 w-5 text-white" />
               </span>
               <div className="min-w-0">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-white/50">Address</div>
-                <div className="mt-1 text-sm text-white leading-snug">
+                <div className="mt-1 text-sm text-white leading-snug group-hover:text-gold-soft transition">
                   {SITE.address.line1}, {SITE.address.line2}, {SITE.address.city}
                 </div>
               </div>
