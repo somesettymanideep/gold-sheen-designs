@@ -186,7 +186,7 @@ function AwardsSection() {
   const featured = useInView<HTMLDivElement>();
 
   return (
-    <section className="section-pad relative overflow-hidden bg-charcoal text-white">
+    <section className="section-pad relative overflow-hidden bg-[#f7f4ef] text-charcoal">
       {/* decorative background */}
       <div
         className="absolute inset-0 opacity-10"
@@ -195,16 +195,16 @@ function AwardsSection() {
             "radial-gradient(circle at 15% 20%, var(--gold) 0%, transparent 45%), radial-gradient(circle at 85% 80%, var(--gold) 0%, transparent 45%)",
         }}
       />
-      <Trophy className="pointer-events-none absolute -left-10 top-16 h-56 w-56 text-gold/5 animate-float" />
-      <Award className="pointer-events-none absolute -right-8 bottom-24 h-64 w-64 text-gold/5" />
+      <Trophy className="pointer-events-none absolute -left-10 top-16 h-56 w-56 text-gold/10 animate-float" />
+      <Award className="pointer-events-none absolute -right-8 bottom-24 h-64 w-64 text-gold/10" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <span className="eyebrow justify-center text-gold">Our Achievements</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
             Awards &amp; <span className="text-gold">Recognition</span>
           </h2>
-          <p className="mt-5 text-white/70 leading-relaxed">
+          <p className="mt-5 text-charcoal/70 leading-relaxed">
             A decade of dedication, celebrated across the industry. Our shelves hold more than
             premium products — they hold the trust and recognition we've earned.
           </p>
@@ -213,7 +213,7 @@ function AwardsSection() {
         {/* Featured award */}
         <div
           ref={featured.ref}
-          className={`mt-14 grid gap-8 lg:grid-cols-2 items-center rounded-2xl glass-dark p-6 sm:p-10 transition-all duration-700 ${
+          className={`mt-14 grid gap-8 lg:grid-cols-2 items-center rounded-2xl glass p-6 sm:p-10 transition-all duration-700 ${
             featured.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -232,10 +232,10 @@ function AwardsSection() {
             <span className="inline-flex items-center gap-2 rounded-full bg-gold/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold">
               <Crown className="h-4 w-4" /> Featured Award
             </span>
-            <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-charcoal">
               Lifetime Achievement in Excellence
             </h3>
-            <p className="mt-4 text-white/70 leading-relaxed">
+            <p className="mt-4 text-charcoal/70 leading-relaxed">
               Our highest honour — awarded for a sustained legacy of quality, integrity and
               service that has shaped homes across Andhra Pradesh for over a decade.
             </p>
@@ -243,7 +243,7 @@ function AwardsSection() {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-white/80">Prestige Honour 2024</span>
+              <span className="ml-2 text-sm font-semibold text-charcoal/80">Prestige Honour 2024</span>
             </div>
           </div>
         </div>
@@ -256,7 +256,7 @@ function AwardsSection() {
         </div>
 
         {/* Counters */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-white/10 pt-12">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-charcoal/10 pt-12">
           {counters.map((c) => (
             <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} triggerOffset="0px 0px -5% 0px" />
           ))}
