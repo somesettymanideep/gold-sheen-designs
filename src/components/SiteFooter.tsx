@@ -17,7 +17,7 @@ export function SiteFooter() {
       {/* Background banner image across the entire footer */}
       <div className="absolute inset-0">
         <img
-          src={footerBanner}
+          src={footerBanner.url}
           alt="Footer background"
           loading="lazy"
           className="h-full w-full object-cover"
