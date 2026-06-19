@@ -53,7 +53,8 @@ function useCounter(target: number, duration = 1800, inView = true) {
 
 
 function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: string }) {
-  const { val, ref } = useCounter(n);
+  const { ref, inView } = useInView<HTMLDivElement>(0.4);
+  const val = useCounter(n, 1800, inView);
   return (
     <div ref={ref} className="text-center">
       <div className="font-display text-5xl sm:text-6xl font-bold text-gradient-gold">
@@ -64,6 +65,7 @@ function Stat({ n, label, suffix = "+" }: { n: number; label: string; suffix?: s
     </div>
   );
 }
+
 
 function useInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T | null>(null);
@@ -433,19 +435,19 @@ function CircleStat({
   subtitle: string;
   delay: number;
 }) {
-  const { val, ref: countRef } = useCounter(n);
-  const { ref: viewRef, inView } = useInView<HTMLDivElement>();
+  const { ref: viewRef, inView } = useInView<HTMLDivElement>(0.3);
+  const val = useCounter(n, 1800, inView);
   return (
     <div
       ref={viewRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`flex flex-col items-center text-center transition-all duration-700 ease-out ${
-        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90"
+      className={`flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+        inView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
       }`}
     >
-      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-gold">
-        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500" />
-        <div ref={countRef} className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
+      <div className="group relative grid aspect-square w-36 sm:w-44 lg:w-48 place-items-center rounded-full bg-secondary shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-gold">
+        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
+        <div className="font-display text-4xl sm:text-5xl font-bold text-gradient-gold">
           {formatStat(val)}
           {suffix}
         </div>
@@ -455,6 +457,7 @@ function CircleStat({
     </div>
   );
 }
+
 
 function StatsSection() {
   const header = useInView<HTMLDivElement>();
