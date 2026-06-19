@@ -271,7 +271,7 @@ function AwardsSection() {
   );
 }
 
-
+function AboutPage() {
   const vmv = [
     {
       icon: Eye,
