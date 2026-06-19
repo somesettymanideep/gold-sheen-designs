@@ -14,13 +14,19 @@ export function SiteFooter() {
 
   return (
     <footer className="relative bg-charcoal text-white/80 overflow-hidden">
-      {/* Top content area with banner image */}
-      <div className="relative">
-        <div className="absolute inset-0">
-          <img src={footerBanner} alt="Footer background" loading="lazy" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-charcoal/70" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-8 text-center">
+      {/* Background banner image across the entire footer */}
+      <div className="absolute inset-0">
+        <img
+          src={footerBanner}
+          alt="Footer background"
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-charcoal/70" />
+      </div>
+
+      {/* Top content area */}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-8 text-center">
           {/* Logo pill */}
           <div className="flex justify-center">
             <div className="inline-flex items-center justify-center rounded-full bg-white px-6 py-5 shadow-elevated">
