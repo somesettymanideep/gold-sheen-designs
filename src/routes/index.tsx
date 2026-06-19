@@ -75,7 +75,7 @@ const CAT_IMG: Record<string, string> = {
   laminates: catLaminates,
   hardware: catHardware,
   veneers: catVeneers,
-  kitchen: catKitchen,
+  kitchen: catKitchen.url,
   doors: catDoors,
 };
 
