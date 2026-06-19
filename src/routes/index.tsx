@@ -298,8 +298,8 @@ function Categories() {
           {CATEGORIES.map((c, idx) => (
             <Link
               key={c.slug}
-              to="/products"
-              hash={c.slug}
+              to="/products/$slug"
+              params={{ slug: c.slug }}
               className="group relative overflow-hidden rounded-2xl bg-charcoal shadow-soft hover:shadow-elevated transition-all duration-500"
               style={{ animationDelay: `${idx * 60}ms` }}
             >
