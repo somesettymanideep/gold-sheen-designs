@@ -398,7 +398,7 @@ function BrandMarquee({
                   src={item.logo}
                   alt={`${item.name} logo`}
                   loading="lazy"
-                  className="max-h-16 max-w-[80%] w-auto object-contain grayscale group-hover:grayscale-0 transition duration-300"
+                  className="max-h-16 max-w-[80%] w-auto object-contain transition duration-300"
                 />
               ) : (
                 <span className="font-display text-xl font-bold text-charcoal/60 group-hover:text-gold transition tracking-wide">
