@@ -30,6 +30,12 @@ import catKitchen from "@/assets/cat-kitchen.jpg";
 import catDoors from "@/assets/cat-doors.jpg";
 import ctaBg from "@/assets/cta-bg.jpg";
 import consultBg from "@/assets/consultation-bg.jpg";
+import t1 from "@/assets/testimonial-1.jpg";
+import t2 from "@/assets/testimonial-2.jpg";
+import t3 from "@/assets/testimonial-3.jpg";
+import t4 from "@/assets/testimonial-4.jpg";
+import t5 from "@/assets/testimonial-5.jpg";
+import t6 from "@/assets/testimonial-6.jpg";
 
 const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
