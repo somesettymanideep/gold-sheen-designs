@@ -9,6 +9,8 @@ import decobond710Nature from "@/assets/decobond/decobond-710-nature.jpg.asset.j
 import decobond710Gold from "@/assets/decobond/decobond-710-gold.jpg.asset.json";
 import decobond710Club from "@/assets/decobond/decobond-710-club.jpg.asset.json";
 import decobond710Platinum from "@/assets/decobond/decobond-710-platinum.jpg.asset.json";
+import decobond710Eco from "@/assets/decobond/decobond-710-eco.jpg.asset.json";
+import decobond710Pine from "@/assets/decobond/decobond-710-pine.jpg.asset.json";
 
 export type BrandGrade = {
   name: string;
@@ -20,6 +22,7 @@ export type PlywoodBrand = {
   name: string;
   tagline: string;
   thicknesses: string[];
+  sizes?: string[];
   grades: BrandGrade[];
 };
 
@@ -36,7 +39,18 @@ export const PLYWOOD_BRANDS: PlywoodBrand[] = [
       { name: "Decobond Platinum", warranty: "Lifetime Warranty", img: decobond710Platinum.url },
     ],
   },
+  {
+    name: "Decobond Block Board",
+    tagline: "BWP boiling-waterproof block board with a cured zero-gap core — light, strong and warp-resistant for shutters, tables and partitions.",
+    thicknesses: ["25mm", "19mm"],
+    sizes: ["8x4", "7x4", "7x3"],
+    grades: [
+      { name: "Decobond 710 Eco", warranty: "Semi Pine • 20 Years Warranty", img: decobond710Eco.url },
+      { name: "Decobond 710 Pine", warranty: "Premium New Zealand Pine • 30 Years Warranty", img: decobond710Pine.url },
+    ],
+  },
 ];
+
 
 export const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
