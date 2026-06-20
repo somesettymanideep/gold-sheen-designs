@@ -619,7 +619,7 @@ function CallToAction() {
           className="h-full w-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-charcoal/80" />
+        <div className="absolute inset-0 bg-charcoal/60" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center text-white">
         <span className="eyebrow text-gold">Visit Our Showroom</span>
