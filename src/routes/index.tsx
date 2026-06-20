@@ -334,15 +334,45 @@ function Categories() {
 
 function WhyUs() {
   const items = [
-    { icon: Award, t: "Premium Quality", n: "100%" },
-    { icon: ShieldCheck, t: "Genuine Products", n: "Verified" },
-    { icon: Sparkles, t: "Wide Range", n: "500+ SKUs" },
-    { icon: Star, t: "Trusted Brands", n: "100+" },
-    { icon: Truck, t: "Affordable Pricing", n: "Best Rates" },
-    { icon: Wrench, t: "Expert Support", n: "10+ Yrs" },
+    {
+      icon: Award,
+      prefix: "100%",
+      title: " Premium Quality",
+      desc: "Every sheet and fitting checked before it leaves the store",
+    },
+    {
+      icon: ShieldCheck,
+      prefix: "Verified",
+      title: " Genuine",
+      desc: "Authorised dealer stock only — no duplicates, ever",
+    },
+    {
+      icon: Sparkles,
+      prefix: "500+",
+      title: " SKUs in Stock",
+      desc: "From hinges to laminates — find it on one visit",
+    },
+    {
+      icon: Star,
+      prefix: "100+",
+      title: " Trusted Brands",
+      desc: "Shapes, Virgo and other names contractors ask for",
+    },
+    {
+      icon: Truck,
+      prefix: "Best Rates",
+      title: " in Town",
+      desc: "Bulk pricing for builders, fair pricing for everyone else",
+    },
+    {
+      icon: Wrench,
+      prefix: "10+ Yrs",
+      title: " Expert Support",
+      desc: "Honest advice on what actually suits your build",
+    },
   ];
   return (
-    <section className="section-pad bg-[#f7f4ef] text-charcoal relative overflow-hidden">
+    <section className="section-pad bg-cream text-charcoal relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -358,43 +388,46 @@ function WhyUs() {
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
           <div className="relative order-2 lg:order-1">
-            <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20 hidden md:block" />
-            <div className="absolute -bottom-5 -right-5 w-36 h-36 rounded-full border-2 border-gold/30 hidden md:block" />
             <div className="relative overflow-hidden rounded-2xl shadow-elevated">
               <img
                 src={aboutStore.url}
                 alt="Durga Hardware and Plywood premium showroom interior"
                 loading="lazy"
-                className="w-full h-[420px] lg:h-[560px] object-cover hover:scale-105 transition duration-700"
+                className="w-full h-[420px] lg:h-[600px] object-cover hover:scale-105 transition duration-700"
               />
+              <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
+                Our Storefront
+              </div>
             </div>
-            <div className="absolute -bottom-6 left-6 glass-card rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-3">
-              <Award className="h-8 w-8 text-gold" />
+            <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
+              <div className="font-display text-4xl font-bold text-gold">10+</div>
               <div>
-                <div className="text-2xl font-bold text-charcoal">10+</div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Years of Trust
-                </div>
+                <div className="text-sm font-semibold text-white">Years on the</div>
+                <div className="text-xs text-white/70">same street, same trust</div>
               </div>
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 grid gap-5 sm:grid-cols-2">
-            {items.map(({ icon: Icon, t, n }) => (
+          <div className="order-1 lg:order-2 flex flex-col">
+            {items.map(({ icon: Icon, prefix, title, desc }, idx) => (
               <div
-                key={t}
-                className="group bg-white/80 border border-charcoal/10 rounded-2xl p-6 hover:border-gold/60 hover:bg-white hover:-translate-y-2 hover:shadow-gold transition-all duration-500"
+                key={title}
+                className="group flex items-center gap-4 sm:gap-6 py-6 border-b border-charcoal/10 first:pt-0 last:border-b-0 hover:bg-white/60 hover:translate-x-1 transition-all duration-500 rounded-xl px-3 -mx-3"
               >
-                <div className="flex items-start gap-4">
-                  <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-                    <Icon className="h-6 w-6 text-white" />
-                  </span>
-                  <div className="min-w-0">
-                    <div className="font-display text-2xl font-bold text-gold">{n}</div>
-                    <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
+                <span className="grid h-14 w-14 sm:h-16 sm:w-16 place-items-center rounded-2xl bg-charcoal shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-gold" />
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="font-display text-xl sm:text-2xl font-bold">
+                    <span className="text-gold">{prefix}</span>
+                    <span className="text-charcoal">{title}</span>
                   </div>
+                  <div className="mt-1 text-sm text-muted-foreground">{desc}</div>
+                </div>
+                <div className="font-display text-2xl sm:text-3xl font-bold text-charcoal/20 group-hover:text-gold/60 transition-colors duration-300">
+                  {String(idx + 1).padStart(2, "0")}
                 </div>
               </div>
             ))}
