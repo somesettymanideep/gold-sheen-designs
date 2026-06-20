@@ -393,13 +393,13 @@ function WhyUs() {
           <div className="relative order-2 lg:order-1">
             <div className="relative overflow-hidden rounded-2xl shadow-elevated">
               <img
-                src={aboutStore.url}
-                alt="Durga Hardware and Plywood premium showroom interior"
+                src={whyusPlywoodTexture.url}
+                alt="Premium plywood texture close-up showing layered wood grain"
                 loading="lazy"
                 className="w-full h-[420px] lg:h-[600px] object-cover hover:scale-105 transition duration-700"
               />
               <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
-                Our Storefront
+                Premium Plywood
               </div>
             </div>
             <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
