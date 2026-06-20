@@ -169,8 +169,65 @@ function ProductDetailPage() {
         </div>
       </section>
 
+      {/* Plywood brands & grades */}
+      {slug === "plywood" &&
+        PLYWOOD_BRANDS.map((brand) => (
+          <section key={brand.name} className="section-pad gradient-warm">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-3xl mx-auto">
+                <span className="eyebrow">Featured Brand</span>
+                <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-charcoal">
+                  {brand.name}
+                </h2>
+                <p className="mt-5 text-muted-foreground leading-relaxed">{brand.tagline}</p>
+                <div className="mt-6 flex flex-wrap justify-center gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-charcoal/60 self-center mr-1">
+                    Thickness
+                  </span>
+                  {brand.thicknesses.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-charcoal/15 bg-background px-4 py-2 text-xs font-semibold text-charcoal"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <h3 className="mt-14 text-center font-display text-2xl font-bold text-charcoal">
+                Available Grades
+              </h3>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {brand.grades.map((g) => (
+                  <div
+                    key={g.name}
+                    className="group overflow-hidden rounded-2xl bg-background shadow-soft hover:shadow-elevated transition duration-500"
+                  >
+                    <div className="aspect-[3/4] overflow-hidden bg-secondary">
+                      <img
+                        src={g.img}
+                        alt={`${g.name} plywood — ${g.warranty}`}
+                        loading="lazy"
+                        className="h-full w-full object-contain group-hover:scale-105 transition duration-700"
+                      />
+                    </div>
+                    <div className="p-5 text-center">
+                      <h4 className="font-display text-lg font-bold text-charcoal">{g.name}</h4>
+                      <span className="mt-2 inline-flex items-center gap-2 rounded-full gradient-gold px-4 py-1.5 text-xs font-semibold text-white shadow-gold">
+                        {g.warranty}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        ))}
+
       {/* Related products */}
-      <section className="section-pad gradient-warm">
+      <section className="section-pad bg-background">
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-bold text-charcoal text-center">
             Explore More Products
