@@ -351,29 +351,54 @@ function WhyUs() {
         }}
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Why Choose Us</span>
+        <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+          <span className="eyebrow justify-center lg:justify-start">Why Choose Us</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
             Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
           </h2>
         </div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ icon: Icon, t, n }) => (
-            <div
-              key={t}
-              className="group glass-card border border-charcoal/10 rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
-            >
-              <div className="flex items-start gap-5">
-                <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold">
-                  <Icon className="h-6 w-6 text-white" />
-                </span>
-                <div className="min-w-0">
-                  <div className="font-display text-2xl font-bold text-gold">{n}</div>
-                  <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
+
+        <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
+          <div className="relative order-2 lg:order-1">
+            <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20 hidden md:block" />
+            <div className="absolute -bottom-5 -right-5 w-36 h-36 rounded-full border-2 border-gold/30 hidden md:block" />
+            <div className="relative overflow-hidden rounded-2xl shadow-elevated">
+              <img
+                src={aboutStore.url}
+                alt="Durga Hardware and Plywood premium showroom interior"
+                loading="lazy"
+                className="w-full h-[420px] lg:h-[560px] object-cover hover:scale-105 transition duration-700"
+              />
+            </div>
+            <div className="absolute -bottom-6 left-6 glass-card rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-3">
+              <Award className="h-8 w-8 text-gold" />
+              <div>
+                <div className="text-2xl font-bold text-charcoal">10+</div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                  Years of Trust
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="order-1 lg:order-2 grid gap-5 sm:grid-cols-2">
+            {items.map(({ icon: Icon, t, n }) => (
+              <div
+                key={t}
+                className="group bg-white/80 border border-charcoal/10 rounded-2xl p-6 hover:border-gold/60 hover:bg-white hover:-translate-y-2 hover:shadow-gold transition-all duration-500"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
+                    <Icon className="h-6 w-6 text-white" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-display text-2xl font-bold text-gold">{n}</div>
+                    <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
