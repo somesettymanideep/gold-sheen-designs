@@ -4,6 +4,39 @@ import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
+import decobond710 from "@/assets/decobond/decobond-710.jpg.asset.json";
+import decobond710Nature from "@/assets/decobond/decobond-710-nature.jpg.asset.json";
+import decobond710Gold from "@/assets/decobond/decobond-710-gold.jpg.asset.json";
+import decobond710Club from "@/assets/decobond/decobond-710-club.jpg.asset.json";
+import decobond710Platinum from "@/assets/decobond/decobond-710-platinum.jpg.asset.json";
+
+export type BrandGrade = {
+  name: string;
+  warranty: string;
+  img: string;
+};
+
+export type PlywoodBrand = {
+  name: string;
+  tagline: string;
+  thicknesses: string[];
+  grades: BrandGrade[];
+};
+
+export const PLYWOOD_BRANDS: PlywoodBrand[] = [
+  {
+    name: "Decobond 710",
+    tagline: "100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer & termite resistant, built to last.",
+    thicknesses: ["19mm", "16mm", "12mm", "9mm", "6mm"],
+    grades: [
+      { name: "Decobond 710", warranty: "15 Years Warranty", img: decobond710.url },
+      { name: "Decobond 710 Nature", warranty: "20 Years Warranty", img: decobond710Nature.url },
+      { name: "Decobond 710 Gold", warranty: "25 Years Warranty", img: decobond710Gold.url },
+      { name: "Decobond 710 Club", warranty: "30 Years Warranty", img: decobond710Club.url },
+      { name: "Decobond Platinum", warranty: "Lifetime Warranty", img: decobond710Platinum.url },
+    ],
+  },
+];
 
 export const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,
