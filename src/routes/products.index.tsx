@@ -44,7 +44,7 @@ const FEATURES: Record<string, string[]> = {
   ],
 };
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Products — Plywood, Laminates, Hardware, Veneers, Kitchens, Doors" },
