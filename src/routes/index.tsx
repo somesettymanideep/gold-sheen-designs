@@ -27,7 +27,7 @@ import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
-import ctaBg from "@/assets/cta-bg.jpg";
+import ctaBg from "@/assets/cta-bg-1.webp.asset.json";
 import consultBg from "@/assets/consultation-bg.jpg";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
@@ -613,14 +613,18 @@ function CallToAction() {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0">
-        <img src={ctaBg} alt="" className="h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-charcoal/90" />
+        <img
+          src={ctaBg.url}
+          alt=""
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-charcoal/80" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center text-white">
         <span className="eyebrow text-gold">Visit Our Showroom</span>
-        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-          Looking for Premium Hardware &amp;{" "}
-          <span className="text-gradient-gold">Plywood Products?</span>
+        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          Looking for Premium Hardware &amp; Plywood Products?
         </h2>
         <p className="mt-5 text-white/75 max-w-2xl mx-auto">
           Visit our showroom today and get expert assistance for your project requirements.
