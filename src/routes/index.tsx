@@ -14,6 +14,8 @@ import {
   Wrench,
   Quote,
   MapPin,
+  Calendar,
+  Clock,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SITE, CATEGORIES } from "@/lib/site";
@@ -655,6 +657,123 @@ function CallToAction() {
   );
 }
 
+function Blogs() {
+  const posts = [
+    {
+      title: "How to Choose the Right Plywood for Furniture",
+      excerpt:
+        "Learn what makes marine, commercial and MR-grade plywood different — and which one suits your wardrobes, beds and kitchen cabinets.",
+      img: catPlywood,
+      date: "Oct 12, 2024",
+      read: "4 min",
+    },
+    {
+      title: "Top Modular Kitchen Trends This Year",
+      excerpt:
+        "From sleek handle-less cabinets to soft-close tandem boxes, explore the latest trends shaping modern kitchens in Vijayawada.",
+      img: catKitchen.url,
+      date: "Sep 28, 2024",
+      read: "5 min",
+    },
+    {
+      title: "Laminates vs Veneers: Which One to Pick?",
+      excerpt:
+        "A side-by-side guide on durability, maintenance, finish options and cost to help you decide the perfect surface for your interiors.",
+      img: catLaminates,
+      date: "Sep 15, 2024",
+      read: "4 min",
+    },
+    {
+      title: "Essential Hardware Fittings Every Home Needs",
+      excerpt:
+        "Hinges, slides, handles, locks and more — discover the branded hardware accessories that improve daily functionality and safety.",
+      img: catHardware,
+      date: "Aug 30, 2024",
+      read: "3 min",
+    },
+    {
+      title: "Maintenance Tips for Long-Lasting Plywood",
+      excerpt:
+        "Simple care routines to protect your plywood and laminated surfaces from moisture, scratches and everyday wear.",
+      img: catVeneers,
+      date: "Aug 12, 2024",
+      read: "3 min",
+    },
+    {
+      title: "Why Branded Accessories Matter for Your Home",
+      excerpt:
+        "Genuine hardware from Hettich, Häfele and Blum lasts longer, performs better and keeps your modular interiors hassle-free.",
+      img: catDoors,
+      date: "Jul 25, 2024",
+      read: "4 min",
+    },
+  ];
+
+  return (
+    <section className="section-pad bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="eyebrow">From Our Blog</span>
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+              Expert Tips &amp; <span className="text-gradient-gold">Interior Ideas</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Practical buying guides, maintenance tips and design inspiration for your next project.
+            </p>
+          </div>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-charcoal px-6 py-3 text-sm font-semibold text-white hover:gradient-gold transition shrink-0"
+          >
+            View All Posts <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <article
+              key={post.title}
+              className="group flex flex-col rounded-2xl bg-cream border border-border overflow-hidden shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-500"
+            >
+              <div className="relative overflow-hidden aspect-[16/10]">
+                <img
+                  src={post.img}
+                  alt={post.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <span className="pointer-events-none absolute inset-0 rounded-t-2xl ring-2 ring-gold/0 group-hover:ring-gold/40 transition duration-500" />
+              </div>
+              <div className="flex flex-col flex-1 p-6">
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-gold" /> {post.date}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-gold" /> {post.read}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-xl font-bold text-charcoal leading-snug group-hover:text-gold transition">
+                  {post.title}
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3 flex-1">
+                  {post.excerpt}
+                </p>
+                <div className="mt-5 pt-4 border-t border-border/50">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-gold">
+                    Read More <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomePage() {
   return (
     <PageLayout>
@@ -667,6 +786,7 @@ function HomePage() {
       <Consultation />
       <Testimonials />
       <CallToAction />
+      <Blogs />
     </PageLayout>
   );
 }
