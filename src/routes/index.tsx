@@ -683,30 +683,6 @@ function Blogs() {
       date: "Sep 15, 2024",
       read: "4 min",
     },
-    {
-      title: "Essential Hardware Fittings Every Home Needs",
-      excerpt:
-        "Hinges, slides, handles, locks and more — discover the branded hardware accessories that improve daily functionality and safety.",
-      img: catHardware,
-      date: "Aug 30, 2024",
-      read: "3 min",
-    },
-    {
-      title: "Maintenance Tips for Long-Lasting Plywood",
-      excerpt:
-        "Simple care routines to protect your plywood and laminated surfaces from moisture, scratches and everyday wear.",
-      img: catVeneers,
-      date: "Aug 12, 2024",
-      read: "3 min",
-    },
-    {
-      title: "Why Branded Accessories Matter for Your Home",
-      excerpt:
-        "Genuine hardware from Hettich, Häfele and Blum lasts longer, performs better and keeps your modular interiors hassle-free.",
-      img: catDoors,
-      date: "Jul 25, 2024",
-      read: "4 min",
-    },
   ];
 
   return (
