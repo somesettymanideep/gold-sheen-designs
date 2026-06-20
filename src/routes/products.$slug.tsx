@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { CATEGORIES, SITE } from "@/lib/site";
-import { CAT_IMG, PRODUCT_DETAILS } from "@/lib/product-data";
+import { CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
 
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
