@@ -334,111 +334,51 @@ function Categories() {
 
 function WhyUs() {
   const items = [
-    { icon: Award, t: "Premium Quality", n: "100%", desc: "Only genuine, certified materials." },
-    { icon: ShieldCheck, t: "Genuine Products", n: "Verified", desc: "Every product sourced from authorized channels." },
-    { icon: Sparkles, t: "Wide Range", n: "500+ SKUs", desc: "Plywood, laminates, hardware & more." },
-    { icon: Star, t: "Trusted Brands", n: "100+", desc: "Top brands under one roof." },
-    { icon: Truck, t: "Affordable Pricing", n: "Best Rates", desc: "Competitive pricing without compromise." },
-    { icon: Wrench, t: "Expert Support", n: "10+ Yrs", desc: "Decades of hardware expertise." },
+    { icon: Award, t: "Premium Quality", n: "100%" },
+    { icon: ShieldCheck, t: "Genuine Products", n: "Verified" },
+    { icon: Sparkles, t: "Wide Range", n: "500+ SKUs" },
+    { icon: Star, t: "Trusted Brands", n: "100+" },
+    { icon: Truck, t: "Affordable Pricing", n: "Best Rates" },
+    { icon: Wrench, t: "Expert Support", n: "10+ Yrs" },
   ];
-
   return (
-    <section className="section-pad bg-cream text-charcoal relative overflow-hidden">
+    <section className="section-pad bg-[#f7f4ef] text-charcoal relative overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.08]"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 30%, var(--gold) 0%, transparent 40%), radial-gradient(circle at 80% 70%, var(--brown) 0%, transparent 40%)",
+            "radial-gradient(circle at 10% 20%, var(--gold) 0%, transparent 35%), radial-gradient(circle at 90% 80%, var(--brown) 0%, transparent 35%)",
         }}
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-fr">
-          {/* Intro card */}
-          <div className="md:col-span-2 lg:row-span-2 lg:col-span-2 rounded-3xl bg-charcoal text-white p-8 sm:p-10 flex flex-col justify-between shadow-elevated relative overflow-hidden group">
-            <img
-              src={aboutStore.url}
-              alt="Durga showroom"
-              className="absolute inset-0 h-full w-full object-cover opacity-20 group-hover:scale-105 transition duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-charcoal/80 to-charcoal/60" />
-            <div className="relative">
-              <span className="eyebrow text-gold">Why Choose Us</span>
-              <h2 className="mt-5 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-                Six reasons customers <span className="text-gold">choose Durga</span>.
-              </h2>
-              <p className="mt-4 text-white/70 max-w-sm">
-                From certified quality to expert guidance, every visit delivers value you can trust.
-              </p>
-            </div>
-            <div className="relative mt-8 flex items-center gap-4">
-              <div className="grid h-16 w-16 place-items-center rounded-2xl gradient-gold shrink-0 shadow-gold">
-                <Award className="h-7 w-7 text-white" />
-              </div>
-              <div>
-                <div className="font-display text-4xl font-bold text-gold">100%</div>
-                <div className="text-sm text-white/60">Quality assured</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Feature cards */}
-          {items.map((item, idx) => {
-            const isWide = idx >= 4;
-            const variant = idx % 3;
-            return (
-              <div
-                key={item.t}
-                className={`rounded-2xl p-6 sm:p-7 border transition-all duration-500 hover:-translate-y-1 hover:shadow-gold hover:border-gold/40 group ${
-                  isWide ? "lg:col-span-2" : ""
-                } ${
-                  variant === 0
-                    ? "bg-white border-charcoal/10"
-                    : variant === 1
-                    ? "gradient-gold text-white border-transparent"
-                    : "glass-card border-white/50"
-                }`}
-              >
-                <div className="flex items-start gap-4">
-                  <span
-                    className={`grid h-12 w-12 place-items-center rounded-xl shrink-0 ${
-                      variant === 1 ? "bg-white/20" : "gradient-gold"
-                    }`}
-                  >
-                    <item.icon className="h-5 w-5 text-white" />
-                  </span>
-                  <div className="min-w-0">
-                    <div
-                      className={`font-display text-xl font-bold ${
-                        variant === 1 ? "text-white" : "text-gold"
-                      }`}
-                    >
-                      {item.n}
-                    </div>
-                    <div
-                      className={`mt-1 font-medium ${
-                        variant === 1 ? "text-white/90" : "text-charcoal/80"
-                      }`}
-                    >
-                      {item.t}
-                    </div>
-                    <p
-                      className={`mt-2 text-sm ${
-                        variant === 1 ? "text-white/70" : "text-charcoal/60"
-                      }`}
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
+        <div className="max-w-2xl">
+          <span className="eyebrow">Why Choose Us</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
+          </h2>
+        </div>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map(({ icon: Icon, t, n }) => (
+            <div
+              key={t}
+              className="group glass-card border border-charcoal/10 rounded-2xl p-7 hover:border-gold/60 transition-all duration-500"
+            >
+              <div className="flex items-start gap-5">
+                <span className="grid h-14 w-14 place-items-center rounded-xl gradient-gold shrink-0 shadow-gold">
+                  <Icon className="h-6 w-6 text-white" />
+                </span>
+                <div className="min-w-0">
+                  <div className="font-display text-2xl font-bold text-gold">{n}</div>
+                  <div className="mt-1 text-charcoal/80 font-medium">{t}</div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
 
 function BrandMarquee({
   title,
