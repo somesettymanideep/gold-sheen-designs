@@ -285,8 +285,8 @@ function AboutPage() {
   ];
 
   const team = [
-    { name: "Mr. Durga Prasad", role: "Founder & Managing Director", photo: teamDurga },
-    { name: "Mrs. Lakshmi", role: "Showroom Director", photo: teamLakshmi },
+    { name: "Narayana Mohata", role: "Founder", photo: teamDurga },
+    { name: "Bharat Gilda", role: "CEO", photo: teamLakshmi },
   ];
 
 
