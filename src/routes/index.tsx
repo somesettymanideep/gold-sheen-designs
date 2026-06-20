@@ -14,7 +14,9 @@ import {
   Wrench,
   Quote,
   MapPin,
-} from "lucide-react";
+  Calendar,
+  Clock,
+
 import { PageLayout } from "@/components/PageLayout";
 import { SITE, CATEGORIES } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
