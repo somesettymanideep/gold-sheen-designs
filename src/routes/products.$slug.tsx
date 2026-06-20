@@ -171,8 +171,11 @@ function ProductDetailPage() {
 
       {/* Plywood brands & grades */}
       {slug === "plywood" &&
-        PLYWOOD_BRANDS.map((brand) => (
-          <section key={brand.name} className="section-pad gradient-warm">
+        PLYWOOD_BRANDS.map((brand, bIdx) => (
+          <section
+            key={brand.name}
+            className={`section-pad ${bIdx % 2 === 0 ? "gradient-warm" : "bg-background"}`}
+          >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto">
                 <span className="eyebrow">Featured Brand</span>
@@ -180,7 +183,22 @@ function ProductDetailPage() {
                   {brand.name}
                 </h2>
                 <p className="mt-5 text-muted-foreground leading-relaxed">{brand.tagline}</p>
-                <div className="mt-6 flex flex-wrap justify-center gap-2">
+                {brand.sizes && (
+                  <div className="mt-6 flex flex-wrap justify-center gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-charcoal/60 self-center mr-1">
+                      Sizes
+                    </span>
+                    {brand.sizes.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-charcoal/15 bg-background px-4 py-2 text-xs font-semibold text-charcoal"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <div className="mt-3 flex flex-wrap justify-center gap-2">
                   <span className="text-xs font-semibold uppercase tracking-widest text-charcoal/60 self-center mr-1">
                     Thickness
                   </span>
@@ -194,6 +212,7 @@ function ProductDetailPage() {
                   ))}
                 </div>
               </div>
+
 
               <h3 className="mt-14 text-center font-display text-2xl font-bold text-charcoal">
                 Available Grades
