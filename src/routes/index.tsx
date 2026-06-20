@@ -16,7 +16,7 @@ import {
   MapPin,
   Calendar,
   Clock,
-
+} from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { SITE, CATEGORIES } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
