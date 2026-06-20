@@ -5,7 +5,7 @@ import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
-import teamLakshmi from "@/assets/team-lakshmi.jpg";
+import teamBharat from "@/assets/team-bharat.jpg";
 import awardFeatured from "@/assets/award-featured.jpg";
 import award1 from "@/assets/award-1.jpg";
 import award2 from "@/assets/award-2.jpg";
@@ -286,7 +286,7 @@ function AboutPage() {
 
   const team = [
     { name: "Narayana Mohata", role: "Founder", photo: teamDurga },
-    { name: "Bharat Gilda", role: "CEO", photo: teamLakshmi },
+    { name: "Bharat Gilda", role: "CEO", photo: teamBharat },
   ];
 
 
