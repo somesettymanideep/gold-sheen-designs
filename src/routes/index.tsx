@@ -391,22 +391,22 @@ function WhyUs() {
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
           <div className="relative order-2 lg:order-1">
-            <div className="relative overflow-hidden rounded-2xl shadow-elevated aspect-[4/5]">
+            <div className="relative overflow-hidden rounded-2xl shadow-elevated">
               <img
                 src={whyusImage.url}
                 alt="One stop solution for interiors — plywood, laminates, veneers, modular kitchens, hardware and profile doors"
                 loading="lazy"
-                className="w-full h-full object-cover object-center hover:scale-105 transition duration-700"
+                className="w-full h-[420px] lg:h-[600px] object-cover hover:scale-105 transition duration-700"
               />
               <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
                 One Stop Solution
               </div>
-              <div className="absolute bottom-5 left-5 glass-dark rounded-2xl px-6 py-4 shadow-soft flex items-center gap-4">
-                <div className="font-display text-4xl font-bold text-gold">10+</div>
-                <div>
-                  <div className="text-sm font-semibold text-white">Years on the</div>
-                  <div className="text-xs text-white/70">same street, same trust</div>
-                </div>
+            </div>
+            <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
+              <div className="font-display text-4xl font-bold text-gold">10+</div>
+              <div>
+                <div className="text-sm font-semibold text-white">Years on the</div>
+                <div className="text-xs text-white/70">same street, same trust</div>
               </div>
             </div>
           </div>
