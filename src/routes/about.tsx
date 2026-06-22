@@ -48,8 +48,6 @@ function useCounter(target: number, duration = 1800, inView = true) {
 
 
 
-
-
 function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
@@ -72,6 +70,8 @@ function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   }, [threshold, rootMargin]);
   return { ref, inView };
 }
+
+
 
 
 
