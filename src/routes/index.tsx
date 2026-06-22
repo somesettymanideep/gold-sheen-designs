@@ -545,7 +545,7 @@ const testimonials = [
   {
     name: "Anita Reddy",
     role: "Architect",
-    text: "The quality of materials and range of brands at Durga is unmatched in Vijayawada. A trusted partner for all my projects.",
+    text: "The quality of materials and range of brands at Durga Hardware and Plywood is unmatched in Vijayawada. A trusted partner for all my projects.",
     rating: 5,
     img: t4,
   },
