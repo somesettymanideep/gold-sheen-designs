@@ -52,21 +52,6 @@ function useCounter(target: number, duration = 1800, inView = true) {
 }
 
 
-function Stat({ n, label, suffix = "+", triggerOffset = "0px 0px -5% 0px" }: { n: number; label: string; suffix?: string; triggerOffset?: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.4, triggerOffset);
-  const val = useCounter(n, 1800, inView);
-  return (
-    <div ref={ref} className="text-center">
-      <div className="font-display text-5xl sm:text-6xl font-bold text-gradient-gold">
-        {val.toLocaleString()}
-        {suffix}
-      </div>
-      <div className="mt-3 text-xs uppercase tracking-[0.22em] text-white/65">{label}</div>
-    </div>
-  );
-}
-
-
 
 function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
@@ -177,12 +162,6 @@ function AwardsSection() {
     },
   ];
 
-  const counters = [
-    { n: 25, label: "Awards Won", suffix: "+" },
-    { n: 15, label: "Years Excellence", suffix: "+" },
-    { n: 500, label: "Happy Clients", suffix: "+" },
-  ];
-
   const featured = useInView<HTMLDivElement>();
 
   return (
@@ -252,14 +231,6 @@ function AwardsSection() {
             <AwardCard key={a.title} award={a} delay={i * 120} />
           ))}
         </div>
-
-        {/* Counters */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 border-t border-charcoal/10 pt-12">
-          {counters.map((c) => (
-            <Stat key={c.label} n={c.n} label={c.label} suffix={c.suffix} triggerOffset="0px 0px -5% 0px" />
-          ))}
-        </div>
-
       </div>
     </section>
   );
