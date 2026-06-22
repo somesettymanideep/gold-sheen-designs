@@ -438,13 +438,6 @@ function WhyUs() {
               One Stop Solution
             </div>
           </div>
-            <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
-              <div className="font-display text-4xl font-bold text-gold">10+</div>
-              <div>
-                <div className="text-sm font-semibold text-white">Years on the</div>
-                <div className="text-xs text-white/70">same street, same trust</div>
-              </div>
-            </div>
           </div>
 
           <div className="order-1 lg:order-2 flex flex-col">
