@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import footerBanner from "@/assets/footer-banner-kitchen.webp.asset.json";
 import { SITE } from "@/lib/site";
@@ -117,14 +117,15 @@ export function SiteFooter() {
           </p>
           <div className="flex items-center gap-3">
             {[
-              { Icon: Facebook, label: "Facebook" },
-              { Icon: Twitter, label: "Twitter" },
-              { Icon: Instagram, label: "Instagram" },
-              { Icon: Youtube, label: "Youtube" },
-            ].map(({ Icon, label }) => (
+              { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61576566413635" },
+              { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/durga_hardware_plywood/reels/" },
+              { Icon: Youtube, label: "Youtube", href: "https://www.youtube.com/@DurgaHardwareandPlywood" },
+            ].map(({ Icon, label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={label}
                 className="grid h-10 w-10 place-items-center rounded-md bg-white/5 border border-white/10 hover:gradient-gold hover:border-transparent transition"
               >
