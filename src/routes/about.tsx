@@ -112,7 +112,7 @@ function AboutPage() {
       />
 
       {/* Our Story */}
-      <section className="section-pad bg-background">
+      <section className="section-pad bg-[#f6f3ee]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-14 lg:grid-cols-2 lg:gap-20 items-center">
           <div className="relative">
             <div className="absolute -top-6 -left-6 w-32 h-32 rounded-2xl gradient-gold opacity-20" />
@@ -153,7 +153,7 @@ function AboutPage() {
       </section>
 
       {/* Vision Mission Values */}
-      <section className="section-pad gradient-warm">
+      <section className="section-pad bg-[#f6f3ee]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">What Drives Us</span>
@@ -179,7 +179,7 @@ function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="section-pad bg-background">
+      <section className="section-pad bg-[#f6f3ee]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">Meet The Team</span>
@@ -217,8 +217,6 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Awards & Recognition */}
-      <AwardsSection />
 
 
       {/* Stats — circular highlights */}
@@ -287,7 +285,7 @@ function StatsSection() {
     { n: 50, suffix: "+", title: "Categories", subtitle: "Hardware & plywood" },
   ];
   return (
-    <section className="section-pad bg-background relative overflow-hidden">
+    <section className="section-pad bg-[#f6f3ee] relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           ref={header.ref}
