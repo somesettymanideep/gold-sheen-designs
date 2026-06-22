@@ -727,13 +727,11 @@ function AutoQuotePopup() {
   const [open, setOpen] = useState(false);
 
   const dismiss = useCallback(() => {
-    console.log("dismiss called, window exists:", typeof window !== "undefined");
     if (typeof window !== "undefined") {
       try {
         window.localStorage.setItem(QUOTE_POPUP_KEY, "1");
-        console.log("setItem done, value:", window.localStorage.getItem(QUOTE_POPUP_KEY));
-      } catch (e) {
-        console.error("storage error:", e);
+      } catch {
+        // ignore storage errors
       }
     }
     setOpen(false);
