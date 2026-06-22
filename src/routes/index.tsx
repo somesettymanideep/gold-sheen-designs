@@ -121,7 +121,7 @@ export const Route = createFileRoute("/")({
 const slides = [
   {
     img: heroShowroom,
-    eyebrow: "Welcome to Durga",
+    eyebrow: "Welcome to Durga Hardware and Plywood",
     title: "Premium Hardware & Plywood Solutions",
     sub: "Transform your interiors with high-quality plywood, laminates, veneers, modular kitchens, and hardware accessories.",
   },
