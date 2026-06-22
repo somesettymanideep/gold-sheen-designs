@@ -426,7 +426,7 @@ function WhyUs() {
         <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <span className="eyebrow justify-center lg:justify-start">Why Choose Us</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
+            Six reasons customers <span className="text-gradient-gold">choose Durga Hardware and Plywood</span>.
           </h2>
         </div>
 
