@@ -27,7 +27,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Accordion,
@@ -353,7 +352,7 @@ function Categories() {
 function VideoPlayer() {
   const [muted, setMuted] = useState(true);
   return (
-    <div className="relative w-full h-[420px] lg:h-[600px]">
+    <div className="relative w-full max-w-[360px] mx-auto aspect-[9/16]">
       <video
         src={whyusVideo.url}
         autoPlay
@@ -432,13 +431,13 @@ function WhyUs() {
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
-          <div className="relative order-2 lg:order-1">
-            <div className="relative overflow-hidden rounded-2xl shadow-elevated">
-              <VideoPlayer />
-              <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
-                One Stop Solution
-              </div>
+        <div className="relative order-2 lg:order-1">
+          <div className="relative overflow-hidden rounded-2xl shadow-elevated w-fit mx-auto">
+            <VideoPlayer />
+            <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
+              One Stop Solution
             </div>
+          </div>
             <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
               <div className="font-display text-4xl font-bold text-gold">10+</div>
               <div>
