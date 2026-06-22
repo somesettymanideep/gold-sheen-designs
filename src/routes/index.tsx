@@ -17,6 +17,8 @@ import {
   Calendar,
   Clock,
   Send,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import {
@@ -38,7 +40,7 @@ import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
-import whyusImage from "@/assets/why-choose-us-interiors.webp.asset.json";
+import whyusVideo from "@/assets/why-choose-us.mp4.asset.json";
 import catPlywood from "@/assets/cat-plywood.jpg";
 import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
@@ -348,6 +350,31 @@ function Categories() {
   );
 }
 
+function VideoPlayer() {
+  const [muted, setMuted] = useState(true);
+  return (
+    <div className="relative w-full h-[420px] lg:h-[600px]">
+      <video
+        src={whyusVideo.url}
+        autoPlay
+        muted={muted}
+        loop
+        playsInline
+        className="h-full w-full object-cover"
+        aria-label="Premium interior solutions showcase"
+      />
+      <button
+        type="button"
+        onClick={() => setMuted((m) => !m)}
+        className="absolute bottom-4 right-4 z-10 grid h-10 w-10 place-items-center rounded-full glass-dark text-white hover:bg-white/20 transition"
+        aria-label={muted ? "Unmute video" : "Mute video"}
+      >
+        {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+      </button>
+    </div>
+  );
+}
+
 function WhyUs() {
   const items = [
     {
@@ -407,12 +434,7 @@ function WhyUs() {
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
           <div className="relative order-2 lg:order-1">
             <div className="relative overflow-hidden rounded-2xl shadow-elevated">
-              <img
-                src={whyusImage.url}
-                alt="One stop solution for interiors — plywood, laminates, veneers, modular kitchens, hardware and profile doors"
-                loading="lazy"
-                className="w-full h-[420px] lg:h-[600px] object-cover hover:scale-105 transition duration-700"
-              />
+              <VideoPlayer />
               <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
                 One Stop Solution
               </div>
