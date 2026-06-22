@@ -112,7 +112,7 @@ function AwardCard({ award, delay }: { award: AwardItem; delay: number }) {
           loading="lazy"
           width={768}
           height={768}
-          className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="h-52 w-full bg-cream object-contain p-3 transition-transform duration-700 group-hover:scale-110"
         />
         <span
           className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-bold shadow ${tier.badge}`}
