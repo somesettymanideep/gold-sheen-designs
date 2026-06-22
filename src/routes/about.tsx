@@ -344,7 +344,7 @@ function AboutPage() {
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">Meet The Team</span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
-              The people behind <span className="text-gradient-gold">Durga</span>
+              The people behind <span className="text-gradient-gold">Durga Hardware and Plywood</span>
             </h2>
           </div>
           <div className="mt-14 grid gap-6 sm:gap-7 sm:grid-cols-2 max-w-2xl mx-auto">
