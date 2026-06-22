@@ -961,8 +961,9 @@ function HomePage() {
       <WhyUs />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
       <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
-      <Consultation />
+      <GetQuote />
       <Testimonials />
+      <FAQ />
       <CallToAction />
       <Blogs />
     </PageLayout>
