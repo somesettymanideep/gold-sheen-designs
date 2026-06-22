@@ -440,7 +440,7 @@ function WhyUs() {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 lg:col-span-8 flex flex-col">
+          <div className="order-1 lg:order-2 lg:col-span-7 flex flex-col">
             {items.map(({ icon: Icon, prefix, title, desc }, idx) => (
               <div
                 key={title}
