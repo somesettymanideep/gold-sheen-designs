@@ -607,79 +607,207 @@ function Testimonials() {
   );
 }
 
-function Consultation() {
+function QuoteForm({ onClose }: { onClose: () => void }) {
+  const [products, setProducts] = useState<string[]>([]);
+
+  const toggleProduct = (title: string) =>
+    setProducts((prev) =>
+      prev.includes(title) ? prev.filter((p) => p !== title) : [...prev, title],
+    );
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+
+    const lines = [
+      "*New Quote Request*",
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Products: ${products.length ? products.join(", ") : "Not specified"}`,
+      message ? `Message: ${message}` : "",
+    ].filter(Boolean);
+
+    window.open(
+      `${SITE.whatsappHref}?text=${encodeURIComponent(lines.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+    onClose();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="grid gap-4">
+      <input
+        name="name"
+        type="text"
+        required
+        maxLength={100}
+        placeholder="Name"
+        className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none"
+      />
+      <input
+        name="phone"
+        type="tel"
+        required
+        maxLength={15}
+        placeholder="Phone Number"
+        className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none"
+      />
+      <div>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          Select Products
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {CATEGORIES.map((c) => {
+            const active = products.includes(c.title);
+            return (
+              <button
+                key={c.slug}
+                type="button"
+                onClick={() => toggleProduct(c.title)}
+                aria-pressed={active}
+                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                  active
+                    ? "gradient-gold border-transparent text-white shadow-gold"
+                    : "border-border bg-white text-charcoal hover:border-gold/50"
+                }`}
+              >
+                {c.title}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <textarea
+        name="message"
+        rows={3}
+        maxLength={1000}
+        placeholder="Message"
+        className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none resize-none"
+      />
+      <button
+        type="submit"
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition"
+      >
+        Send Request <Send className="h-4 w-4" />
+      </button>
+    </form>
+  );
+}
+
+function GetQuote() {
+  const [open, setOpen] = useState(false);
   return (
     <section className="relative section-pad overflow-hidden">
       <div className="absolute inset-0">
         <img src={consultBg} alt="" className="h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-charcoal/85" />
       </div>
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-2 items-center">
-        <div className="text-white">
-          <span className="eyebrow text-gold">Free Consultation</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Let our experts help you choose the{" "}
-            <span className="text-gradient-gold">perfect materials</span>
-          </h2>
-          <p className="mt-5 text-white/75 leading-relaxed">
-            Share your project requirements and our team will get back to you with curated
-            recommendations, samples, and the best pricing.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={SITE.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full gradient-gold px-6 py-3 text-sm font-semibold text-white shadow-gold"
-            >
-              <Phone className="h-4 w-4" /> Call Now
-            </a>
-            <a
-              href={SITE.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
+      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center text-white">
+        <span className="eyebrow text-gold justify-center">Get a Quote</span>
+        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
+          Tell us what you need and get the{" "}
+          <span className="text-gradient-gold">best pricing</span>
+        </h2>
+        <p className="mt-5 text-white/75 leading-relaxed">
+          Share your requirements and our team will get back to you with curated recommendations,
+          samples, and competitive quotes.
+        </p>
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <button className="inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-4 text-sm font-semibold text-white shadow-gold hover:scale-105 transition">
+                Get Quote <ArrowRight className="h-4 w-4" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
+                <DialogDescription>
+                  Fill in your details and we'll reach out with the best pricing.
+                </DialogDescription>
+              </DialogHeader>
+              <QuoteForm onClose={() => setOpen(false)} />
+            </DialogContent>
+          </Dialog>
+          <a
+            href={SITE.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-sm font-semibold text-white"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const FAQS = [
+  {
+    q: "What types of plywood do you offer?",
+    a: "We stock commercial MR-grade, BWP marine-grade and block boards in multiple thicknesses and sizes from trusted brands like Decobond 710, Greenply, CenturyPly and more.",
+  },
+  {
+    q: "Do your plywood products come with a warranty?",
+    a: "Yes. Our Decobond 710 range carries warranties from 15 years up to a lifetime warranty depending on the grade, and all stock is genuine authorised-dealer product.",
+  },
+  {
+    q: "Do you deliver and offer bulk pricing for contractors?",
+    a: "Absolutely. We provide on-time delivery across Vijayawada and special bulk pricing for builders, contractors and interior designers.",
+  },
+  {
+    q: "Can I get samples before placing an order?",
+    a: "Yes, visit our showroom in Governor Peta or request a quote and our team will arrange laminate, veneer and finish samples for you.",
+  },
+  {
+    q: "Which brands do you deal with?",
+    a: "We carry 100+ trusted brands across plywood, laminates, veneers and hardware — including Häfele, Hettich, Blum, Ebco, Mikasa and many more.",
+  },
+];
+
+function FAQ() {
+  return (
+    <section className="section-pad bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="relative">
+          <div className="absolute -top-6 -left-6 w-32 h-32 rounded-2xl gradient-gold opacity-20 hidden md:block" />
+          <div className="relative overflow-hidden rounded-2xl shadow-elevated">
+            <img
+              src={catKitchen.url}
+              alt="Premium interiors crafted with Durga plywood, laminates and hardware"
+              loading="lazy"
+              className="w-full h-[360px] lg:h-[520px] object-cover hover:scale-105 transition duration-700"
+            />
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Thank you! We'll reach out shortly.");
-          }}
-          className="glass-card rounded-3xl p-6 sm:p-8 shadow-elevated"
-        >
-          <h3 className="font-display text-2xl font-bold text-charcoal">Get Free Consultation</h3>
-          <div className="mt-6 grid gap-4">
-            {[
-              { n: "name", p: "Your Name", t: "text" },
-              { n: "mobile", p: "Mobile Number", t: "tel" },
-              { n: "requirement", p: "Product Requirement", t: "text" },
-            ].map((f) => (
-              <input
-                key={f.n}
-                name={f.n}
-                type={f.t}
-                required
-                placeholder={f.p}
-                className="w-full rounded-xl border border-border bg-white/80 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none"
-              />
+        <div>
+          <span className="eyebrow">FAQs</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+            Frequently Asked <span className="text-gradient-gold">Questions</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            Everything you need to know about our products, brands and services.
+          </p>
+          <Accordion type="single" collapsible className="mt-8">
+            {FAQS.map((item, idx) => (
+              <AccordionItem key={idx} value={`faq-${idx}`}>
+                <AccordionTrigger className="text-left text-base font-semibold text-charcoal">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-            <textarea
-              name="message"
-              rows={4}
-              placeholder="Message"
-              className="w-full rounded-xl border border-border bg-white/80 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none resize-none"
-            />
-            <button
-              type="submit"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-4 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition"
-            >
-              Get Free Consultation <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </form>
+          </Accordion>
+        </div>
       </div>
     </section>
   );
