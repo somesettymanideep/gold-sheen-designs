@@ -198,7 +198,7 @@ function AwardsSection() {
             <div className="absolute inset-0 gradient-gold opacity-20" />
             <img
               src={awardPidilite.url}
-              alt="Pidilite Partner Award — Durga Hardware & Plywoods, FY 2024-25"
+              alt="Pidilite Partner Award — Durga Hardware and Plywood, FY 2024-25"
               loading="lazy"
               width={1024}
               height={1024}
@@ -213,7 +213,7 @@ function AwardsSection() {
               Pidilite Partner — FY 2024-25
             </h3>
             <p className="mt-4 text-charcoal/70 leading-relaxed">
-              Awarded to Durga Hardware &amp; Plywoods, Coastal AP, for outstanding business
+              Awarded to Durga Hardware and Plywood, Coastal AP, for outstanding business
               support to Pidilite in FY 2024-25 — a proud Fevicol Partner Program member.
             </p>
             <div className="mt-6 flex items-center gap-3 text-gold">
