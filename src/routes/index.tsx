@@ -16,8 +16,23 @@ import {
   MapPin,
   Calendar,
   Clock,
+  Send,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { SITE, CATEGORIES } from "@/lib/site";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
