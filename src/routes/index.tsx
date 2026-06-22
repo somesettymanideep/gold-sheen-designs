@@ -352,7 +352,7 @@ function Categories() {
 function VideoPlayer() {
   const [muted, setMuted] = useState(true);
   return (
-    <div className="relative w-[360px] max-w-full mx-auto aspect-[9/16]">
+    <div className="relative w-full max-w-[360px] aspect-[9/16]">
       <video
         src={whyusVideo.url}
         autoPlay
