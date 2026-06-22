@@ -350,6 +350,31 @@ function Categories() {
   );
 }
 
+function VideoPlayer() {
+  const [muted, setMuted] = useState(true);
+  return (
+    <div className="relative w-full h-[420px] lg:h-[600px]">
+      <video
+        src={whyusVideo.url}
+        autoPlay
+        muted={muted}
+        loop
+        playsInline
+        className="h-full w-full object-cover"
+        aria-label="Premium interior solutions showcase"
+      />
+      <button
+        type="button"
+        onClick={() => setMuted((m) => !m)}
+        className="absolute bottom-4 right-4 z-10 grid h-10 w-10 place-items-center rounded-full glass-dark text-white hover:bg-white/20 transition"
+        aria-label={muted ? "Unmute video" : "Mute video"}
+      >
+        {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+      </button>
+    </div>
+  );
+}
+
 function WhyUs() {
   const items = [
     {
