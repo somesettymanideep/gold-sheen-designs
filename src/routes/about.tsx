@@ -194,15 +194,15 @@ function AwardsSection() {
             featured.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden rounded-2xl bg-cream">
             <div className="absolute inset-0 gradient-gold opacity-20" />
             <img
-              src={awardFeatured}
-              alt="Hall of Fame — Lifetime Achievement Award"
+              src={awardPidilite.url}
+              alt="Pidilite Partner Award — Durga Hardware & Plywoods, FY 2024-25"
               loading="lazy"
               width={1024}
               height={1024}
-              className="relative w-full h-72 sm:h-80 object-cover"
+              className="relative w-full h-72 sm:h-80 object-contain"
             />
           </div>
           <div>
@@ -210,17 +210,17 @@ function AwardsSection() {
               <Crown className="h-4 w-4" /> Featured Award
             </span>
             <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-charcoal">
-              Lifetime Achievement in Excellence
+              Pidilite Partner — FY 2024-25
             </h3>
             <p className="mt-4 text-charcoal/70 leading-relaxed">
-              Our highest honour — awarded for a sustained legacy of quality, integrity and
-              service that has shaped homes across Andhra Pradesh for over a decade.
+              Awarded to Durga Hardware &amp; Plywoods, Coastal AP, for outstanding business
+              support to Pidilite in FY 2024-25 — a proud Fevicol Partner Program member.
             </p>
             <div className="mt-6 flex items-center gap-3 text-gold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-charcoal/80">Prestige Honour 2024</span>
+              <span className="ml-2 text-sm font-semibold text-charcoal/80">Pidilite Partner 2024-25</span>
             </div>
           </div>
         </div>
