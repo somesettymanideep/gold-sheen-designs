@@ -6,11 +6,11 @@ import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamBharat from "@/assets/team-bharat.jpg";
-import awardFeatured from "@/assets/award-featured.jpg";
-import award1 from "@/assets/award-1.jpg";
-import award2 from "@/assets/award-2.jpg";
-import award3 from "@/assets/award-3.jpg";
-import award4 from "@/assets/award-4.jpg";
+import awardPidilite from "@/assets/awards/award-pidilite.png.asset.json";
+import awardHafeleTrophy from "@/assets/awards/award-hafele-trophy.png.asset.json";
+import awardHafeleCert from "@/assets/awards/award-hafele-certificate.png.asset.json";
+import awardMikasa from "@/assets/awards/award-mikasa.png.asset.json";
+import awardEbco from "@/assets/awards/award-ebco.png.asset.json";
 
 
 export const Route = createFileRoute("/about")({
@@ -112,7 +112,7 @@ function AwardCard({ award, delay }: { award: AwardItem; delay: number }) {
           loading="lazy"
           width={768}
           height={768}
-          className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="h-52 w-full bg-cream object-contain p-3 transition-transform duration-700 group-hover:scale-110"
         />
         <span
           className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-bold shadow ${tier.badge}`}
@@ -133,31 +133,31 @@ function AwardCard({ award, delay }: { award: AwardItem; delay: number }) {
 function AwardsSection() {
   const awards: AwardItem[] = [
     {
-      image: award1,
-      title: "Best Hardware Retailer",
+      image: awardHafeleTrophy.url,
+      title: "Häfele Association Award",
       year: "2023",
-      desc: "Recognised as the top hardware & plywood retailer in the Vijayawada region.",
+      desc: "Honoured by Häfele for our valued association and partnership in 2023.",
       tier: "gold",
     },
     {
-      image: award2,
-      title: "Customer Excellence Award",
-      year: "2022",
-      desc: "Honoured for outstanding service quality and customer satisfaction.",
+      image: awardHafeleCert.url,
+      title: "Häfele Authorised Partner",
+      year: "2023",
+      desc: "Certified authorised partner for Häfele India's Distribution Business vertical.",
       tier: "silver",
     },
     {
-      image: award3,
-      title: "Trusted Brand Partner",
-      year: "2021",
-      desc: "Awarded by leading brands for consistent sales and trusted partnership.",
+      image: awardMikasa.url,
+      title: "Mikasa Plywood Authorised Dealer",
+      year: "2027",
+      desc: "Certificate of Authorisation as an authorised dealer for Mikasa Plywood (valid up to July 2027).",
       tier: "bronze",
     },
     {
-      image: award4,
-      title: "Excellence in Quality",
-      year: "2020",
-      desc: "Celebrated for an uncompromising commitment to premium materials.",
+      image: awardEbco.url,
+      title: "Ebco Authorised Dealer",
+      year: "1963",
+      desc: "Recognised as an authorised dealer for Ebco quality hardware.",
       tier: "gold",
     },
   ];
@@ -194,15 +194,15 @@ function AwardsSection() {
             featured.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden rounded-2xl bg-cream">
             <div className="absolute inset-0 gradient-gold opacity-20" />
             <img
-              src={awardFeatured}
-              alt="Hall of Fame — Lifetime Achievement Award"
+              src={awardPidilite.url}
+              alt="Pidilite Partner Award — Durga Hardware & Plywoods, FY 2024-25"
               loading="lazy"
               width={1024}
               height={1024}
-              className="relative w-full h-72 sm:h-80 object-cover"
+              className="relative w-full h-72 sm:h-80 object-contain"
             />
           </div>
           <div>
@@ -210,17 +210,17 @@ function AwardsSection() {
               <Crown className="h-4 w-4" /> Featured Award
             </span>
             <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-charcoal">
-              Lifetime Achievement in Excellence
+              Pidilite Partner — FY 2024-25
             </h3>
             <p className="mt-4 text-charcoal/70 leading-relaxed">
-              Our highest honour — awarded for a sustained legacy of quality, integrity and
-              service that has shaped homes across Andhra Pradesh for over a decade.
+              Awarded to Durga Hardware &amp; Plywoods, Coastal AP, for outstanding business
+              support to Pidilite in FY 2024-25 — a proud Fevicol Partner Program member.
             </p>
             <div className="mt-6 flex items-center gap-3 text-gold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-charcoal/80">Prestige Honour 2024</span>
+              <span className="ml-2 text-sm font-semibold text-charcoal/80">Pidilite Partner 2024-25</span>
             </div>
           </div>
         </div>
