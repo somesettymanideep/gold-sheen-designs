@@ -121,7 +121,7 @@ export const Route = createFileRoute("/")({
 const slides = [
   {
     img: heroShowroom,
-    eyebrow: "Welcome to Durga",
+    eyebrow: "Welcome to Durga Hardware and Plywood",
     title: "Premium Hardware & Plywood Solutions",
     sub: "Transform your interiors with high-quality plywood, laminates, veneers, modular kitchens, and hardware accessories.",
   },
@@ -352,7 +352,7 @@ function Categories() {
 function VideoPlayer() {
   const [muted, setMuted] = useState(true);
   return (
-    <div className="relative w-[360px] max-w-full mx-auto aspect-[9/16]">
+    <div className="relative w-full max-w-[360px] aspect-[9/16]">
       <video
         src={whyusVideo.url}
         autoPlay
@@ -426,18 +426,18 @@ function WhyUs() {
         <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
           <span className="eyebrow justify-center lg:justify-start">Why Choose Us</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-            Six reasons customers <span className="text-gradient-gold">choose Durga</span>.
+            Six reasons customers <span className="text-gradient-gold">choose Durga Hardware and Plywood</span>.
           </h2>
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
-        <div className="relative order-2 lg:order-1">
-          <div className="relative overflow-hidden rounded-2xl shadow-elevated w-fit mx-auto">
-            <VideoPlayer />
-            <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
-              One Stop Solution
+          <div className="relative order-2 lg:order-1">
+            <div className="relative overflow-hidden rounded-2xl shadow-elevated w-full">
+              <VideoPlayer />
+              <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
+                One Stop Solution
+              </div>
             </div>
-          </div>
           </div>
 
           <div className="order-1 lg:order-2 flex flex-col">
@@ -545,7 +545,7 @@ const testimonials = [
   {
     name: "Anita Reddy",
     role: "Architect",
-    text: "The quality of materials and range of brands at Durga is unmatched in Vijayawada. A trusted partner for all my projects.",
+    text: "The quality of materials and range of brands at Durga Hardware and Plywood is unmatched in Vijayawada. A trusted partner for all my projects.",
     rating: 5,
     img: t4,
   },
@@ -793,7 +793,7 @@ function FAQ() {
           <div className="relative overflow-hidden rounded-2xl shadow-elevated">
             <img
               src={catKitchen.url}
-              alt="Premium interiors crafted with Durga plywood, laminates and hardware"
+              alt="Premium interiors crafted with Durga Hardware and Plywood products"
               loading="lazy"
               className="w-full h-[360px] lg:h-[520px] object-cover hover:scale-105 transition duration-700"
             />
