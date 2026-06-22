@@ -720,52 +720,26 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
   );
 }
 
-function GetQuote() {
+function AutoQuotePopup() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setOpen(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative section-pad overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={consultBg} alt="" className="h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-charcoal/85" />
-      </div>
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center text-white">
-        <span className="eyebrow text-gold justify-center">Get a Quote</span>
-        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-          Tell us what you need and get the{" "}
-          <span className="text-gradient-gold">best pricing</span>
-        </h2>
-        <p className="mt-5 text-white/75 leading-relaxed">
-          Share your requirements and our team will get back to you with curated recommendations,
-          samples, and competitive quotes.
-        </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <button className="inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-4 text-sm font-semibold text-white shadow-gold hover:scale-105 transition">
-                Get Quote <ArrowRight className="h-4 w-4" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
-                <DialogDescription>
-                  Fill in your details and we'll reach out with the best pricing.
-                </DialogDescription>
-              </DialogHeader>
-              <QuoteForm onClose={() => setOpen(false)} />
-            </DialogContent>
-          </Dialog>
-          <a
-            href={SITE.whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-sm font-semibold text-white"
-          >
-            <MessageCircle className="h-4 w-4" /> WhatsApp
-          </a>
-        </div>
-      </div>
-    </section>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
+          <DialogDescription>
+            Fill in your details and we'll reach out with the best pricing.
+          </DialogDescription>
+        </DialogHeader>
+        <QuoteForm onClose={() => setOpen(false)} />
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -982,7 +956,7 @@ function HomePage() {
       <WhyUs />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
       <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
-      <GetQuote />
+      <AutoQuotePopup />
       <Testimonials />
       <FAQ />
       <CallToAction />
