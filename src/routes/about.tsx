@@ -52,21 +52,6 @@ function useCounter(target: number, duration = 1800, inView = true) {
 }
 
 
-function Stat({ n, label, suffix = "+", triggerOffset = "0px 0px -5% 0px" }: { n: number; label: string; suffix?: string; triggerOffset?: string }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.4, triggerOffset);
-  const val = useCounter(n, 1800, inView);
-  return (
-    <div ref={ref} className="text-center">
-      <div className="font-display text-5xl sm:text-6xl font-bold text-gradient-gold">
-        {val.toLocaleString()}
-        {suffix}
-      </div>
-      <div className="mt-3 text-xs uppercase tracking-[0.22em] text-white/65">{label}</div>
-    </div>
-  );
-}
-
-
 
 function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
@@ -175,12 +160,6 @@ function AwardsSection() {
       desc: "Celebrated for an uncompromising commitment to premium materials.",
       tier: "gold",
     },
-  ];
-
-  const counters = [
-    { n: 25, label: "Awards Won", suffix: "+" },
-    { n: 15, label: "Years Excellence", suffix: "+" },
-    { n: 500, label: "Happy Clients", suffix: "+" },
   ];
 
   const featured = useInView<HTMLDivElement>();
