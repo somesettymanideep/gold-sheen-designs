@@ -47,7 +47,6 @@ import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
 import ctaBg from "@/assets/cta-bg-1.webp.asset.json";
-import consultBg from "@/assets/consultation-bg.jpg";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
 import t3 from "@/assets/testimonial-3.jpg";
