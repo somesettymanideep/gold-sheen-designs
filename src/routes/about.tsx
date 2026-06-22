@@ -419,9 +419,9 @@ function CircleStat({
       }`}
 
     >
-      <div className="relative grid aspect-square w-full place-items-center rounded-full bg-cream border border-border/40 shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:shadow-gold">
+      <div className="relative grid aspect-square w-full place-items-center rounded-full bg-[#6a3611] border border-border/40 shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:shadow-gold">
         <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
-        <div className="font-sans text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-charcoal">
+        <div className="font-sans text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
           {formatStat(val)}
           {suffix}
         </div>
