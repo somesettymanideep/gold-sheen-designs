@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+
 import {
   ArrowRight,
   Phone,
@@ -719,16 +720,40 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
   );
 }
 
+const QUOTE_POPUP_KEY = "durga-quote-popup-dismissed";
+
 function AutoQuotePopup() {
   const [open, setOpen] = useState(false);
 
+  const dismiss = useCallback(() => {
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem(QUOTE_POPUP_KEY, "1");
+      } catch {
+        // ignore storage errors
+      }
+    }
+    setOpen(false);
+  }, []);
+
   useEffect(() => {
+    const alreadyDismissed =
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(QUOTE_POPUP_KEY) === "1";
+    if (alreadyDismissed) return;
+
     const timer = setTimeout(() => setOpen(true), 4000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(v) => {
+        if (!v) dismiss();
+        else setOpen(v);
+      }}
+    >
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
@@ -736,11 +761,12 @@ function AutoQuotePopup() {
             Fill in your details and we'll reach out with the best pricing.
           </DialogDescription>
         </DialogHeader>
-        <QuoteForm onClose={() => setOpen(false)} />
+        <QuoteForm onClose={dismiss} />
       </DialogContent>
     </Dialog>
   );
 }
+
 
 const FAQS = [
   {
