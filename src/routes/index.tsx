@@ -17,6 +17,8 @@ import {
   Calendar,
   Clock,
   Send,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import {
