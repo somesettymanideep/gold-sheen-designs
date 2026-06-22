@@ -6,11 +6,11 @@ import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
 import teamDurga from "@/assets/team-durga.jpg";
 import teamBharat from "@/assets/team-bharat.jpg";
-import awardFeatured from "@/assets/award-featured.jpg";
-import award1 from "@/assets/award-1.jpg";
-import award2 from "@/assets/award-2.jpg";
-import award3 from "@/assets/award-3.jpg";
-import award4 from "@/assets/award-4.jpg";
+import awardPidilite from "@/assets/awards/award-pidilite.png.asset.json";
+import awardHafeleTrophy from "@/assets/awards/award-hafele-trophy.png.asset.json";
+import awardHafeleCert from "@/assets/awards/award-hafele-certificate.png.asset.json";
+import awardMikasa from "@/assets/awards/award-mikasa.png.asset.json";
+import awardEbco from "@/assets/awards/award-ebco.png.asset.json";
 
 
 export const Route = createFileRoute("/about")({
