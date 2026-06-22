@@ -658,7 +658,6 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       "noopener,noreferrer",
     );
     onClose();
-    console.log("QuoteForm onClose called");
   };
 
   return (
