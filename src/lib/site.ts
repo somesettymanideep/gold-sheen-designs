@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Durga Hardware and Plywood",
-  short: "Durga Hardware",
+  short: "Durga Hardware and Plywood",
   tagline: "Premium Hardware & Plywood — Vijayawada",
   phone: "7842591100",
   phoneHref: "tel:+917842591100",
