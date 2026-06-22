@@ -793,7 +793,7 @@ function FAQ() {
           <div className="relative overflow-hidden rounded-2xl shadow-elevated">
             <img
               src={catKitchen.url}
-              alt="Premium interiors crafted with Durga plywood, laminates and hardware"
+              alt="Premium interiors crafted with Durga Hardware and Plywood plywood, laminates and hardware"
               loading="lazy"
               className="w-full h-[360px] lg:h-[520px] object-cover hover:scale-105 transition duration-700"
             />
