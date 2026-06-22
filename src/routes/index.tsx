@@ -40,7 +40,7 @@ import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
-import whyusImage from "@/assets/why-choose-us-interiors.webp.asset.json";
+import whyusVideo from "@/assets/why-choose-us.mp4.asset.json";
 import catPlywood from "@/assets/cat-plywood.jpg";
 import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
