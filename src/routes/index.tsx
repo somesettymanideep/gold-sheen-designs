@@ -27,7 +27,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Accordion,
@@ -48,7 +47,6 @@ import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
 import catDoors from "@/assets/cat-doors.jpg";
 import ctaBg from "@/assets/cta-bg-1.webp.asset.json";
-import consultBg from "@/assets/consultation-bg.jpg";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
 import t3 from "@/assets/testimonial-3.jpg";
@@ -353,7 +351,7 @@ function Categories() {
 function VideoPlayer() {
   const [muted, setMuted] = useState(true);
   return (
-    <div className="relative w-full h-[420px] lg:h-[600px]">
+    <div className="relative w-[360px] max-w-full mx-auto aspect-[9/16]">
       <video
         src={whyusVideo.url}
         autoPlay
@@ -432,13 +430,13 @@ function WhyUs() {
         </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
-          <div className="relative order-2 lg:order-1">
-            <div className="relative overflow-hidden rounded-2xl shadow-elevated">
-              <VideoPlayer />
-              <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
-                One Stop Solution
-              </div>
+        <div className="relative order-2 lg:order-1">
+          <div className="relative overflow-hidden rounded-2xl shadow-elevated w-fit mx-auto">
+            <VideoPlayer />
+            <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
+              One Stop Solution
             </div>
+          </div>
             <div className="absolute -bottom-6 left-6 glass-dark rounded-2xl px-6 py-4 shadow-soft hidden sm:flex items-center gap-4">
               <div className="font-display text-4xl font-bold text-gold">10+</div>
               <div>
@@ -721,52 +719,26 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
   );
 }
 
-function GetQuote() {
+function AutoQuotePopup() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setOpen(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative section-pad overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={consultBg} alt="" className="h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-charcoal/85" />
-      </div>
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center text-white">
-        <span className="eyebrow text-gold justify-center">Get a Quote</span>
-        <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold">
-          Tell us what you need and get the{" "}
-          <span className="text-gradient-gold">best pricing</span>
-        </h2>
-        <p className="mt-5 text-white/75 leading-relaxed">
-          Share your requirements and our team will get back to you with curated recommendations,
-          samples, and competitive quotes.
-        </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <button className="inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-4 text-sm font-semibold text-white shadow-gold hover:scale-105 transition">
-                Get Quote <ArrowRight className="h-4 w-4" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
-                <DialogDescription>
-                  Fill in your details and we'll reach out with the best pricing.
-                </DialogDescription>
-              </DialogHeader>
-              <QuoteForm onClose={() => setOpen(false)} />
-            </DialogContent>
-          </Dialog>
-          <a
-            href={SITE.whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-sm font-semibold text-white"
-          >
-            <MessageCircle className="h-4 w-4" /> WhatsApp
-          </a>
-        </div>
-      </div>
-    </section>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="font-display text-2xl">Get a Quote</DialogTitle>
+          <DialogDescription>
+            Fill in your details and we'll reach out with the best pricing.
+          </DialogDescription>
+        </DialogHeader>
+        <QuoteForm onClose={() => setOpen(false)} />
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -983,7 +955,7 @@ function HomePage() {
       <WhyUs />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
       <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
-      <GetQuote />
+      <AutoQuotePopup />
       <Testimonials />
       <FAQ />
       <CallToAction />
