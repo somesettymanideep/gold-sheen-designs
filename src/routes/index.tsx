@@ -430,8 +430,8 @@ function WhyUs() {
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
-          <div className="relative order-2 lg:order-1">
+        <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-16 items-start">
+          <div className="relative order-2 lg:order-1 lg:col-span-4">
             <div className="relative overflow-hidden rounded-2xl shadow-elevated w-full">
               <VideoPlayer />
               <div className="absolute top-5 left-5 glass-dark rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white">
@@ -440,7 +440,7 @@ function WhyUs() {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 flex flex-col">
+          <div className="order-1 lg:order-2 lg:col-span-8 flex flex-col">
             {items.map(({ icon: Icon, prefix, title, desc }, idx) => (
               <div
                 key={title}
