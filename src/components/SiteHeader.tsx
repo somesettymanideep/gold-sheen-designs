@@ -145,14 +145,14 @@ export function SiteHeader() {
             <div className="flex flex-col">
               <button
                 type="button"
-                onClick={() => setProductsOpen((o) => !o)}
+                onClick={() => setMobileProductsOpen((o) => !o)}
                 className="flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-charcoal hover:bg-beige"
-                aria-expanded={productsOpen}
+                aria-expanded={mobileProductsOpen}
               >
                 Products
-                <ChevronDown className={`h-4 w-4 transition-transform ${productsOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`h-4 w-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
               </button>
-              {productsOpen && (
+              {mobileProductsOpen && (
                 <div className="flex flex-col pl-4">
                   {CATEGORIES.map((cat) => (
                     <button
