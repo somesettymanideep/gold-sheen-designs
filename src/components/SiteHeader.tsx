@@ -68,23 +68,23 @@ export function SiteHeader() {
           <div ref={productsRef} className="relative">
             <button
               type="button"
-              onClick={() => setProductsOpen((o) => !o)}
+              onClick={() => setDesktopProductsOpen((o) => !o)}
               className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-charcoal hover:text-primary transition-colors relative group"
-              aria-expanded={productsOpen}
+              aria-expanded={desktopProductsOpen}
               aria-haspopup="menu"
             >
               Products
-              <ChevronDown className={`h-4 w-4 transition-transform ${productsOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className={`h-4 w-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`} />
               <span className="absolute left-4 right-4 -bottom-0.5 h-px gradient-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
             </button>
-            {productsOpen && (
+            {desktopProductsOpen && (
               <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-white shadow-soft py-2 z-50">
                 {CATEGORIES.map((cat) => (
                   <Link
                     key={cat.slug}
                     to="/products/$slug"
                     params={{ slug: cat.slug }}
-                    onClick={() => setProductsOpen(false)}
+                    onClick={() => setDesktopProductsOpen(false)}
                     className="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-beige hover:text-primary transition-colors"
                     activeProps={{ className: "text-primary bg-beige" }}
                   >
