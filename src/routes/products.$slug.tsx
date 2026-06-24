@@ -351,6 +351,7 @@ function ProductDetailPage() {
           </div>
         </div>
       </section>
+      </div>
     </PageLayout>
   );
 }
