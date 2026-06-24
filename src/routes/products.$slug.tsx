@@ -112,17 +112,15 @@ function ProductDetailPage() {
   return (
     <PageLayout>
       <div className="bg-cream">
-      {/* Hero / overview */}
-      <section className="section-pad pt-32 sm:pt-40 bg-cream">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
-            <Link to="/" className="hover:text-gold">Home</Link>
-            <span>/</span>
-            <Link to="/products" className="hover:text-gold">Products</Link>
-            <span>/</span>
-            <span className="text-gold">{cat.title}</span>
-          </nav>
+        <PageHero
+          title={cat.title}
+          crumb={cat.title}
+          bgImage={BANNER_IMG[cat.img]}
+        />
 
+      {/* Hero / overview */}
+      <section className="section-pad bg-cream">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="relative">
               <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20" />
@@ -132,9 +130,6 @@ function ProductDetailPage() {
             </div>
             <div>
               <span className="eyebrow">Product</span>
-              <h1 className="mt-4 font-display text-4xl sm:text-5xl font-bold text-charcoal">
-                {cat.title}
-              </h1>
               <p className="mt-5 text-muted-foreground leading-relaxed">{detail.description}</p>
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
