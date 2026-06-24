@@ -50,6 +50,7 @@
   --color-charcoal: var(--charcoal);
   --color-beige: var(--beige);
   --color-cream: var(--cream);
+  --color-highlighted-brand: var(--highlighted-brand);
 }
 
 :root {
