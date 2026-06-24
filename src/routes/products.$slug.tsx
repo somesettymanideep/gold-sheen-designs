@@ -250,6 +250,9 @@ function ProductDetailPage() {
       {slug === "hardware" && (
         <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
       )}
+      {slug === "laminates" && (
+        <BrandMarquee title="Laminate Brands" logos={LAMINATE_BRAND_LOGOS} />
+      )}
 
       {/* Related products */}
       <section className="section-pad bg-cream">
