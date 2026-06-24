@@ -17,6 +17,20 @@ import bannerHardware from "@/assets/product-banners/banner-hardware.jpg.asset.j
 import bannerVeneers from "@/assets/product-banners/banner-veneers.jpg.asset.json";
 import bannerModularKitchens from "@/assets/product-banners/banner-modular-kitchens.jpg.asset.json";
 import bannerProfileDoors from "@/assets/product-banners/banner-profile-doors.jpg.asset.json";
+import brandGreenply from "@/assets/brands/greenply.png.asset.json";
+import brandArchidply from "@/assets/brands/archidply.png.asset.json";
+import brandAustin from "@/assets/brands/austin.png.asset.json";
+import brandCenturyply from "@/assets/brands/centuryply.png.asset.json";
+import brandDecobond from "@/assets/brands/decobond.png.asset.json";
+import brandDuroply from "@/assets/brands/duroply.png.asset.json";
+import brandMikasa from "@/assets/brands/mikasa.png.asset.json";
+import brandHafele from "@/assets/brands/hafele.png.asset.json";
+import brandKessebohmer from "@/assets/brands/kessebohmer.png.asset.json";
+import brandBlum from "@/assets/brands/blum.png.asset.json";
+import brandEbco from "@/assets/brands/ebco.png.asset.json";
+import brandDecofit from "@/assets/brands/decofit.png.asset.json";
+import brandHettich from "@/assets/brands/hettich.png.asset.json";
+import brandOzone from "@/assets/brands/ozone.png.asset.json";
 
 export type BrandGrade = {
   name: string;
