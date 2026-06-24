@@ -262,7 +262,40 @@ function ProductDetailPage() {
               </div>
             </div>
           </section>
-        ))}
+      ))}
+
+      {/* Brands We Deal With */}
+      {(slug === "plywood" || slug === "hardware") && (
+        <section className="section-pad bg-background">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <span className="eyebrow">Trusted Partners</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-charcoal">
+                Brands We Deal With
+              </h2>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : SITE_HARDWARE_BRANDS).map((brand) => (
+                <div
+                  key={brand}
+                  className="flex flex-col items-center justify-center rounded-2xl border border-charcoal/10 bg-secondary p-6 shadow-soft hover:shadow-elevated transition duration-300"
+                >
+                  {BRAND_LOGOS[brand] ? (
+                    <img
+                      src={BRAND_LOGOS[brand]}
+                      alt={brand}
+                      className="h-12 w-auto max-w-full object-contain"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="font-display text-lg font-bold text-charcoal text-center">{brand}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related products */}
       <section className="section-pad bg-background">
