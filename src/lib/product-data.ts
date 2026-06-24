@@ -67,6 +67,15 @@ export const CAT_IMG: Record<string, string> = {
   doors: catDoors,
 };
 
+export const BANNER_IMG: Record<string, string> = {
+  plywood: bannerPlywood.url,
+  laminates: bannerLaminates.url,
+  hardware: bannerHardware.url,
+  veneers: bannerVeneers.url,
+  kitchen: bannerModularKitchens.url,
+  doors: bannerProfileDoors.url,
+};
+
 export type ProductDetail = {
   features: string[];
   description: string;
