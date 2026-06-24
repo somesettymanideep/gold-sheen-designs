@@ -39,7 +39,7 @@ export function DecobondShowcase() {
   }, [next]);
 
   return (
-    <section className="section-pad bg-charcoal text-white relative overflow-hidden">
+    <section className="section-pad bg-highlighted-brand text-charcoal relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -54,7 +54,7 @@ export function DecobondShowcase() {
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Decobond <span className="text-gradient-gold">Plywood</span>
           </h2>
-          <p className="mt-6 text-base text-white/75 leading-relaxed max-w-xl">
+          <p className="mt-6 text-base text-muted-foreground leading-relaxed max-w-xl">
             100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer &amp; termite resistant
             and built to last. From the trusted Decobond 710 to the lifetime-warranty Platinum range,
             every sheet is engineered for strength, stability and decades of reliable performance.
@@ -62,8 +62,8 @@ export function DecobondShowcase() {
 
           <ul className="mt-8 grid sm:grid-cols-2 gap-4">
             {HIGHLIGHTS.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-3 text-sm font-medium text-white/90">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 border border-white/15 shrink-0">
+              <li key={label} className="flex items-center gap-3 text-sm font-medium text-charcoal">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/80 border border-charcoal/10 shrink-0">
                   <Icon className="h-5 w-5 text-gold" />
                 </span>
                 {label}
@@ -82,7 +82,7 @@ export function DecobondShowcase() {
 
         {/* Right slider */}
         <div className="relative">
-          <div className="relative overflow-hidden rounded-2xl shadow-elevated aspect-[3/4] bg-black/30">
+          <div className="relative overflow-hidden rounded-2xl shadow-elevated aspect-[3/4] bg-white border border-charcoal/10">
             {SLIDES.map((s, idx) => (
               <div
                 key={s.name}
@@ -132,7 +132,7 @@ export function DecobondShowcase() {
                 onClick={() => setI(idx)}
                 aria-label={`Slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
-                  idx === i ? "w-10 gradient-gold" : "w-4 bg-white/30"
+                  idx === i ? "w-10 gradient-gold" : "w-4 bg-charcoal/30"
                 }`}
               />
             ))}

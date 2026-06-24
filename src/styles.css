@@ -50,6 +50,7 @@
   --color-charcoal: var(--charcoal);
   --color-beige: var(--beige);
   --color-cream: var(--cream);
+  --color-highlighted-brand: var(--highlighted-brand);
 }
 
 :root {
@@ -62,6 +63,7 @@
   --charcoal: #323433;
   --beige: #f0ebe5;
   --cream: #f8f5f0;
+  --highlighted-brand: #f7f4ef;
 
   /* Semantic */
   --background: #ffffff;
