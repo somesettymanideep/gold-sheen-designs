@@ -332,6 +332,14 @@ function ProductDetailPage() {
         </section>
       )}
 
+      {/* Home-page brand marquees */}
+      {slug === "plywood" && (
+        <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
+      )}
+      {slug === "hardware" && (
+        <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
+      )}
+
       {/* Related products */}
       <section className="section-pad bg-cream">
 
