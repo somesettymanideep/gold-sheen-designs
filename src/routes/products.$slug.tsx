@@ -107,10 +107,11 @@ function ProductDetailPage() {
   const cat = CATEGORIES.find((c) => c.slug === slug)!;
   const detail = PRODUCT_DETAILS[slug];
   const img = CAT_IMG[cat.img];
-  const related = CATEGORIES.filter((c) => c.slug !== slug).slice(0, 3);
+  const related = CATEGORIES.filter((c) => c.slug !== slug);
 
   return (
     <PageLayout>
+      <div className="bg-cream">
       {/* Hero / overview */}
       <section className="section-pad pt-32 sm:pt-40 gradient-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -157,7 +158,7 @@ function ProductDetailPage() {
       </section>
 
       {/* Features + Specs */}
-      <section className="section-pad bg-background">
+      <section className="pt-16 pb-12 bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-3xl font-bold text-charcoal">Key Features</h2>
@@ -212,7 +213,7 @@ function ProductDetailPage() {
         PLYWOOD_BRANDS.map((brand, bIdx) => (
           <section
             key={brand.name}
-            className={`section-pad ${bIdx % 2 === 0 ? "gradient-warm" : "bg-background"}`}
+            className={`section-pad ${bIdx % 2 === 0 ? "gradient-warm" : "bg-cream"}`}
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto">
@@ -284,7 +285,7 @@ function ProductDetailPage() {
 
       {/* Brands We Deal With */}
       {(slug === "plywood" || slug === "hardware" || slug === "laminates") && (
-        <section className="section-pad bg-background">
+        <section className="section-pad bg-cream">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <span className="eyebrow">Trusted Partners</span>
@@ -316,13 +317,13 @@ function ProductDetailPage() {
       )}
 
       {/* Related products */}
-      <section className="section-pad bg-background">
+      <section className="section-pad bg-cream">
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-bold text-charcoal text-center">
             Explore More Products
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {related.map((c) => (
               <Link
                 key={c.slug}
@@ -350,6 +351,7 @@ function ProductDetailPage() {
           </div>
         </div>
       </section>
+      </div>
     </PageLayout>
   );
 }
