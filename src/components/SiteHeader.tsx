@@ -14,7 +14,8 @@ export function SiteHeader() {
   const navigate = useNavigate({ from: "/" });
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+  const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const productsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
