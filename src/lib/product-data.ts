@@ -11,6 +11,12 @@ import decobond710Club from "@/assets/decobond/decobond-710-club.jpg.asset.json"
 import decobond710Platinum from "@/assets/decobond/decobond-710-platinum.jpg.asset.json";
 import decobond710Eco from "@/assets/decobond/decobond-710-eco.jpg.asset.json";
 import decobond710Pine from "@/assets/decobond/decobond-710-pine.jpg.asset.json";
+import bannerPlywood from "@/assets/product-banners/banner-plywood.jpg.asset.json";
+import bannerLaminates from "@/assets/product-banners/banner-laminates.jpg.asset.json";
+import bannerHardware from "@/assets/product-banners/banner-hardware.jpg.asset.json";
+import bannerVeneers from "@/assets/product-banners/banner-veneers.jpg.asset.json";
+import bannerModularKitchens from "@/assets/product-banners/banner-modular-kitchens.jpg.asset.json";
+import bannerProfileDoors from "@/assets/product-banners/banner-profile-doors.jpg.asset.json";
 
 export type BrandGrade = {
   name: string;
