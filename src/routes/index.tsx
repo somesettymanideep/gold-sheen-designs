@@ -22,6 +22,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
+import { BrandMarquee } from "@/components/BrandMarquee";
 import {
   Dialog,
   DialogContent,
