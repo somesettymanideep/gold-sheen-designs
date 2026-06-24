@@ -80,3 +80,15 @@ export const HARDWARE_BRANDS = [
   "Europa",
   "Yale",
 ];
+
+export const LAMINATE_BRANDS = [
+  "Advance",
+  "Catch",
+  "Century Laminates",
+  "Glamox",
+  "Greenlam",
+  "Merino",
+  "Pebble",
+  "Skydecor",
+  "Virgo",
+];
