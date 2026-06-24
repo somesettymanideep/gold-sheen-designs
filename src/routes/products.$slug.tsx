@@ -7,7 +7,7 @@ import {
   Phone,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS } from "@/lib/site";
+import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS, LAMINATE_BRANDS as SITE_LAMINATE_BRANDS } from "@/lib/site";
 import { CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
 
 import greenplyLogo from "@/assets/brands/greenply.png.asset.json";
@@ -18,6 +18,15 @@ import hettichLogo from "@/assets/brands/hettich.png.asset.json";
 import ebcoLogo from "@/assets/brands/ebco.png.asset.json";
 import hafeleLogo from "@/assets/brands/hafele.png.asset.json";
 import ozoneLogo from "@/assets/brands/ozone.png.asset.json";
+import advanceLogo from "@/assets/brands/laminates/advance.png.asset.json";
+import catchLogo from "@/assets/brands/laminates/catch.png.asset.json";
+import centuryLamLogo from "@/assets/brands/laminates/century.png.asset.json";
+import glamoxLogo from "@/assets/brands/laminates/glamox.png.asset.json";
+import greenlamLogo from "@/assets/brands/laminates/greenlam.png.asset.json";
+import merinoLogo from "@/assets/brands/laminates/merino.png.asset.json";
+import pebbleLogo from "@/assets/brands/laminates/pebble.png.asset.json";
+import skydecorLogo from "@/assets/brands/laminates/skydecor.png.asset.json";
+import virgoLogo from "@/assets/brands/laminates/virgo.png.asset.json";
 
 const BRAND_LOGOS: Record<string, string> = {
   "Greenply": greenplyLogo.url,
@@ -28,6 +37,15 @@ const BRAND_LOGOS: Record<string, string> = {
   "Ebco": ebcoLogo.url,
   "Hafele": hafeleLogo.url,
   "Ozone": ozoneLogo.url,
+  "Advance": advanceLogo.url,
+  "Catch": catchLogo.url,
+  "Century Laminates": centuryLamLogo.url,
+  "Glamox": glamoxLogo.url,
+  "Greenlam": greenlamLogo.url,
+  "Merino": merinoLogo.url,
+  "Pebble": pebbleLogo.url,
+  "Skydecor": skydecorLogo.url,
+  "Virgo": virgoLogo.url,
 };
 
 export const Route = createFileRoute("/products/$slug")({
@@ -265,7 +283,7 @@ function ProductDetailPage() {
       ))}
 
       {/* Brands We Deal With */}
-      {(slug === "plywood" || slug === "hardware") && (
+      {(slug === "plywood" || slug === "hardware" || slug === "laminates") && (
         <section className="section-pad bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -275,7 +293,7 @@ function ProductDetailPage() {
               </h2>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : SITE_HARDWARE_BRANDS).map((brand) => (
+              {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : slug === "hardware" ? SITE_HARDWARE_BRANDS : SITE_LAMINATE_BRANDS).map((brand) => (
                 <div
                   key={brand}
                   className="flex flex-col items-center justify-center rounded-2xl border border-charcoal/10 bg-secondary p-6 shadow-soft hover:shadow-elevated transition duration-300"
