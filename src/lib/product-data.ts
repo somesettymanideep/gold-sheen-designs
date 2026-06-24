@@ -31,6 +31,15 @@ import brandEbco from "@/assets/brands/ebco.png.asset.json";
 import brandDecofit from "@/assets/brands/decofit.png.asset.json";
 import brandHettich from "@/assets/brands/hettich.png.asset.json";
 import brandOzone from "@/assets/brands/ozone.png.asset.json";
+import laminateAdvance from "@/assets/brands/laminates/advance.png.asset.json";
+import laminateCatch from "@/assets/brands/laminates/catch.png.asset.json";
+import laminateCentury from "@/assets/brands/laminates/century.png.asset.json";
+import laminateGlamox from "@/assets/brands/laminates/glamox.png.asset.json";
+import laminateGreenlam from "@/assets/brands/laminates/greenlam.png.asset.json";
+import laminateMerino from "@/assets/brands/laminates/merino.png.asset.json";
+import laminatePebble from "@/assets/brands/laminates/pebble.png.asset.json";
+import laminateSkydecor from "@/assets/brands/laminates/skydecor.png.asset.json";
+import laminateVirgo from "@/assets/brands/laminates/virgo.png.asset.json";
 
 export type BrandGrade = {
   name: string;
@@ -108,6 +117,18 @@ export const HARDWARE_BRAND_LOGOS = [
   { name: "Ebco", logo: brandEbco.url },
   { name: "Ozone", logo: brandOzone.url },
   { name: "Decofit", logo: brandDecofit.url },
+];
+
+export const LAMINATE_BRAND_LOGOS = [
+  { name: "Advance", logo: laminateAdvance.url },
+  { name: "Catch", logo: laminateCatch.url },
+  { name: "Century", logo: laminateCentury.url },
+  { name: "Glamox", logo: laminateGlamox.url },
+  { name: "Greenlam", logo: laminateGreenlam.url },
+  { name: "Merino", logo: laminateMerino.url },
+  { name: "Pebble", logo: laminatePebble.url },
+  { name: "Skydecor", logo: laminateSkydecor.url },
+  { name: "Virgo", logo: laminateVirgo.url },
 ];
 
 export type ProductDetail = {
