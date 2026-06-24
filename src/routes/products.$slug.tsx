@@ -283,7 +283,7 @@ function ProductDetailPage() {
       ))}
 
       {/* Brands We Deal With */}
-      {(slug === "plywood" || slug === "hardware") && (
+      {(slug === "plywood" || slug === "hardware" || slug === "laminates") && (
         <section className="section-pad bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -293,7 +293,7 @@ function ProductDetailPage() {
               </h2>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : SITE_HARDWARE_BRANDS).map((brand) => (
+              {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : slug === "hardware" ? SITE_HARDWARE_BRANDS : SITE_LAMINATE_BRANDS).map((brand) => (
                 <div
                   key={brand}
                   className="flex flex-col items-center justify-center rounded-2xl border border-charcoal/10 bg-secondary p-6 shadow-soft hover:shadow-elevated transition duration-300"
