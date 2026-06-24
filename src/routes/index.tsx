@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { BrandMarquee } from "@/components/BrandMarquee";
+import { DecobondShowcase } from "@/components/DecobondShowcase";
 import {
   Dialog,
   DialogContent,
@@ -890,6 +891,7 @@ function HomePage() {
       <About />
       <Categories />
       <WhyUs />
+      <DecobondShowcase />
       <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
       <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
       <AutoQuotePopup />
