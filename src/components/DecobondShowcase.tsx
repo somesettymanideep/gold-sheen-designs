@@ -132,7 +132,7 @@ export function DecobondShowcase() {
                 onClick={() => setI(idx)}
                 aria-label={`Slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
-                  idx === i ? "w-10 gradient-gold" : "w-4 bg-white/30"
+                  idx === i ? "w-10 gradient-gold" : "w-4 bg-charcoal/30"
                 }`}
               />
             ))}
