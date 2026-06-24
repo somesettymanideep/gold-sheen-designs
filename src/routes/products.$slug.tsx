@@ -158,7 +158,7 @@ function ProductDetailPage() {
       </section>
 
       {/* Features + Specs */}
-      <section className="section-pad bg-background">
+      <section className="pt-16 pb-12 bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-3xl font-bold text-charcoal">Key Features</h2>
