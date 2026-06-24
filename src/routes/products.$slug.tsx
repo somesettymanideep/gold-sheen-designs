@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS, LAMINATE_BRANDS as SITE_LAMINATE_BRANDS } from "@/lib/site";
-import { CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
+import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
 
 import greenplyLogo from "@/assets/brands/greenply.png.asset.json";
 import centuryplyLogo from "@/assets/brands/centuryply.png.asset.json";
