@@ -286,50 +286,6 @@ function ProductDetailPage() {
           </section>
       ))}
 
-      {/* Brands We Deal With */}
-      {(slug === "plywood" || slug === "hardware" || slug === "laminates") && (
-        <section className="section-pad bg-cream">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-charcoal">
-                Brands We Deal With
-              </h2>
-            </div>
-            <div className="mt-10">
-              <Carousel
-                opts={{ align: "start", loop: true }}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-4">
-                  {(slug === "plywood" ? SITE_PLYWOOD_BRANDS : slug === "hardware" ? SITE_HARDWARE_BRANDS : SITE_LAMINATE_BRANDS).map((brand) => (
-                    <CarouselItem
-                      key={brand}
-                      className="pl-4 basis-full sm:basis-1/2 lg:basis-1/4"
-                    >
-                      <div className="flex flex-col items-center justify-center rounded-2xl border border-charcoal/10 bg-white p-6 shadow-soft hover:shadow-elevated transition duration-300 h-40">
-                        {BRAND_LOGOS[brand] ? (
-                          <img
-                            src={BRAND_LOGOS[brand]}
-                            alt={brand}
-                            className="h-12 w-auto max-w-full object-contain"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <span className="font-display text-lg font-bold text-charcoal text-center">{brand}</span>
-                        )}
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <div className="flex justify-center gap-3 mt-6">
-                  <CarouselPrevious className="static left-auto right-auto top-auto translate-y-0" />
-                  <CarouselNext className="static left-auto right-auto top-auto translate-y-0" />
-                </div>
-              </Carousel>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Home-page brand marquees */}
       {slug === "plywood" && (
