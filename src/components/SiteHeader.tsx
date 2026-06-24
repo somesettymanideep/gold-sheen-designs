@@ -1,19 +1,22 @@
-import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState, useRef } from "react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
-import { SITE } from "@/lib/site";
+import { SITE, CATEGORIES } from "@/lib/site";
 
-const nav = [
+const baseNav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/products", label: "Products" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
+  const navigate = useNavigate({ from: "/" });
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const productsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -21,6 +24,16 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (productsRef.current && !productsRef.current.contains(e.target as Node)) {
+        setDesktopProductsOpen(false);
+      }
+    };
+    if (desktopProductsOpen) document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [desktopProductsOpen]);
 
   return (
     <header
@@ -40,7 +53,49 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
-          {nav.map((n) => (
+          {baseNav.slice(0, 2).map((n) => (
+            <Link
+              key={n.to}
+              to={n.to}
+              className="px-4 py-2 text-sm font-medium text-charcoal hover:text-primary transition-colors relative group"
+              activeProps={{ className: "text-primary" }}
+            >
+              {n.label}
+              <span className="absolute left-4 right-4 -bottom-0.5 h-px gradient-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
+            </Link>
+          ))}
+
+          <div ref={productsRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setDesktopProductsOpen((o) => !o)}
+              className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-charcoal hover:text-primary transition-colors relative group"
+              aria-expanded={desktopProductsOpen}
+              aria-haspopup="menu"
+            >
+              Products
+              <ChevronDown className={`h-4 w-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`} />
+              <span className="absolute left-4 right-4 -bottom-0.5 h-px gradient-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
+            </button>
+            {desktopProductsOpen && (
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-white shadow-soft py-2 z-50">
+                {CATEGORIES.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    to="/products/$slug"
+                    params={{ slug: cat.slug }}
+                    onClick={() => setDesktopProductsOpen(false)}
+                    className="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-beige hover:text-primary transition-colors"
+                    activeProps={{ className: "text-primary bg-beige" }}
+                  >
+                    {cat.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {baseNav.slice(2).map((n) => (
             <Link
               key={n.to}
               to={n.to}
@@ -75,7 +130,48 @@ export function SiteHeader() {
       {open && (
         <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur-xl">
           <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-1">
-            {nav.map((n) => (
+            {baseNav.slice(0, 2).map((n) => (
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={() => setOpen(false)}
+                className="px-3 py-3 rounded-lg text-base font-medium text-charcoal hover:bg-beige"
+                activeProps={{ className: "bg-beige text-primary" }}
+              >
+                {n.label}
+              </Link>
+            ))}
+
+            <div className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setMobileProductsOpen((o) => !o)}
+                className="flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-charcoal hover:bg-beige"
+                aria-expanded={mobileProductsOpen}
+              >
+                Products
+                <ChevronDown className={`h-4 w-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileProductsOpen && (
+                <div className="flex flex-col pl-4">
+                  {CATEGORIES.map((cat) => (
+                    <button
+                      key={cat.slug}
+                      type="button"
+                      onClick={() => {
+                        navigate({ to: "/products/$slug", params: { slug: cat.slug } });
+                        setOpen(false);
+                      }}
+                      className="px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
+                    >
+                      {cat.title}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {baseNav.slice(2).map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
