@@ -111,6 +111,7 @@ function ProductDetailPage() {
 
   return (
     <PageLayout>
+      <div className="bg-cream">
       {/* Hero / overview */}
       <section className="section-pad pt-32 sm:pt-40 gradient-warm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
