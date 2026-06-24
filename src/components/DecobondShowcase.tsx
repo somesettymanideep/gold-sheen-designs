@@ -54,7 +54,7 @@ export function DecobondShowcase() {
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Decobond <span className="text-gradient-gold">Plywood</span>
           </h2>
-          <p className="mt-6 text-base text-white/75 leading-relaxed max-w-xl">
+          <p className="mt-6 text-base text-muted-foreground leading-relaxed max-w-xl">
             100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer &amp; termite resistant
             and built to last. From the trusted Decobond 710 to the lifetime-warranty Platinum range,
             every sheet is engineered for strength, stability and decades of reliable performance.
