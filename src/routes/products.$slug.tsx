@@ -9,6 +9,13 @@ import {
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS, LAMINATE_BRANDS as SITE_LAMINATE_BRANDS } from "@/lib/site";
 import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import greenplyLogo from "@/assets/brands/greenply.png.asset.json";
 import centuryplyLogo from "@/assets/brands/centuryply.png.asset.json";
