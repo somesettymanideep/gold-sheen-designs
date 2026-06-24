@@ -7,8 +7,28 @@ import {
   Phone,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { CATEGORIES, SITE } from "@/lib/site";
+import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS } from "@/lib/site";
 import { CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
+
+import greenplyLogo from "@/assets/brands/greenply.png.asset.json";
+import centuryplyLogo from "@/assets/brands/centuryply.png.asset.json";
+import austinLogo from "@/assets/brands/austin.png.asset.json";
+import archidplyLogo from "@/assets/brands/archidply.png.asset.json";
+import hettichLogo from "@/assets/brands/hettich.png.asset.json";
+import ebcoLogo from "@/assets/brands/ebco.png.asset.json";
+import hafeleLogo from "@/assets/brands/hafele.png.asset.json";
+import ozoneLogo from "@/assets/brands/ozone.png.asset.json";
+
+const BRAND_LOGOS: Record<string, string> = {
+  "Greenply": greenplyLogo.url,
+  "CenturyPly": centuryplyLogo.url,
+  "Austin Plywood": austinLogo.url,
+  "Archidply": archidplyLogo.url,
+  "Hettich": hettichLogo.url,
+  "Ebco": ebcoLogo.url,
+  "Hafele": hafeleLogo.url,
+  "Ozone": ozoneLogo.url,
+};
 
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
