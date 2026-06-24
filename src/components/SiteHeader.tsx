@@ -33,9 +33,9 @@ export function SiteHeader() {
         <img
             src={logo.url}
             alt="Durga Hardware and Plywood"
-            width={72}
-            height={72}
-            className="h-16 w-16 sm:h-18 sm:w-18 object-contain shrink-0"
+            width={96}
+            height={96}
+            className="h-20 w-20 sm:h-24 sm:w-24 object-contain shrink-0"
           />
         </Link>
 
