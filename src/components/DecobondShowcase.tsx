@@ -62,8 +62,8 @@ export function DecobondShowcase() {
 
           <ul className="mt-8 grid sm:grid-cols-2 gap-4">
             {HIGHLIGHTS.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-3 text-sm font-medium text-white/90">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 border border-white/15 shrink-0">
+              <li key={label} className="flex items-center gap-3 text-sm font-medium text-charcoal">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/80 border border-charcoal/10 shrink-0">
                   <Icon className="h-5 w-5 text-gold" />
                 </span>
                 {label}
