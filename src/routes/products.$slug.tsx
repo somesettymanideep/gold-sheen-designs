@@ -113,7 +113,7 @@ function ProductDetailPage() {
     <PageLayout>
       <div className="bg-cream">
       {/* Hero / overview */}
-      <section className="section-pad pt-32 sm:pt-40 gradient-warm">
+      <section className="section-pad pt-32 sm:pt-40 bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
             <Link to="/" className="hover:text-gold">Home</Link>
@@ -213,7 +213,7 @@ function ProductDetailPage() {
         PLYWOOD_BRANDS.map((brand, bIdx) => (
           <section
             key={brand.name}
-            className={`section-pad ${bIdx % 2 === 0 ? "gradient-warm" : "bg-cream"}`}
+            className={`section-pad ${bIdx % 2 === 0 ? "bg-cream" : "bg-cream"}`}
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto">
