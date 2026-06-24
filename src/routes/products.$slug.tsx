@@ -291,8 +291,7 @@ function ProductDetailPage() {
         <section className="section-pad bg-cream">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <span className="eyebrow">Trusted Partners</span>
-              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-charcoal">
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-charcoal">
                 Brands We Deal With
               </h2>
             </div>
