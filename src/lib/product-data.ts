@@ -119,6 +119,18 @@ export const HARDWARE_BRAND_LOGOS = [
   { name: "Decofit", logo: brandDecofit.url },
 ];
 
+export const LAMINATE_BRAND_LOGOS = [
+  { name: "Advance", logo: laminateAdvance.url },
+  { name: "Catch", logo: laminateCatch.url },
+  { name: "Century", logo: laminateCentury.url },
+  { name: "Glamox", logo: laminateGlamox.url },
+  { name: "Greenlam", logo: laminateGreenlam.url },
+  { name: "Merino", logo: laminateMerino.url },
+  { name: "Pebble", logo: laminatePebble.url },
+  { name: "Skydecor", logo: laminateSkydecor.url },
+  { name: "Virgo", logo: laminateVirgo.url },
+];
+
 export type ProductDetail = {
   features: string[];
   description: string;
