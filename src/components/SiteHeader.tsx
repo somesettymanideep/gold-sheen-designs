@@ -158,9 +158,8 @@ export function SiteHeader() {
                       key={cat.slug}
                       type="button"
                       onClick={() => {
-                        console.log("clicked", cat.slug);
+                        navigate({ to: "/products/$slug", params: { slug: cat.slug } });
                         setOpen(false);
-                        navigate({ to: "/products/$slug", params: { slug: cat.slug } }).then(() => console.log("navigated")).catch((err) => console.error("nav error", err));
                       }}
                       className="px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
                     >
