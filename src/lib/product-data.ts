@@ -90,6 +90,26 @@ export const BANNER_IMG: Record<string, string> = {
   doors: bannerProfileDoors.url,
 };
 
+export const PLYWOOD_BRAND_LOGOS = [
+  { name: "Greenply", logo: brandGreenply.url },
+  { name: "CenturyPly", logo: brandCenturyply.url },
+  { name: "Austin Plywood", logo: brandAustin.url },
+  { name: "Archidply", logo: brandArchidply.url },
+  { name: "Duroply", logo: brandDuroply.url },
+  { name: "Mikasa", logo: brandMikasa.url },
+  { name: "Deco Bond", logo: brandDecobond.url },
+];
+
+export const HARDWARE_BRAND_LOGOS = [
+  { name: "Häfele", logo: brandHafele.url },
+  { name: "Hettich", logo: brandHettich.url },
+  { name: "Blum", logo: brandBlum.url },
+  { name: "Kesseböhmer", logo: brandKessebohmer.url },
+  { name: "Ebco", logo: brandEbco.url },
+  { name: "Ozone", logo: brandOzone.url },
+  { name: "Decofit", logo: brandDecofit.url },
+];
+
 export type ProductDetail = {
   features: string[];
   description: string;
