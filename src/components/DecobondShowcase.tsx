@@ -39,7 +39,7 @@ export function DecobondShowcase() {
   }, [next]);
 
   return (
-    <section className="section-pad bg-charcoal text-white relative overflow-hidden">
+    <section className="section-pad bg-cream text-charcoal relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-10"
         style={{
