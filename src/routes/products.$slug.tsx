@@ -6,7 +6,7 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
-import { PageLayout } from "@/components/PageLayout";
+import { PageLayout, PageHero } from "@/components/PageLayout";
 import { CATEGORIES, SITE, PLYWOOD_BRANDS as SITE_PLYWOOD_BRANDS, HARDWARE_BRANDS as SITE_HARDWARE_BRANDS, LAMINATE_BRANDS as SITE_LAMINATE_BRANDS } from "@/lib/site";
 import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS } from "@/lib/product-data";
 
