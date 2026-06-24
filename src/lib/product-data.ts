@@ -17,6 +17,20 @@ import bannerHardware from "@/assets/product-banners/banner-hardware.jpg.asset.j
 import bannerVeneers from "@/assets/product-banners/banner-veneers.jpg.asset.json";
 import bannerModularKitchens from "@/assets/product-banners/banner-modular-kitchens.jpg.asset.json";
 import bannerProfileDoors from "@/assets/product-banners/banner-profile-doors.jpg.asset.json";
+import brandGreenply from "@/assets/brands/greenply.png.asset.json";
+import brandArchidply from "@/assets/brands/archidply.png.asset.json";
+import brandAustin from "@/assets/brands/austin.png.asset.json";
+import brandCenturyply from "@/assets/brands/centuryply.png.asset.json";
+import brandDecobond from "@/assets/brands/decobond.png.asset.json";
+import brandDuroply from "@/assets/brands/duroply.png.asset.json";
+import brandMikasa from "@/assets/brands/mikasa.png.asset.json";
+import brandHafele from "@/assets/brands/hafele.png.asset.json";
+import brandKessebohmer from "@/assets/brands/kessebohmer.png.asset.json";
+import brandBlum from "@/assets/brands/blum.png.asset.json";
+import brandEbco from "@/assets/brands/ebco.png.asset.json";
+import brandDecofit from "@/assets/brands/decofit.png.asset.json";
+import brandHettich from "@/assets/brands/hettich.png.asset.json";
+import brandOzone from "@/assets/brands/ozone.png.asset.json";
 
 export type BrandGrade = {
   name: string;
@@ -75,6 +89,26 @@ export const BANNER_IMG: Record<string, string> = {
   kitchen: bannerModularKitchens.url,
   doors: bannerProfileDoors.url,
 };
+
+export const PLYWOOD_BRAND_LOGOS = [
+  { name: "Greenply", logo: brandGreenply.url },
+  { name: "CenturyPly", logo: brandCenturyply.url },
+  { name: "Austin Plywood", logo: brandAustin.url },
+  { name: "Archidply", logo: brandArchidply.url },
+  { name: "Duroply", logo: brandDuroply.url },
+  { name: "Mikasa", logo: brandMikasa.url },
+  { name: "Deco Bond", logo: brandDecobond.url },
+];
+
+export const HARDWARE_BRAND_LOGOS = [
+  { name: "Häfele", logo: brandHafele.url },
+  { name: "Hettich", logo: brandHettich.url },
+  { name: "Blum", logo: brandBlum.url },
+  { name: "Kesseböhmer", logo: brandKessebohmer.url },
+  { name: "Ebco", logo: brandEbco.url },
+  { name: "Ozone", logo: brandOzone.url },
+  { name: "Decofit", logo: brandDecofit.url },
+];
 
 export type ProductDetail = {
   features: string[];
