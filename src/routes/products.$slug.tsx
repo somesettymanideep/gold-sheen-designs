@@ -157,7 +157,7 @@ function ProductDetailPage() {
               {detail.brands.map((b) => (
                 <span
                   key={b}
-                  className="rounded-full border border-charcoal/15 bg-secondary px-4 py-2 text-xs font-semibold text-charcoal"
+                  className="rounded-full border border-charcoal/15 bg-secondary px-4 py-2 text-xs font-semibold text-white"
                 >
                   {b}
                 </span>
