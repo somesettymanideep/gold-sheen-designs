@@ -28,12 +28,12 @@ export function SiteHeader() {
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       if (productsRef.current && !productsRef.current.contains(e.target as Node)) {
-        setProductsOpen(false);
+        setDesktopProductsOpen(false);
       }
     };
-    if (productsOpen) document.addEventListener("mousedown", onClickOutside);
+    if (desktopProductsOpen) document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
-  }, [productsOpen]);
+  }, [desktopProductsOpen]);
 
   return (
     <header
