@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { CATEGORIES, SITE } from "@/lib/site";
-import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS } from "@/lib/product-data";
+import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS, LAMINATE_BRAND_LOGOS } from "@/lib/product-data";
 import { BrandMarquee } from "@/components/BrandMarquee";
 
 
