@@ -55,11 +55,12 @@ export function SiteHeader() {
         <img
             src={logo.url}
             alt="Durga Hardware and Plywood"
-            width={96}
-            height={96}
-            className="h-20 w-20 sm:h-24 sm:w-24 object-contain shrink-0"
+            width={128}
+            height={128}
+            className="h-24 w-24 sm:h-32 sm:w-32 -my-6 sm:-my-10 object-contain shrink-0"
           />
         </Link>
+
 
         <nav className="hidden lg:flex items-center gap-1">
           {baseNav.slice(0, 2).map((n) => (
