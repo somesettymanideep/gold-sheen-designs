@@ -113,7 +113,16 @@ export function SiteFooter() {
           <p className="text-sm text-white/70">
             Copyright ©{new Date().getFullYear()}{" "}
             <span className="text-gold font-semibold">Durga Hardware and Plywood</span>{" "}
-            All Rights Reserved.
+            All Rights Reserved. Designed &amp; developed by{" "}
+            <a
+              href="https://ayrondigitalsolutions.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold font-semibold hover:underline"
+            >
+              Ayron Digital Solutions
+            </a>
+            .
           </p>
           <div className="flex items-center gap-3">
             {[
