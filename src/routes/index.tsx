@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import {
   ArrowRight,
   Phone,
-  MessageCircle,
+  
   CheckCircle2,
   Star,
   Award,
