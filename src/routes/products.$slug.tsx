@@ -15,20 +15,43 @@ import { BrandMarquee } from "@/components/BrandMarquee";
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
     const cat = CATEGORIES.find((c) => c.slug === params.slug);
-    const title = cat ? `${cat.title} — Durga Hardware and Plywood` : "Product — Durga Hardware and Plywood";
+    const title = cat
+      ? `${cat.title} in Vijayawada — Durga Hardware and Plywood`
+      : "Product — Durga Hardware and Plywood";
     const desc = cat?.blurb ?? "Explore our premium products at Durga Hardware and Plywood.";
     const img = cat ? CAT_IMG[cat.img] : undefined;
+    const url = `https://gold-sheen-designs.lovable.app/products/${params.slug}`;
     return {
       meta: [
         { title },
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
         ...(img ? [{ property: "og:image", content: img }, { name: "twitter:image", content: img }] : []),
       ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: cat
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://gold-sheen-designs.lovable.app/" },
+                  { "@type": "ListItem", position: 2, name: "Products", item: "https://gold-sheen-designs.lovable.app/products" },
+                  { "@type": "ListItem", position: 3, name: cat.title, item: url },
+                ],
+              }),
+            },
+          ]
+        : [],
     };
   },
   component: ProductDetailPage,
+
   notFoundComponent: () => (
     <PageLayout>
       <div className="section-pad mx-auto max-w-3xl px-4 text-center">
