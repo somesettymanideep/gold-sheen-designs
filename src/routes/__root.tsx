@@ -101,6 +101,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png" },
+      { rel: "apple-touch-icon", href: "/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
