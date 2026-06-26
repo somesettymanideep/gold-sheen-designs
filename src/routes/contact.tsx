@@ -71,9 +71,9 @@ function ContactPage() {
                 <h3 className="font-display text-xl font-bold text-charcoal">
                   {title}
                 </h3>
-                <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground break-words">
+                <div className="mt-3 space-y-1.5 text-[15px] leading-snug text-muted-foreground">
                   {lines.map((l, i) => (
-                    <div key={i} className="break-words">{l}</div>
+                    <p key={i} className="break-words">{l}</p>
                   ))}
                 </div>
               </div>
