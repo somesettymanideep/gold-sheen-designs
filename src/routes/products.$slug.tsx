@@ -174,6 +174,7 @@ export const Route = createFileRoute("/products/$slug")({
 function ProductDetailPage() {
   const { slug } = Route.useParams();
   const cat = CATEGORIES.find((c) => c.slug === slug)!;
+  const seo = CATEGORY_SEO[slug];
   const detail = PRODUCT_DETAILS[slug];
   const img = CAT_IMG[cat.img];
   const related = CATEGORIES.filter((c) => c.slug !== slug);
@@ -182,7 +183,8 @@ function ProductDetailPage() {
     <PageLayout>
       <div className="bg-cream">
         <PageHero
-          title={cat.title}
+          title={seo?.h1 ?? cat.title}
+          subtitle={seo?.keyword ? `${cat.title} — ${seo.description}` : cat.blurb}
           crumb={cat.title}
           bgImage={BANNER_IMG[cat.img]}
           className="py-[30px]"
@@ -195,12 +197,21 @@ function ProductDetailPage() {
             <div className="relative">
               <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20" />
               <div className="relative overflow-hidden rounded-2xl shadow-elevated">
-                <img src={img} alt={cat.title} className="w-full h-[460px] object-cover" />
+                <img
+                  src={img}
+                  alt={seo?.h1 ?? `${cat.title} — Durga Hardware and Plywood, Vijayawada`}
+                  width={800}
+                  height={460}
+                  loading="lazy"
+                  className="w-full h-[460px] object-cover"
+                />
               </div>
             </div>
             <div>
               <span className="eyebrow">Product</span>
+              <h2 className="mt-3 font-display text-2xl sm:text-3xl font-bold text-charcoal">{cat.title}</h2>
               <p className="mt-5 text-muted-foreground leading-relaxed">{detail.description}</p>
+
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href={SITE.phoneHref}
