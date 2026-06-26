@@ -39,6 +39,7 @@ import {
 } from "@/components/ui/accordion";
 import { SITE, CATEGORIES } from "@/lib/site";
 import { PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS } from "@/lib/product-data";
+import { addSubmission } from "@/lib/submissions";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
@@ -555,6 +556,14 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
+
+    addSubmission({
+      type: "quote",
+      name,
+      phone,
+      products,
+      message: message || undefined,
+    });
 
     const lines = [
       "*New Quote Request*",
