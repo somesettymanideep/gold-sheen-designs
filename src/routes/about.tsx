@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown, Users, CalendarDays, Diamond, Grid3x3, type LucideIcon } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
@@ -414,6 +414,7 @@ function StatCard({
   const { ref: viewRef, inView } = useInView<HTMLDivElement>(0.3);
   const { val, progress } = useCountExpo(n, 1200, inView);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const gradId = useId();
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -445,68 +446,75 @@ function StatCard({
         {/* brown top border that glows on hover */}
         <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#7A5430] to-[#A06C3E] opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:shadow-[0_0_18px_2px_rgba(160,108,62,0.6)]" />
 
-        <div className="flex items-start justify-between gap-4">
-          {/* progress ring + icon */}
-          <div className="relative h-[84px] w-[84px] shrink-0">
-            <svg viewBox="0 0 84 84" className="h-full w-full -rotate-90">
-              <circle cx="42" cy="42" r={R} fill="none" stroke="#E8E3DE" strokeWidth="3" />
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            {/* number with shimmer sweep */}
+            <div className="relative inline-block">
+              <span
+                className="block font-display font-extrabold leading-none text-transparent bg-clip-text text-[52px] sm:text-[60px] lg:text-[68px]"
+                style={{ backgroundImage: "linear-gradient(180deg,#7A5430,#A06C3E)" }}
+              >
+                {formatStat(val)}
+                {suffix}
+              </span>
+              <span
+                className="pointer-events-none absolute inset-0 bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.85) 50%, transparent 65%)",
+                  backgroundSize: "200% 100%",
+                  animation: "shimmer 9s ease-in-out infinite",
+                  WebkitBackgroundClip: "text",
+                }}
+                aria-hidden
+              >
+                <span className="block font-display font-extrabold leading-none text-[52px] sm:text-[60px] lg:text-[68px]">
+                  {formatStat(val)}
+                  {suffix}
+                </span>
+              </span>
+            </div>
+            <h3 className="mt-3 font-sans text-lg sm:text-xl font-semibold text-[#232323] leading-tight">
+              {title}
+            </h3>
+            <p className="mt-1 text-[15px] text-[#6D6D6D] leading-snug">{subtitle}</p>
+          </div>
+
+          {/* progress ring + icon badge */}
+          <div className="relative h-20 w-20 shrink-0 sm:h-[88px] sm:w-[88px]">
+            <svg viewBox="0 0 88 88" className="h-full w-full -rotate-90">
+              <circle cx="44" cy="44" r={R} fill="none" stroke="#E8E3DE" strokeWidth="4" />
               <circle
-                cx="42"
-                cy="42"
+                cx="44"
+                cy="44"
                 r={R}
                 fill="none"
-                stroke="url(#ringGrad)"
-                strokeWidth="3"
+                stroke={`url(#${gradId})`}
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeDasharray={C}
                 strokeDashoffset={C * (1 - progress)}
                 style={{ transition: "stroke-dashoffset 0.1s linear" }}
               />
               <defs>
-                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#7A5430" />
                   <stop offset="100%" stopColor="#A06C3E" />
                 </linearGradient>
               </defs>
             </svg>
             <span className="absolute inset-0 grid place-items-center">
-              <Icon className="h-7 w-7" strokeWidth={2} color="#7A5430" opacity={0.7} />
+              <span className="grid h-12 w-12 place-items-center rounded-full bg-[#FAF9F7] transition-colors duration-300 group-hover:bg-[#7A5430]/5">
+                <Icon
+                  className="h-6 w-6 transition-transform duration-300 group-hover:scale-110"
+                  strokeWidth={2}
+                  color="#7A5430"
+                />
+              </span>
             </span>
           </div>
         </div>
 
-        <div className="mt-5">
-          <div className="relative inline-block">
-            <span
-              className="font-display font-extrabold leading-none text-transparent bg-clip-text text-[56px] sm:text-[64px] lg:text-[72px]"
-              style={{ backgroundImage: "linear-gradient(180deg,#7A5430,#A06C3E)" }}
-            >
-              {formatStat(val)}
-              {suffix}
-            </span>
-            {/* gradient shimmer sweeping every ~9s */}
-            <span
-              className="pointer-events-none absolute inset-0 bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.85) 50%, transparent 65%)",
-                backgroundSize: "200% 100%",
-                animation: "shimmer 9s ease-in-out infinite",
-                WebkitBackgroundClip: "text",
-              }}
-              aria-hidden
-            >
-              <span className="font-display font-extrabold leading-none text-[56px] sm:text-[64px] lg:text-[72px]">
-                {formatStat(val)}
-                {suffix}
-              </span>
-            </span>
-          </div>
-          <h3 className="mt-2 font-sans text-xl sm:text-2xl font-semibold text-[#232323] leading-tight">
-            {title}
-          </h3>
-          <p className="mt-1 text-[15px] text-[#6D6D6D] leading-snug">{subtitle}</p>
-        </div>
       </div>
     </div>
   );
