@@ -157,9 +157,13 @@ function Hero() {
         >
           <img
             src={s.img}
-            alt=""
+            alt={s.title}
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchPriority={idx === 0 ? "high" : "low"}
+            decoding="async"
             className={`h-full w-full object-cover ${idx === i ? "animate-slow-zoom" : ""}`}
           />
+
           <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
         </div>
       ))}
