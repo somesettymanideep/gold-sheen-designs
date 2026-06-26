@@ -71,7 +71,7 @@ function ContactPage() {
                 <h3 className="font-display text-xl font-bold text-charcoal">
                   {title}
                 </h3>
-                <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground break-words">
+                <div className={`mt-3 text-[15px] leading-relaxed text-muted-foreground break-words ${title === "Our Address" ? "text-justify" : ""}`}>
                   {lines.map((l, i) => (
                     <div key={i} className="break-words">{l}</div>
                   ))}
