@@ -489,7 +489,7 @@ function StatCard({
                 cy="44"
                 r={R}
                 fill="none"
-                stroke="url(#ringGrad)"
+                stroke={`url(#${gradId})`}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeDasharray={C}
@@ -497,7 +497,7 @@ function StatCard({
                 style={{ transition: "stroke-dashoffset 0.1s linear" }}
               />
               <defs>
-                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#7A5430" />
                   <stop offset="100%" stopColor="#A06C3E" />
                 </linearGradient>
