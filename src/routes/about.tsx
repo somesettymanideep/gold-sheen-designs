@@ -414,6 +414,7 @@ function StatCard({
   const { ref: viewRef, inView } = useInView<HTMLDivElement>(0.3);
   const { val, progress } = useCountExpo(n, 1200, inView);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const gradId = useId();
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
