@@ -4,7 +4,7 @@ import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown, Users, CalendarDay
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
-import teamDurga from "@/assets/team-durga.jpg";
+import teamNarayana from "@/assets/team-narayana.jpg";
 import teamBharat from "@/assets/team-bharat.jpg";
 import awardPidilite from "@/assets/awards/award-pidilite.png.asset.json";
 import awardHafeleTrophy from "@/assets/awards/award-hafele-trophy.png.asset.json";
