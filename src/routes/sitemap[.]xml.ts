@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { CATEGORIES } from "@/lib/site";
 
-const BASE_URL = "";
+const BASE_URL = "https://gold-sheen-designs.lovable.app";
 
 interface SitemapEntry {
   path: string;
@@ -17,8 +18,14 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.8" },
           { path: "/products", changefreq: "weekly", priority: "0.9" },
+          ...CATEGORIES.map((c) => ({
+            path: `/products/${c.slug}`,
+            changefreq: "weekly" as const,
+            priority: "0.8",
+          })),
           { path: "/contact", changefreq: "monthly", priority: "0.7" },
         ];
+
 
         const urls = entries.map(
           (e) =>
