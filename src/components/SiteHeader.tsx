@@ -167,19 +167,23 @@ export function SiteHeader() {
               </button>
               {mobileProductsOpen && (
                 <div className="flex flex-col pl-4">
-                  {CATEGORIES.map((cat) => (
-                    <button
-                      key={cat.slug}
-                      type="button"
-                      onClick={() => {
-                        navigate({ to: "/products/$slug", params: { slug: cat.slug } });
-                        setOpen(false);
-                      }}
-                      className="px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
-                    >
-                      {cat.title}
-                    </button>
-                  ))}
+                  {CATEGORIES.map((cat) => {
+                    const Icon = CATEGORY_ICONS[cat.slug];
+                    return (
+                      <button
+                        key={cat.slug}
+                        type="button"
+                        onClick={() => {
+                          navigate({ to: "/products/$slug", params: { slug: cat.slug } });
+                          setOpen(false);
+                        }}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
+                      >
+                        {Icon && <Icon className="h-4 w-4 text-primary shrink-0" />}
+                        {cat.title}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
