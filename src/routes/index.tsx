@@ -556,6 +556,14 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
     const phone = String(data.get("phone") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
 
+    addSubmission({
+      type: "quote",
+      name,
+      phone,
+      products,
+      message: message || undefined,
+    });
+
     const lines = [
       "*New Quote Request*",
       `Name: ${name}`,
