@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown } from "lucide-react";
+import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown, Users, CalendarDays, Diamond, Grid3x3, type LucideIcon } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
@@ -32,24 +32,6 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-function useCounter(target: number, duration = 1800, inView = true) {
-  const [val, setVal] = useState(0);
-  const started = useRef(false);
-  useEffect(() => {
-    if (!inView || started.current) return;
-    started.current = true;
-    const start = performance.now();
-    const step = (t: number) => {
-      const p = Math.min(1, (t - start) / duration);
-      // easeOutCubic — smooth, premium deceleration
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.floor(target * eased));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [target, duration, inView]);
-  return val;
-}
 
 
 
@@ -387,88 +369,216 @@ function AboutPage() {
   );
 }
 
+function useCountExpo(target: number, duration = 1200, inView = true) {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+  useEffect(() => {
+    if (!inView || started.current) return;
+    started.current = true;
+    const start = performance.now();
+    const step = (t: number) => {
+      const p = Math.min(1, (t - start) / duration);
+      // easeOutExpo
+      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+      setVal(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, inView]);
+  return { val, progress: val / target };
+}
+
 function formatStat(v: number) {
   if (v >= 1000) {
     const k = v / 1000;
-    return `${Number.isInteger(k) ? k : k.toFixed(1)}k`;
+    return `${Number.isInteger(k) ? k : k.toFixed(1)}K`;
   }
   return `${v}`;
 }
 
-function CircleStat({
+function StatCard({
   n,
   suffix = "+",
   title,
   subtitle,
+  icon: Icon,
   delay,
 }: {
   n: number;
   suffix?: string;
   title: string;
   subtitle: string;
+  icon: LucideIcon;
   delay: number;
 }) {
   const { ref: viewRef, inView } = useInView<HTMLDivElement>(0.3);
-  const val = useCounter(n, 1800, inView);
-  return (
-    <div
-      ref={viewRef}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`group relative w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 shrink-0 flex flex-col items-center text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:z-10 ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-      }`}
+  const { val, progress } = useCountExpo(n, 1200, inView);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-    >
-      <div className="relative grid aspect-square w-full place-items-center rounded-full bg-[#6a3611] border border-border/40 shadow-soft transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2 group-hover:shadow-gold">
-        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-gold/0 group-hover:ring-gold/50 transition duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
-        <div className="font-sans text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
-          {formatStat(val)}
-          {suffix}
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    setTilt({ x: -py * 6, y: px * 8 });
+  };
+  const onLeave = () => setTilt({ x: 0, y: 0 });
+
+  // progress ring geometry
+  const R = 34;
+  const C = 2 * Math.PI * R;
+
+  return (
+    <div ref={viewRef} style={{ perspective: "1000px" }}>
+      <div
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{
+          transitionDelay: `${delay}ms`,
+          transform: inView
+            ? `translateY(0) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`
+            : "translateY(30px)",
+        }}
+        className={`group relative overflow-hidden rounded-[24px] border border-[#E8E3DE] bg-white p-7 sm:p-8 shadow-[0_10px_30px_-12px_rgba(50,52,51,0.12)] will-change-transform transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-3 hover:scale-[1.03] hover:shadow-[0_30px_60px_-20px_rgba(122,84,48,0.35)] ${
+          inView ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {/* brown top border that glows on hover */}
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#7A5430] to-[#A06C3E] opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:shadow-[0_0_18px_2px_rgba(160,108,62,0.6)]" />
+
+        <div className="flex items-start justify-between gap-4">
+          {/* progress ring + icon */}
+          <div className="relative h-[84px] w-[84px] shrink-0">
+            <svg viewBox="0 0 84 84" className="h-full w-full -rotate-90">
+              <circle cx="42" cy="42" r={R} fill="none" stroke="#E8E3DE" strokeWidth="3" />
+              <circle
+                cx="42"
+                cy="42"
+                r={R}
+                fill="none"
+                stroke="url(#ringGrad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeDasharray={C}
+                strokeDashoffset={C * (1 - progress)}
+                style={{ transition: "stroke-dashoffset 0.1s linear" }}
+              />
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#7A5430" />
+                  <stop offset="100%" stopColor="#A06C3E" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="absolute inset-0 grid place-items-center">
+              <Icon className="h-7 w-7" strokeWidth={2} color="#7A5430" opacity={0.7} />
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-5">
+          <div className="relative inline-block">
+            <span
+              className="font-display font-extrabold leading-none text-transparent bg-clip-text text-[56px] sm:text-[64px] lg:text-[72px]"
+              style={{ backgroundImage: "linear-gradient(180deg,#7A5430,#A06C3E)" }}
+            >
+              {formatStat(val)}
+              {suffix}
+            </span>
+            {/* gradient shimmer sweeping every ~9s */}
+            <span
+              className="pointer-events-none absolute inset-0 bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.85) 50%, transparent 65%)",
+                backgroundSize: "200% 100%",
+                animation: "shimmer 9s ease-in-out infinite",
+                WebkitBackgroundClip: "text",
+              }}
+              aria-hidden
+            >
+              <span className="font-display font-extrabold leading-none text-[56px] sm:text-[64px] lg:text-[72px]">
+                {formatStat(val)}
+                {suffix}
+              </span>
+            </span>
+          </div>
+          <h3 className="mt-2 font-sans text-xl sm:text-2xl font-semibold text-[#232323] leading-tight">
+            {title}
+          </h3>
+          <p className="mt-1 text-[15px] text-[#6D6D6D] leading-snug">{subtitle}</p>
         </div>
       </div>
-      <h3 className="mt-4 sm:mt-5 font-sans text-sm sm:text-base lg:text-lg font-semibold text-charcoal leading-tight">
-        {title}
-      </h3>
-      <p className="mt-1 text-xs text-muted-foreground max-w-[7rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[8rem] xl:max-w-[10rem] leading-tight">
-        {subtitle}
-      </p>
     </div>
-
   );
 }
-
 
 function StatsSection() {
   const header = useInView<HTMLDivElement>();
   const stats = [
-    { n: 5000, suffix: "+", title: "Customers", subtitle: "Happy & returning" },
-    { n: 10, suffix: "+", title: "Years", subtitle: "Of trusted service" },
-    { n: 100, suffix: "+", title: "Brands", subtitle: "Premium partners" },
-    { n: 50, suffix: "+", title: "Categories", subtitle: "Hardware & plywood" },
+    { n: 5000, suffix: "+", title: "Customers", subtitle: "Happy & returning", icon: Users },
+    { n: 10, suffix: "+", title: "Years", subtitle: "Trusted since 2015", icon: CalendarDays },
+    { n: 100, suffix: "+", title: "Brands", subtitle: "Premium partners", icon: Diamond },
+    { n: 50, suffix: "+", title: "Categories", subtitle: "Hardware & plywood", icon: Grid3x3 },
   ];
   return (
-    <section className="section-pad bg-background relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="section-pad relative overflow-hidden bg-[#FAF9F7]">
+      {/* radial brown glow */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(600px circle at 20% 20%, rgba(122,84,48,0.06), transparent 60%), radial-gradient(700px circle at 85% 80%, rgba(160,108,62,0.06), transparent 60%)",
+        }}
+        aria-hidden
+      />
+      {/* floating blurred shapes */}
+      <div className="pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[#A97747] opacity-[0.05] blur-[160px] animate-float" aria-hidden />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#7A5430] opacity-[0.05] blur-[160px] animate-float [animation-delay:2s]" aria-hidden />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div
           ref={header.ref}
-          style={{ transitionDelay: "100ms" }}
-          className={`max-w-2xl mx-auto text-center will-change-transform transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+          className={`mx-auto max-w-2xl text-center transition-all duration-1000 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
             header.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="eyebrow justify-center">By The Numbers</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
+          {/* decorative line above heading */}
+          <div className="flex items-center justify-center gap-4">
+            <span
+              className="h-px bg-gradient-to-r from-transparent to-[#A06C3E] transition-all duration-700"
+              style={{ width: header.inView ? "3rem" : "0rem" }}
+            />
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A06C3E]">
+              By The Numbers
+            </span>
+            <span
+              className="h-px bg-gradient-to-l from-transparent to-[#A06C3E] transition-all duration-700"
+              style={{ width: header.inView ? "3rem" : "0rem" }}
+            />
+          </div>
+          <h2 className="mt-5 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#232323]">
             A decade of <span className="text-gradient-gold">measurable trust</span>
           </h2>
         </div>
-        <div className="mt-12 sm:mt-16 flex overflow-x-auto pb-4 sm:pb-0 snap-x snap-mandatory sm:justify-center sm:overflow-visible gap-4 sm:gap-6 lg:gap-8 [-ms-overflow-style:none] [scrollbar-width:none]">
+
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:gap-8">
           {stats.map((s, i) => (
-            <CircleStat key={s.title} {...s} delay={i * 120} />
+            <StatCard key={s.title} {...s} delay={i * 120} />
           ))}
+        </div>
+
+        {/* luxury bottom divider */}
+        <div className="mt-14 flex items-center justify-center gap-5">
+          <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#E8E3DE]" />
+          <p className="text-center text-sm text-[#6D6D6D]">
+            Trusted by <span className="font-semibold text-[#7A5430]">5000+ customers</span> across India
+          </p>
+          <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#E8E3DE]" />
         </div>
       </div>
     </section>
   );
 }
+
 
 
