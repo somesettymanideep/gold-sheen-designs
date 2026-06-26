@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown } from "lucide-react";
+import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown, Users, CalendarDays, Diamond, Grid3x3, type LucideIcon } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
