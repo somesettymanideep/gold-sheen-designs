@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
-import { Menu, X, Phone, ChevronDown, Layers, LayoutPanelTop, Wrench, TreePine, ChefHat, DoorOpen, type LucideIcon } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Layers, LayoutPanelTop, Wrench, Trees, CookingPot, DoorOpen, type LucideIcon } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import { SITE, CATEGORIES } from "@/lib/site";
 
@@ -8,8 +8,8 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   plywood: Layers,
   laminates: LayoutPanelTop,
   hardware: Wrench,
-  veneers: TreePine,
-  "modular-kitchens": ChefHat,
+  veneers: Trees,
+  "modular-kitchens": CookingPot,
   "profile-doors": DoorOpen,
 };
 
