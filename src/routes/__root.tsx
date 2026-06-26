@@ -91,14 +91,61 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Premium plywood, laminates, veneers, modular kitchens, hardware & profile doors. Trusted brands under one roof.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Durga Hardware and Plywood" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada" },
-      { name: "description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
-      { property: "og:description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
-      { name: "twitter:description", content: "A premium, modern website showcasing hardware, plywood, and modular kitchen solutions." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HardwareStore",
+          "@id": "https://gold-sheen-designs.lovable.app/#business",
+          name: "Durga Hardware and Plywood",
+          description:
+            "Best hardware and plywood shop in Vijayawada — premium plywood, laminates, veneers, modular kitchens, hardware accessories and profile doors from trusted brands.",
+          url: "https://gold-sheen-designs.lovable.app",
+          telephone: "+91-7842591100",
+          email: "durgahardwareandkitchen@gmail.com",
+          image:
+            "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "27/37/11 M.G. Road, Gopala Reddy Rd, Opposite Manorama Hotel, Governor Peta",
+            addressLocality: "Vijayawada",
+            addressRegion: "Andhra Pradesh",
+            postalCode: "520002",
+            addressCountry: "IN",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: 16.511569, longitude: 80.618147 },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "09:30",
+              closes: "21:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: "Sunday",
+              opens: "10:00",
+              closes: "18:00",
+            },
+          ],
+          priceRange: "₹₹",
+          areaServed: "Vijayawada",
+          sameAs: [
+            "https://www.instagram.com/durga_hardware_plywood/reels/",
+            "https://www.facebook.com/profile.php?id=61576566413635",
+            "https://www.youtube.com/@DurgaHardwareandPlywood",
+          ],
+        }),
+      },
+    ],
+
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png" },
