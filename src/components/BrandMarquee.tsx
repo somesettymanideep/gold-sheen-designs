@@ -3,6 +3,7 @@ interface BrandMarqueeProps {
   brands?: string[];
   logos?: { name: string; logo: string }[];
   variant?: "light" | "warm";
+  className?: string;
 }
 
 export function BrandMarquee({
@@ -10,13 +11,14 @@ export function BrandMarquee({
   brands,
   logos,
   variant = "light",
+  className,
 }: BrandMarqueeProps) {
   const items = logos
     ? [...logos, ...logos]
     : [...(brands ?? []), ...(brands ?? [])].map((name) => ({ name, logo: undefined }));
 
   return (
-    <section className={`py-10 ${variant === "warm" ? "gradient-warm" : "bg-background"}`}>
+    <section className={`py-10 ${variant === "warm" ? "gradient-warm" : "bg-background"} ${className ?? ""}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="eyebrow">Brands We Deal With</span>

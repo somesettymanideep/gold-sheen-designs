@@ -80,10 +80,11 @@ function ProductDetailPage() {
           title={cat.title}
           crumb={cat.title}
           bgImage={BANNER_IMG[cat.img]}
+          className="py-[30px]"
         />
 
       {/* Hero / overview */}
-      <section className="section-pad bg-cream">
+      <section className="py-[30px] bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="relative">
@@ -117,7 +118,7 @@ function ProductDetailPage() {
       </section>
 
       {/* Features + Specs */}
-      <section className="pt-16 pb-12 bg-cream">
+      <section className="py-[30px] bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="font-display text-3xl font-bold text-charcoal">Key Features</h2>
@@ -172,7 +173,7 @@ function ProductDetailPage() {
         PLYWOOD_BRANDS.map((brand, bIdx) => (
           <section
             key={brand.name}
-            className={`section-pad ${bIdx % 2 === 0 ? "bg-cream" : "bg-cream"}`}
+            className="py-[30px] bg-cream"
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto">
@@ -245,17 +246,17 @@ function ProductDetailPage() {
 
       {/* Home-page brand marquees */}
       {slug === "plywood" && (
-        <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} />
+        <BrandMarquee title="Plywood Brands" logos={PLYWOOD_BRAND_LOGOS} className="py-[30px]" />
       )}
       {slug === "hardware" && (
-        <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" />
+        <BrandMarquee title="Hardware Brands" logos={HARDWARE_BRAND_LOGOS} variant="warm" className="py-[30px]" />
       )}
       {slug === "laminates" && (
-        <BrandMarquee title="Laminate Brands" logos={LAMINATE_BRAND_LOGOS} />
+        <BrandMarquee title="Laminate Brands" logos={LAMINATE_BRAND_LOGOS} className="py-[30px]" />
       )}
 
       {/* Related products */}
-      <section className="section-pad bg-cream">
+      <section className="py-[30px] bg-cream">
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-bold text-charcoal text-center">

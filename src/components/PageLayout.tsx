@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { FloatingActions } from "./FloatingActions";
+import { cn } from "@/lib/utils";
 
 export function PageLayout({ children }: { children: ReactNode }) {
   return (
@@ -20,15 +21,17 @@ export function PageHero({
   subtitle,
   crumb,
   bgImage,
+  className,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   crumb: string;
   bgImage?: string;
+  className?: string;
 }) {
   return (
-    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark">
+    <section className={cn("relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark", className)}>
       {bgImage && (
         <>
           <img
