@@ -12,19 +12,72 @@ import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOG
 import { BrandMarquee } from "@/components/BrandMarquee";
 
 
+// Per-category keyword-targeted SEO config
+export const CATEGORY_SEO: Record<
+  string,
+  { keyword: string; h1: string; title: string; description: string }
+> = {
+  plywood: {
+    keyword: "Best plywood shop in Vijayawada",
+    h1: "Best Plywood Shop in Vijayawada",
+    title: "Best Plywood Shop in Vijayawada | Durga Hardware and Plywood",
+    description:
+      "Looking for the best plywood shop in Vijayawada? Durga Hardware and Plywood offers premium BWP, marine & commercial plywood from trusted brands like Decobond, Greenply & CenturyPly.",
+  },
+  hardware: {
+    keyword: "Best hardware shop in Vijayawada",
+    h1: "Best Hardware Shop in Vijayawada",
+    title: "Best Hardware Shop in Vijayawada | Durga Hardware and Plywood",
+    description:
+      "The best hardware shop in Vijayawada for furniture & architectural hardware. Genuine Hettich, Hafele, Ebco & Blum hinges, channels, handles & kitchen fittings.",
+  },
+  laminates: {
+    keyword: "Best laminates shop in Vijayawada",
+    h1: "Best Laminates Shop in Vijayawada",
+    title: "Best Laminates Shop in Vijayawada | Durga Hardware and Plywood",
+    description:
+      "Discover the best laminates shop in Vijayawada. Huge range of decorative & high-pressure laminates from Greenlam, Merino, Century & more for kitchens and interiors.",
+  },
+  veneers: {
+    keyword: "Best veneer shops in Vijayawada",
+    h1: "Best Veneer Shop in Vijayawada",
+    title: "Best Veneer Shops in Vijayawada | Durga Hardware and Plywood",
+    description:
+      "One of the best veneer shops in Vijayawada. Natural & engineered teak, walnut and designer veneers for premium furniture, doors and wall panelling.",
+  },
+  "profile-doors": {
+    keyword: "Best profile doors shop in Vijayawada",
+    h1: "Best Profile Doors Shop in Vijayawada",
+    title: "Best Profile Doors Shop in Vijayawada | Durga Hardware and Plywood",
+    description:
+      "The best profile doors shop in Vijayawada offering elegant, durable and waterproof designer profile doors for homes, kitchens and wardrobes.",
+  },
+  "modular-kitchens": {
+    keyword: "Best modular kitchen accessories shop in Vijayawada",
+    h1: "Best Modular Kitchen Accessories Shop in Vijayawada",
+    title: "Best Modular Kitchen Accessories Shop in Vijayawada | Durga Hardware",
+    description:
+      "The best modular kitchen accessories shop in Vijayawada. Premium baskets, tall units, pull-outs & fittings from Hettich, Hafele & Kessebohmer for modern kitchens.",
+  },
+};
+
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
     const cat = CATEGORIES.find((c) => c.slug === params.slug);
-    const title = cat
-      ? `${cat.title} in Vijayawada — Durga Hardware and Plywood`
-      : "Product — Durga Hardware and Plywood";
-    const desc = cat?.blurb ?? "Explore our premium products at Durga Hardware and Plywood.";
+    const seo = CATEGORY_SEO[params.slug];
+    const title = seo
+      ? seo.title
+      : cat
+        ? `${cat.title} in Vijayawada — Durga Hardware and Plywood`
+        : "Product — Durga Hardware and Plywood";
+    const desc = seo?.description ?? cat?.blurb ?? "Explore our premium products at Durga Hardware and Plywood.";
     const img = cat ? CAT_IMG[cat.img] : undefined;
     const url = `https://gold-sheen-designs.lovable.app/products/${params.slug}`;
     return {
       meta: [
         { title },
         { name: "description", content: desc },
+        ...(seo ? [{ name: "keywords", content: seo.keyword }] : []),
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "product" },
@@ -44,6 +97,35 @@ export const Route = createFileRoute("/products/$slug")({
                   { "@type": "ListItem", position: 2, name: "Products", item: "https://gold-sheen-designs.lovable.app/products" },
                   { "@type": "ListItem", position: 3, name: cat.title, item: url },
                 ],
+              }),
+            },
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: seo?.h1 ?? cat.title,
+                description: desc,
+                ...(img ? { image: img } : {}),
+                category: cat.title,
+                brand: { "@type": "Brand", name: "Durga Hardware and Plywood" },
+                offers: {
+                  "@type": "AggregateOffer",
+                  priceCurrency: "INR",
+                  availability: "https://schema.org/InStock",
+                  seller: {
+                    "@type": "HardwareStore",
+                    name: "Durga Hardware and Plywood",
+                    address: {
+                      "@type": "PostalAddress",
+                      addressLocality: "Vijayawada",
+                      addressRegion: "Andhra Pradesh",
+                      postalCode: "520002",
+                      addressCountry: "IN",
+                    },
+                  },
+                },
+                areaServed: "Vijayawada",
               }),
             },
           ]
@@ -92,6 +174,7 @@ export const Route = createFileRoute("/products/$slug")({
 function ProductDetailPage() {
   const { slug } = Route.useParams();
   const cat = CATEGORIES.find((c) => c.slug === slug)!;
+  const seo = CATEGORY_SEO[slug];
   const detail = PRODUCT_DETAILS[slug];
   const img = CAT_IMG[cat.img];
   const related = CATEGORIES.filter((c) => c.slug !== slug);
@@ -100,7 +183,8 @@ function ProductDetailPage() {
     <PageLayout>
       <div className="bg-cream">
         <PageHero
-          title={cat.title}
+          title={seo?.h1 ?? cat.title}
+          subtitle={seo?.keyword ? `${cat.title} — ${seo.description}` : cat.blurb}
           crumb={cat.title}
           bgImage={BANNER_IMG[cat.img]}
           className="py-[30px]"
@@ -113,12 +197,21 @@ function ProductDetailPage() {
             <div className="relative">
               <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20" />
               <div className="relative overflow-hidden rounded-2xl shadow-elevated">
-                <img src={img} alt={cat.title} className="w-full h-[460px] object-cover" />
+                <img
+                  src={img}
+                  alt={seo?.h1 ?? `${cat.title} — Durga Hardware and Plywood, Vijayawada`}
+                  width={800}
+                  height={460}
+                  loading="lazy"
+                  className="w-full h-[460px] object-cover"
+                />
               </div>
             </div>
             <div>
               <span className="eyebrow">Product</span>
+              <h2 className="mt-3 font-display text-2xl sm:text-3xl font-bold text-charcoal">{cat.title}</h2>
               <p className="mt-5 text-muted-foreground leading-relaxed">{detail.description}</p>
+
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href={SITE.phoneHref}
