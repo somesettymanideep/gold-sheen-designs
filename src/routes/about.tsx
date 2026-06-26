@@ -27,7 +27,9 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Our story, vision, mission and team — built on trust, quality and service.",
       },
+      { property: "og:url", content: "https://gold-sheen-designs.lovable.app/about" },
     ],
+    links: [{ rel: "canonical", href: "https://gold-sheen-designs.lovable.app/about" }],
   }),
   component: AboutPage,
 });

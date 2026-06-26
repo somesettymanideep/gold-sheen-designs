@@ -71,22 +71,43 @@ const CAT_IMG: Record<string, string> = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada" },
+      { title: "Best Hardware and Plywood Shop in Vijayawada | Durga Hardware and Plywood" },
       {
         name: "description",
         content:
-          "Premium plywood, laminates, veneers, hardware accessories, modular kitchens and profile doors. Trusted brands under one roof in Vijayawada.",
+          "Looking for the best hardware and plywood shop in Vijayawada? Durga Hardware and Plywood offers premium plywood, laminates, veneers, modular kitchens, hardware & profile doors from trusted brands. Visit our Governor Peta showroom.",
       },
-      { property: "og:title", content: "Durga Hardware and Plywood — Vijayawada" },
+      { name: "keywords", content: "best hardware and plywood shop in vijayawada, plywood shop vijayawada, hardware shop vijayawada, laminates, modular kitchens, veneers" },
+      { property: "og:title", content: "Best Hardware and Plywood Shop in Vijayawada | Durga Hardware and Plywood" },
       {
         property: "og:description",
         content:
-          "Trusted brands. Superior quality. Visit our premium showroom in Governor Peta, Vijayawada.",
+          "Vijayawada's best hardware and plywood shop — premium plywood, laminates, veneers, modular kitchens & hardware from trusted brands. Visit our Governor Peta showroom.",
+      },
+      { property: "og:url", content: "https://gold-sheen-designs.lovable.app/" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://gold-sheen-designs.lovable.app/" },
+      { rel: "preload", as: "image", href: heroShowroom, fetchpriority: "high" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),
   component: HomePage,
 });
+
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -136,9 +157,13 @@ function Hero() {
         >
           <img
             src={s.img}
-            alt=""
+            alt={s.title}
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchPriority={idx === 0 ? "high" : "low"}
+            decoding="async"
             className={`h-full w-full object-cover ${idx === i ? "animate-slow-zoom" : ""}`}
           />
+
           <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
         </div>
       ))}
@@ -153,9 +178,11 @@ function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         <div key={i} className="max-w-3xl animate-fade-up">
           <span className="eyebrow text-gold">{slides[i].eyebrow}</span>
-          <h1 className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
+          <h1 className="sr-only">Best Hardware and Plywood Shop in Vijayawada — Durga Hardware and Plywood</h1>
+          <p className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
             {slides[i].title}
-          </h1>
+          </p>
+
           <p className="mt-6 text-lg text-white/80 max-w-xl">{slides[i].sub}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
