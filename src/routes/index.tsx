@@ -174,9 +174,11 @@ function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         <div key={i} className="max-w-3xl animate-fade-up">
           <span className="eyebrow text-gold">{slides[i].eyebrow}</span>
-          <h1 className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
+          <h1 className="sr-only">Best Hardware and Plywood Shop in Vijayawada — Durga Hardware and Plywood</h1>
+          <p className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
             {slides[i].title}
-          </h1>
+          </p>
+
           <p className="mt-6 text-lg text-white/80 max-w-xl">{slides[i].sub}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
