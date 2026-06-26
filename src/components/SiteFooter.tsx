@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import footerBanner from "@/assets/footer-banner-kitchen.webp.asset.json";
 import { SITE } from "@/lib/site";
@@ -113,7 +113,10 @@ export function SiteFooter() {
           <p className="text-sm text-white/70">
             Copyright ©{new Date().getFullYear()}{" "}
             <span className="text-gold font-semibold">Durga Hardware and Plywood</span>{" "}
-            All Rights Reserved. Designed &amp; developed by{" "}
+            All Rights Reserved.
+          </p>
+          <p className="text-sm text-white/70">
+            Designed &amp; developed by{" "}
             <a
               href="https://ayrondigitalsolutions.com/"
               target="_blank"
@@ -122,26 +125,7 @@ export function SiteFooter() {
             >
               Ayron Digital Solutions
             </a>
-            .
           </p>
-          <div className="flex items-center gap-3">
-            {[
-              { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61576566413635" },
-              { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/durga_hardware_plywood/reels/" },
-              { Icon: Youtube, label: "Youtube", href: "https://www.youtube.com/@DurgaHardwareandPlywood" },
-            ].map(({ Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="grid h-10 w-10 place-items-center rounded-md bg-white/5 border border-white/10 hover:gradient-gold hover:border-transparent transition"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>
