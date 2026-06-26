@@ -21,12 +21,14 @@ export function PageHero({
   subtitle,
   crumb,
   bgImage,
+  className,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   crumb: string;
   bgImage?: string;
+  className?: string;
 }) {
   return (
     <section className={cn("relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark", className)}>
