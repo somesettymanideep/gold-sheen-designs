@@ -58,7 +58,9 @@ export const Route = createFileRoute("/products/")({
         property: "og:description",
         content: "Six premium product categories, hundreds of SKUs, only the most trusted brands.",
       },
+      { property: "og:url", content: "https://gold-sheen-designs.lovable.app/products" },
     ],
+    links: [{ rel: "canonical", href: "https://gold-sheen-designs.lovable.app/products" }],
   }),
   component: ProductsPage,
 });
