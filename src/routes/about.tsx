@@ -32,24 +32,6 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-function useCounter(target: number, duration = 1800, inView = true) {
-  const [val, setVal] = useState(0);
-  const started = useRef(false);
-  useEffect(() => {
-    if (!inView || started.current) return;
-    started.current = true;
-    const start = performance.now();
-    const step = (t: number) => {
-      const p = Math.min(1, (t - start) / duration);
-      // easeOutCubic — smooth, premium deceleration
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.floor(target * eased));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [target, duration, inView]);
-  return val;
-}
 
 
 
