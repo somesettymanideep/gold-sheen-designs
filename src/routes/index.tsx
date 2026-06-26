@@ -180,7 +180,7 @@ function Hero() {
               className="inline-flex items-center gap-2 text-white/90 text-sm hover:text-gold"
             >
               <span className="grid h-10 w-10 place-items-center rounded-full bg-[#25D366]/20 border border-[#25D366]/40">
-                <MessageCircle className="h-4 w-4 text-[#25D366]" />
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
               </span>
               WhatsApp Us
             </a>
