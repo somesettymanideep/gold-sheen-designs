@@ -87,6 +87,17 @@ function ContactPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const form = e.currentTarget;
+              const data = new FormData(form);
+              addSubmission({
+                type: "contact",
+                name: String(data.get("name") ?? "").trim(),
+                phone: String(data.get("mobile") ?? "").trim(),
+                email: String(data.get("email") ?? "").trim() || undefined,
+                subject: String(data.get("subject") ?? "").trim() || undefined,
+                message: String(data.get("message") ?? "").trim() || undefined,
+              });
+              form.reset();
               alert("Thank you! We'll reach out shortly.");
             }}
             className="lg:col-span-3 bg-white rounded-3xl p-8 sm:p-10 shadow-soft"
