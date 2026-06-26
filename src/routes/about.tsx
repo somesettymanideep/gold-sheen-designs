@@ -240,7 +240,7 @@ function AboutPage() {
   ];
 
   const team = [
-    { name: "Narayana Mohata", role: "Founder", photo: teamDurga },
+    { name: "Narayana Mohata", role: "Founder", photo: teamNarayana },
     { name: "Bharat Gilda", role: "CEO", photo: teamBharat },
   ];
 
