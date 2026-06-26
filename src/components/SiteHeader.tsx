@@ -1,8 +1,17 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Layers, LayoutPanelTop, Wrench, TreePine, ChefHat, DoorOpen, type LucideIcon } from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import { SITE, CATEGORIES } from "@/lib/site";
+
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  plywood: Layers,
+  laminates: LayoutPanelTop,
+  hardware: Wrench,
+  veneers: TreePine,
+  "modular-kitchens": ChefHat,
+  "profile-doors": DoorOpen,
+};
 
 const baseNav = [
   { to: "/", label: "Home" },
@@ -79,18 +88,22 @@ export function SiteHeader() {
             </button>
             {desktopProductsOpen && (
               <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-white shadow-soft py-2 z-50">
-                {CATEGORIES.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    to="/products/$slug"
-                    params={{ slug: cat.slug }}
-                    onClick={() => setDesktopProductsOpen(false)}
-                    className="block px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-beige hover:text-primary transition-colors"
-                    activeProps={{ className: "text-primary bg-beige" }}
-                  >
-                    {cat.title}
-                  </Link>
-                ))}
+                {CATEGORIES.map((cat) => {
+                  const Icon = CATEGORY_ICONS[cat.slug];
+                  return (
+                    <Link
+                      key={cat.slug}
+                      to="/products/$slug"
+                      params={{ slug: cat.slug }}
+                      onClick={() => setDesktopProductsOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-charcoal hover:bg-beige hover:text-primary transition-colors"
+                      activeProps={{ className: "text-primary bg-beige" }}
+                    >
+                      {Icon && <Icon className="h-4 w-4 text-primary shrink-0" />}
+                      {cat.title}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -154,19 +167,23 @@ export function SiteHeader() {
               </button>
               {mobileProductsOpen && (
                 <div className="flex flex-col pl-4">
-                  {CATEGORIES.map((cat) => (
-                    <button
-                      key={cat.slug}
-                      type="button"
-                      onClick={() => {
-                        navigate({ to: "/products/$slug", params: { slug: cat.slug } });
-                        setOpen(false);
-                      }}
-                      className="px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
-                    >
-                      {cat.title}
-                    </button>
-                  ))}
+                  {CATEGORIES.map((cat) => {
+                    const Icon = CATEGORY_ICONS[cat.slug];
+                    return (
+                      <button
+                        key={cat.slug}
+                        type="button"
+                        onClick={() => {
+                          navigate({ to: "/products/$slug", params: { slug: cat.slug } });
+                          setOpen(false);
+                        }}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm font-medium text-charcoal hover:bg-beige hover:text-primary"
+                      >
+                        {Icon && <Icon className="h-4 w-4 text-primary shrink-0" />}
+                        {cat.title}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
