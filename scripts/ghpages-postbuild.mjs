@@ -85,11 +85,26 @@ async function main() {
     console.log("[ghpages] Base is '/'; skipping asset-path rewrite.");
   }
 
-  // 4. SPA fallback + Jekyll opt-out.
-  await fs.copyFile(
-    path.join(PUBLISH_DIR, "index.html"),
-    path.join(PUBLISH_DIR, "404.html"),
-  );
+  // 4. Root index.html + SPA fallback + Jekyll opt-out.
+  //    In SPA mode the root route is emitted as `_shell.html` rather than a
+  //    root `index.html`. GitHub Pages needs `index.html` for "/" and a
+  //    `404.html` fallback so deep links / client routes resolve. Prefer a
+  //    real prerendered index.html when present, otherwise use the SPA shell.
+  const indexPath = path.join(PUBLISH_DIR, "index.html");
+  const shellPath = path.join(PUBLISH_DIR, "_shell.html");
+  let hasIndex = false;
+  try {
+    await fs.access(indexPath);
+    hasIndex = true;
+  } catch {
+    /* no prerendered root index */
+  }
+  if (!hasIndex) {
+    await fs.copyFile(shellPath, indexPath);
+    console.log("[ghpages] Wrote index.html from the SPA shell.");
+  }
+  // 404 fallback uses the SPA shell so any unmatched path hydrates and routes.
+  await fs.copyFile(shellPath, path.join(PUBLISH_DIR, "404.html"));
   await fs.writeFile(path.join(PUBLISH_DIR, ".nojekyll"), "");
   console.log("[ghpages] Wrote 404.html and .nojekyll.");
 
