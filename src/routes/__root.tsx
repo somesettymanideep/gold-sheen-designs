@@ -109,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description:
             "Best hardware and plywood shop in Vijayawada — premium plywood, laminates, veneers, modular kitchens, hardware accessories and profile doors from trusted brands.",
           url: "https://gold-sheen-designs.lovable.app",
-          telephone: "+91-9164092272",
+          telephone: "+91-7842591100",
           email: "durgahardwareandkitchen@gmail.com",
           image:
             "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",

@@ -2,9 +2,9 @@ export const SITE = {
   name: "Durga Hardware and Plywood",
   short: "Durga Hardware and Plywood",
   tagline: "Premium Hardware & Plywood — Vijayawada",
-  phone: "91640 92272",
-  phoneHref: "tel:+919164092272",
-  whatsappHref: "https://wa.me/919164092272",
+  phone: "7842591100",
+  phoneHref: "tel:+917842591100",
+  whatsappHref: "https://wa.me/917842591100",
   email: "durgahardwareandkitchen@gmail.com",
   address: {
     line1: "27/37/11 M.G. Road, Gopala Reddy Rd",

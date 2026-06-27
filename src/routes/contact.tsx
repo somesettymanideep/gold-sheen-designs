@@ -12,7 +12,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Visit our showroom on M.G. Road, Governor Peta, Vijayawada. Call 91640 92272 or send us a message — we usually reply within an hour.",
+          "Visit our showroom on M.G. Road, Governor Peta, Vijayawada. Call 7842591100 or send us a message — we usually reply within an hour.",
       },
       { property: "og:title", content: "Contact Durga Hardware and Plywood" },
       { property: "og:description", content: "Showroom, phone, email and live map." },
