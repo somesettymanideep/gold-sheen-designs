@@ -12,8 +12,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // server-rendered configuration untouched.
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
-// Repo name → served from https://<user>.github.io/gold-sheen-designs/
-const GH_PAGES_BASE = "/gold-sheen-designs/";
+// Served from a custom domain (durgahardwareandplywood.com) at the root path,
+// so assets resolve from "/" — not from a repo sub-path.
+const GH_PAGES_BASE = "/";
 
 export default isGitHubPages
   ? defineConfig({
