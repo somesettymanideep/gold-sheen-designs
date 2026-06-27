@@ -14,7 +14,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-const BASE = "/gold-sheen-designs/";
+const BASE = "/";
 const PUBLISH_DIR = path.resolve("dist/client");
 // Assets are downloaded from the live Lovable deployment.
 const SOURCE_HOST = "https://gold-sheen-designs.lovable.app";
