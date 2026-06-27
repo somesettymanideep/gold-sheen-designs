@@ -566,7 +566,15 @@ function Testimonials() {
                 </div>
                 <Quote className="h-10 w-10 text-gold/30 flex-shrink-0" />
               </div>
-              <p className="mt-5 text-charcoal/70 leading-relaxed text-sm sm:text-base">
+              <div className="mt-4 flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-4 w-4 ${i < t.rating ? "fill-gold text-gold" : "text-gold/25"}`}
+                  />
+                ))}
+              </div>
+              <p className="mt-3 text-charcoal/70 leading-relaxed text-sm sm:text-base">
                 {t.text}
               </p>
             </div>
