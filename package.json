@@ -1,5 +1,5 @@
 {
-"homepage": "https://yourusername.github.io/repository-name",
+  "homepage": "https://yourusername.github.io/repository-name",
   "name": "tanstack_start_ts",
   "private": true,
   "sideEffects": false,
