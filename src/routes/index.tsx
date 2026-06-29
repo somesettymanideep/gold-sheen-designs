@@ -40,6 +40,7 @@ import {
 import { SITE, CATEGORIES } from "@/lib/site";
 import { PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS } from "@/lib/product-data";
 import { addSubmission } from "@/lib/submissions";
+import { sendEmail } from "@/lib/emailjs";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
