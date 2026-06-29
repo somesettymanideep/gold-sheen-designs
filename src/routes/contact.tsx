@@ -96,20 +96,41 @@ function ContactPage() {
       <section className="section-pad bg-[#F4F0EA]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-5 lg:gap-16">
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               const form = e.currentTarget;
               const data = new FormData(form);
+              const name = String(data.get("name") ?? "").trim();
+              const phone = String(data.get("mobile") ?? "").trim();
+              const message = String(data.get("message") ?? "").trim();
+
               addSubmission({
                 type: "contact",
-                name: String(data.get("name") ?? "").trim(),
-                phone: String(data.get("mobile") ?? "").trim(),
+                name,
+                phone,
                 products,
-                message: String(data.get("message") ?? "").trim() || undefined,
+                message: message || undefined,
               });
+
+              setSubmitting(true);
+              try {
+                await sendEmail({
+                  type: "Contact Form",
+                  name,
+                  phone,
+                  products: products.length ? products.join(", ") : "Not specified",
+                  message: message || "—",
+                });
+                alert("Thank you! We'll reach out shortly.");
+              } catch (err) {
+                console.error("EmailJS send failed", err);
+                alert("Thanks! Your details are saved. (Email delivery had an issue.)");
+              } finally {
+                setSubmitting(false);
+              }
+
               form.reset();
               setProducts([]);
-              alert("Thank you! We'll reach out shortly.");
             }}
             className="lg:col-span-3 bg-white rounded-3xl p-8 sm:p-10 shadow-soft"
           >
