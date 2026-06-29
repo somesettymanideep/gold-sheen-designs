@@ -593,7 +593,9 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       prev.includes(title) ? prev.filter((p) => p !== title) : [...prev, title],
     );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -609,21 +611,24 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       message: message || undefined,
     });
 
-    const lines = [
-      "*New Quote Request*",
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Products: ${products.length ? products.join(", ") : "Not specified"}`,
-      message ? `Message: ${message}` : "",
-    ].filter(Boolean);
+    setSubmitting(true);
+    try {
+      await sendEmail({
+        type: "Quote Request",
+        name,
+        phone,
+        products: products.length ? products.join(", ") : "Not specified",
+        message: message || "—",
+      });
+    } catch (err) {
+      console.error("EmailJS send failed", err);
+    } finally {
+      setSubmitting(false);
+    }
 
-    window.open(
-      `${SITE.whatsappHref}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
     onClose();
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4">
