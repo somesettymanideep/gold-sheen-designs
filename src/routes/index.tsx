@@ -40,6 +40,7 @@ import {
 import { SITE, CATEGORIES } from "@/lib/site";
 import { PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS } from "@/lib/product-data";
 import { addSubmission } from "@/lib/submissions";
+import { sendEmail } from "@/lib/emailjs";
 import heroShowroom from "@/assets/hero-showroom.jpg";
 import heroKitchen from "@/assets/hero-kitchen.jpg";
 import heroVeneer from "@/assets/hero-veneer.jpg";
@@ -593,7 +594,9 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       prev.includes(title) ? prev.filter((p) => p !== title) : [...prev, title],
     );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -609,21 +612,24 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       message: message || undefined,
     });
 
-    const lines = [
-      "*New Quote Request*",
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Products: ${products.length ? products.join(", ") : "Not specified"}`,
-      message ? `Message: ${message}` : "",
-    ].filter(Boolean);
+    setSubmitting(true);
+    try {
+      await sendEmail({
+        type: "Quote Request",
+        name,
+        phone,
+        products: products.length ? products.join(", ") : "Not specified",
+        message: message || "—",
+      });
+    } catch (err) {
+      console.error("EmailJS send failed", err);
+    } finally {
+      setSubmitting(false);
+    }
 
-    window.open(
-      `${SITE.whatsappHref}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
     onClose();
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4">
@@ -677,9 +683,10 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       />
       <button
         type="submit"
-        className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition"
+        disabled={submitting}
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition disabled:opacity-60 disabled:hover:scale-100"
       >
-        Send Request <Send className="h-4 w-4" />
+        {submitting ? "Sending…" : "Send Request"} <Send className="h-4 w-4" />
       </button>
     </form>
   );
