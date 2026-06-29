@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from "lucide-re
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { SITE, CATEGORIES } from "@/lib/site";
 import { addSubmission } from "@/lib/submissions";
+import { sendEmail } from "@/lib/emailjs";
 import bannerContact from "@/assets/banner-contact.jpg";
 
 export const Route = createFileRoute("/contact")({
