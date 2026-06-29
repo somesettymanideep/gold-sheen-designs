@@ -185,9 +185,10 @@ function ContactPage() {
               />
               <button
                 type="submit"
-                className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-4 text-sm font-semibold text-white shadow-gold hover:scale-[1.01] transition"
+                disabled={submitting}
+                className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-4 text-sm font-semibold text-white shadow-gold hover:scale-[1.01] transition disabled:opacity-60 disabled:hover:scale-100"
               >
-                Send Message <ArrowRight className="h-4 w-4" />
+                {submitting ? "Sending…" : "Send Message"} <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </form>
