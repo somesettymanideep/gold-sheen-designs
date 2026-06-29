@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
-import { SITE } from "@/lib/site";
+import { SITE, CATEGORIES } from "@/lib/site";
 import { addSubmission } from "@/lib/submissions";
 import bannerContact from "@/assets/banner-contact.jpg";
 
@@ -24,6 +25,13 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [products, setProducts] = useState<string[]>([]);
+
+  const toggleProduct = (title: string) =>
+    setProducts((prev) =>
+      prev.includes(title) ? prev.filter((p) => p !== title) : [...prev, title],
+    );
+
   const info = [
     {
       icon: MapPin,
@@ -96,11 +104,11 @@ function ContactPage() {
                 type: "contact",
                 name: String(data.get("name") ?? "").trim(),
                 phone: String(data.get("mobile") ?? "").trim(),
-                email: String(data.get("email") ?? "").trim() || undefined,
-                subject: String(data.get("subject") ?? "").trim() || undefined,
+                products,
                 message: String(data.get("message") ?? "").trim() || undefined,
               });
               form.reset();
+              setProducts([]);
               alert("Thank you! We'll reach out shortly.");
             }}
             className="lg:col-span-3 bg-white rounded-3xl p-8 sm:p-10 shadow-soft"
@@ -113,27 +121,41 @@ function ContactPage() {
               <input
                 name="name"
                 required
-                placeholder="Your Name"
+                placeholder="Name"
                 className="w-full rounded-xl border border-border bg-beige/40 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none"
               />
               <input
                 name="mobile"
                 type="tel"
                 required
-                placeholder="Mobile Number"
+                placeholder="Phone Number"
                 className="w-full rounded-xl border border-border bg-beige/40 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none"
               />
-              <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                className="w-full rounded-xl border border-border bg-beige/40 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none sm:col-span-1"
-              />
-              <input
-                name="subject"
-                placeholder="Subject"
-                className="w-full rounded-xl border border-border bg-beige/40 px-4 py-3 text-sm text-charcoal placeholder:text-muted-foreground focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none sm:col-span-1"
-              />
+              <div className="sm:col-span-2">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Select Products
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {CATEGORIES.map((c) => {
+                    const active = products.includes(c.title);
+                    return (
+                      <button
+                        key={c.slug}
+                        type="button"
+                        onClick={() => toggleProduct(c.title)}
+                        aria-pressed={active}
+                        className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                          active
+                            ? "gradient-gold border-transparent text-white shadow-gold"
+                            : "border-border bg-beige/40 text-charcoal hover:border-gold/50"
+                        }`}
+                      >
+                        {c.title}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
               <textarea
                 name="message"
                 rows={5}
@@ -148,6 +170,7 @@ function ContactPage() {
               </button>
             </div>
           </form>
+
 
           <aside className="lg:col-span-2 space-y-6">
             <div className="bg-charcoal text-white rounded-3xl p-8 shadow-elevated">
