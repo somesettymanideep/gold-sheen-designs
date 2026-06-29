@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
-import { SITE } from "@/lib/site";
+import { SITE, CATEGORIES } from "@/lib/site";
 import { addSubmission } from "@/lib/submissions";
 import bannerContact from "@/assets/banner-contact.jpg";
 
