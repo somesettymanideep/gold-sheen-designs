@@ -25,6 +25,13 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [products, setProducts] = useState<string[]>([]);
+
+  const toggleProduct = (title: string) =>
+    setProducts((prev) =>
+      prev.includes(title) ? prev.filter((p) => p !== title) : [...prev, title],
+    );
+
   const info = [
     {
       icon: MapPin,
