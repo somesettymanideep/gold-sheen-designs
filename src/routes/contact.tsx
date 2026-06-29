@@ -27,6 +27,7 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [products, setProducts] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
 
   const toggleProduct = (title: string) =>
     setProducts((prev) =>
