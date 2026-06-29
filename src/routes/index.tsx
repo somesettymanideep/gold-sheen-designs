@@ -682,9 +682,10 @@ function QuoteForm({ onClose }: { onClose: () => void }) {
       />
       <button
         type="submit"
-        className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition"
+        disabled={submitting}
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold hover:scale-[1.02] transition disabled:opacity-60 disabled:hover:scale-100"
       >
-        Send Request <Send className="h-4 w-4" />
+        {submitting ? "Sending…" : "Send Request"} <Send className="h-4 w-4" />
       </button>
     </form>
   );
