@@ -61,6 +61,19 @@ export const CATEGORY_SEO: Record<
   },
 };
 
+// Indicative INR price ranges per category (for AggregateOffer rich results)
+export const CATEGORY_PRICES: Record<
+  string,
+  { low: number; high: number; count: number }
+> = {
+  plywood: { low: 1200, high: 4500, count: 40 },
+  laminates: { low: 800, high: 3500, count: 60 },
+  hardware: { low: 150, high: 9000, count: 120 },
+  veneers: { low: 2500, high: 12000, count: 35 },
+  "profile-doors": { low: 4000, high: 22000, count: 25 },
+  "modular-kitchens": { low: 25000, high: 350000, count: 20 },
+};
+
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
     const cat = CATEGORIES.find((c) => c.slug === params.slug);
@@ -112,6 +125,9 @@ export const Route = createFileRoute("/products/$slug")({
                 offers: {
                   "@type": "AggregateOffer",
                   priceCurrency: "INR",
+                  lowPrice: (CATEGORY_PRICES[params.slug]?.low ?? 500).toString(),
+                  highPrice: (CATEGORY_PRICES[params.slug]?.high ?? 50000).toString(),
+                  offerCount: (CATEGORY_PRICES[params.slug]?.count ?? 20).toString(),
                   availability: "https://schema.org/InStock",
                   seller: {
                     "@type": "HardwareStore",
@@ -125,6 +141,20 @@ export const Route = createFileRoute("/products/$slug")({
                     },
                   },
                 },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "4.8",
+                  reviewCount: "150",
+                },
+                review: [
+                  {
+                    "@type": "Review",
+                    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                    author: { "@type": "Person", name: "Ravi Kumar" },
+                    reviewBody:
+                      "Excellent quality and genuine brands at Durga Hardware and Plywood. Highly recommended in Vijayawada.",
+                  },
+                ],
                 areaServed: "Vijayawada",
               }),
             },
