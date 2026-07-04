@@ -61,6 +61,19 @@ export const CATEGORY_SEO: Record<
   },
 };
 
+// Indicative INR price ranges per category (for AggregateOffer rich results)
+export const CATEGORY_PRICES: Record<
+  string,
+  { low: number; high: number; count: number }
+> = {
+  plywood: { low: 1200, high: 4500, count: 40 },
+  laminates: { low: 800, high: 3500, count: 60 },
+  hardware: { low: 150, high: 9000, count: 120 },
+  veneers: { low: 2500, high: 12000, count: 35 },
+  "profile-doors": { low: 4000, high: 22000, count: 25 },
+  "modular-kitchens": { low: 25000, high: 350000, count: 20 },
+};
+
 export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => {
     const cat = CATEGORIES.find((c) => c.slug === params.slug);
