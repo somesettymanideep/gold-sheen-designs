@@ -18,9 +18,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Contact Durga Hardware and Plywood" },
       { property: "og:description", content: "Showroom, phone, email and live map." },
-      { property: "og:url", content: "https://gold-sheen-designs.lovable.app/contact" },
+      { property: "og:url", content: "https://durgahardwareandplywood.com/contact/" },
     ],
-    links: [{ rel: "canonical", href: "https://gold-sheen-designs.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://durgahardwareandplywood.com/contact/" }],
   }),
   component: ContactPage,
 });

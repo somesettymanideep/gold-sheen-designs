@@ -11,6 +11,7 @@ import { CATEGORIES, SITE } from "@/lib/site";
 import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS, LAMINATE_BRAND_LOGOS } from "@/lib/product-data";
 import { BrandMarquee } from "@/components/BrandMarquee";
 
+const BASE_URL = "https://durgahardwareandplywood.com";
 
 // Per-category keyword-targeted SEO config
 export const CATEGORY_SEO: Record<
@@ -85,7 +86,7 @@ export const Route = createFileRoute("/products/$slug")({
         : "Product — Durga Hardware and Plywood";
     const desc = seo?.description ?? cat?.blurb ?? "Explore our premium products at Durga Hardware and Plywood.";
     const img = cat ? CAT_IMG[cat.img] : undefined;
-    const url = `https://gold-sheen-designs.lovable.app/products/${params.slug}`;
+    const url = `${BASE_URL}/products/${params.slug}/`;
     return {
       meta: [
         { title },
@@ -106,8 +107,8 @@ export const Route = createFileRoute("/products/$slug")({
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                  { "@type": "ListItem", position: 1, name: "Home", item: "https://gold-sheen-designs.lovable.app/" },
-                  { "@type": "ListItem", position: 2, name: "Products", item: "https://gold-sheen-designs.lovable.app/products" },
+                  { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
+                  { "@type": "ListItem", position: 2, name: "Products", item: `${BASE_URL}/products/` },
                   { "@type": "ListItem", position: 3, name: cat.title, item: url },
                 ],
               }),

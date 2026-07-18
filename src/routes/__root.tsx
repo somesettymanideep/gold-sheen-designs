@@ -13,6 +13,9 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const BASE_URL = "https://durgahardwareandplywood.com";
+const LOGO_URL = `${BASE_URL}/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png`;
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -104,12 +107,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "@id": "https://gold-sheen-designs.lovable.app/#organization",
+          "@id": `${BASE_URL}/#organization`,
           name: "Durga Hardware and Plywood",
-          url: "https://gold-sheen-designs.lovable.app",
+          url: BASE_URL,
           logo: {
             "@type": "ImageObject",
-            url: "https://gold-sheen-designs.lovable.app/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png",
+            url: LOGO_URL,
           },
           image:
             "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",
@@ -137,10 +140,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "@id": "https://gold-sheen-designs.lovable.app/#website",
+          "@id": `${BASE_URL}/#website`,
           name: "Durga Hardware and Plywood",
-          url: "https://gold-sheen-designs.lovable.app",
-          publisher: { "@id": "https://gold-sheen-designs.lovable.app/#organization" },
+          url: BASE_URL,
+          publisher: { "@id": `${BASE_URL}/#organization` },
         }),
       },
       {
@@ -148,12 +151,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "HardwareStore",
-          "@id": "https://gold-sheen-designs.lovable.app/#business",
+          "@id": `${BASE_URL}/#business`,
           name: "Durga Hardware and Plywood",
           description:
             "Best hardware and plywood shop in Vijayawada — premium plywood, laminates, veneers, modular kitchens, hardware accessories and profile doors from trusted brands.",
-          url: "https://gold-sheen-designs.lovable.app",
-          parentOrganization: { "@id": "https://gold-sheen-designs.lovable.app/#organization" },
+          url: BASE_URL,
+          parentOrganization: { "@id": `${BASE_URL}/#organization` },
           telephone: "+91-7842591100",
           email: "durgahardwareandkitchen@gmail.com",
           image:
