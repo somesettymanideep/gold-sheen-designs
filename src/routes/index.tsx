@@ -85,10 +85,10 @@ export const Route = createFileRoute("/")({
         content:
           "Vijayawada's best hardware and plywood shop — premium plywood, laminates, veneers, modular kitchens & hardware from trusted brands. Visit our Governor Peta showroom.",
       },
-      { property: "og:url", content: "https://gold-sheen-designs.lovable.app/" },
+      { property: "og:url", content: "https://durgahardwareandplywood.com/" },
     ],
     links: [
-      { rel: "canonical", href: "https://gold-sheen-designs.lovable.app/" },
+      { rel: "canonical", href: "https://durgahardwareandplywood.com/" },
       { rel: "preload", as: "image", href: heroShowroom, fetchpriority: "high" },
     ],
     scripts: [
