@@ -401,6 +401,8 @@ function ProductDetailPage() {
       {slug === "laminates" && (
         <BrandMarquee title="Laminate Brands" logos={LAMINATE_BRAND_LOGOS} className="py-[30px]" />
       )}
+      {slug === "laminates" && <LaminateFinishSlider />}
+
 
       {/* Related products */}
       <section className="py-[30px] bg-cream">
