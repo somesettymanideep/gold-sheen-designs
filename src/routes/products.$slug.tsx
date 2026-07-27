@@ -10,6 +10,8 @@ import { PageLayout, PageHero } from "@/components/PageLayout";
 import { CATEGORIES, SITE } from "@/lib/site";
 import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS, LAMINATE_BRAND_LOGOS } from "@/lib/product-data";
 import { BrandMarquee } from "@/components/BrandMarquee";
+import { LaminateFinishSlider } from "@/components/LaminateFinishSlider";
+
 
 const BASE_URL = "https://durgahardwareandplywood.com";
 
