@@ -3,7 +3,7 @@ import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
-import catDoors from "@/assets/cat-doors.jpg";
+import catDoors from "@/assets/profile-doors-showcase.webp.asset.json";
 import decobond710 from "@/assets/decobond/decobond-710.jpg.asset.json";
 import decobond710Nature from "@/assets/decobond/decobond-710-nature.jpg.asset.json";
 import decobond710Gold from "@/assets/decobond/decobond-710-gold.jpg.asset.json";
@@ -87,7 +87,7 @@ export const CAT_IMG: Record<string, string> = {
   hardware: catHardware,
   veneers: catVeneers,
   kitchen: catKitchen.url,
-  doors: catDoors,
+  doors: catDoors.url,
 };
 
 export const BANNER_IMG: Record<string, string> = {
