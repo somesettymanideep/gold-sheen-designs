@@ -479,6 +479,49 @@ function ProductDetailPage() {
         </section>
       )}
 
+      {/* Profile doors application gallery */}
+      {slug === "profile-doors" && (
+        <section className="py-[30px] bg-cream">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="eyebrow">Applications</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-charcoal">
+                Profile Door Applications at Home
+              </h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed">
+                See how designer, flush, WPC, sliding and carved profile doors are used across
+                entrances, bedrooms, bathrooms, wardrobes and pooja rooms.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {DOOR_GALLERY.map((g) => (
+                <div
+                  key={g.place}
+                  className="group overflow-hidden rounded-2xl bg-background shadow-soft hover:shadow-elevated transition duration-500"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={g.img}
+                      alt={`${g.type} — ${g.place} | Best profile doors shop in Vijayawada`}
+                      loading="lazy"
+                      className="h-full w-full object-cover group-hover:scale-105 transition duration-700"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+                      {g.type}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-lg font-bold text-charcoal">{g.place}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{g.note}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+
       {/* Plywood brands & grades */}
       {slug === "plywood" &&
         PLYWOOD_BRANDS.map((brand, bIdx) => (
