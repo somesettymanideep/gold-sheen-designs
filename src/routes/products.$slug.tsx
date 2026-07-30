@@ -318,6 +318,9 @@ function ProductDetailPage() {
         </div>
       </section>
 
+      {/* Plywood types guide */}
+      {slug === "plywood" && <PlywoodTypesGuide />}
+
       {/* Plywood brands & grades */}
       {slug === "plywood" &&
         PLYWOOD_BRANDS.map((brand, bIdx) => (
