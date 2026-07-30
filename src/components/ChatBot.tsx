@@ -1,45 +1,239 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Send, MessageCircle } from "lucide-react";
+import { X, Send, MessageCircle, ArrowLeft } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { SITE, CATEGORIES } from "@/lib/site";
+import {
+  PRODUCT_DETAILS,
+  PLYWOOD_BRAND_LOGOS,
+  HARDWARE_BRAND_LOGOS,
+  LAMINATE_BRAND_LOGOS,
+} from "@/lib/product-data";
 
-type Msg = { from: "bot" | "user"; text: string };
+type Action = { label: string; href: string; external?: boolean };
+type Msg = { from: "bot" | "user"; text: string; actions?: Action[] };
 
-const QUICK = [
-  "Products & brands",
-  "Store timings",
-  "Location",
-  "Get a quote",
-  "Talk to us",
-];
+const CALL: Action = { label: `Call ${SITE.phone}`, href: SITE.phoneHref, external: true };
+const WHATSAPP: Action = { label: "WhatsApp us", href: SITE.whatsappHref, external: true };
+const CONTACT: Action = { label: "Contact page", href: "/contact" };
+const MAP: Action = { label: "Open in Maps", href: SITE.mapsHref, external: true };
 
-function reply(q: string): string {
+const TITLE_BY_SLUG: Record<string, string> = Object.fromEntries(
+  CATEGORIES.map((c) => [c.slug, c.title]),
+);
+
+const BRANDS_BY_SLUG: Record<string, string[]> = {
+  plywood: PLYWOOD_BRAND_LOGOS.map((b) => b.name),
+  hardware: HARDWARE_BRAND_LOGOS.map((b) => b.name),
+  laminates: LAMINATE_BRAND_LOGOS.map((b) => b.name),
+};
+
+function productAnswer(slug: string): Msg {
+  const d = PRODUCT_DETAILS[slug];
+  const title = TITLE_BY_SLUG[slug] ?? slug;
+  const brands = BRANDS_BY_SLUG[slug] ?? d.brands;
+  const text = [
+    `${title} — ${d.description}`,
+    "",
+    ...d.features.map((f) => `• ${f}`),
+    "",
+    ...d.specs.map((s) => `${s.label}: ${s.value}`),
+    "",
+    `Brands: ${brands.join(", ")}`,
+  ].join("\n");
+  return {
+    from: "bot",
+    text,
+    actions: [
+      { label: `View ${title} page`, href: `/products/${slug}` },
+      WHATSAPP,
+      CALL,
+    ],
+  };
+}
+
+/** Quick-reply groups: top-level menu plus contextual sub-menus. */
+type Chip = { label: string; go?: string; ask?: string };
+
+const MENUS: Record<string, { title?: string; chips: Chip[] }> = {
+  root: {
+    chips: [
+      { label: "Products", go: "products" },
+      { label: "Modular kitchens", go: "modular-kitchens" },
+      { label: "Profile doors", go: "profile-doors" },
+      { label: "Hardware", go: "hardware" },
+      { label: "Contact options", go: "contact" },
+    ],
+  },
+  products: {
+    chips: [
+      ...CATEGORIES.map((c) => ({ label: c.title, ask: c.slug })),
+      { label: "Brands we stock", ask: "brands" },
+      { label: "← Back", go: "root" },
+    ],
+  },
+  "modular-kitchens": {
+    chips: [
+      { label: "What's included", ask: "modular-kitchens" },
+      { label: "Kitchen accessories", ask: "kitchen-accessories" },
+      { label: "Layouts & shutters", ask: "kitchen-layouts" },
+      { label: "Book a design visit", ask: "kitchen-visit" },
+      { label: "← Back", go: "root" },
+    ],
+  },
+  "profile-doors": {
+    chips: [
+      { label: "Door types & finishes", ask: "profile-doors" },
+      { label: "Custom sizes", ask: "door-custom" },
+      { label: "Door hardware", ask: "door-hardware" },
+      { label: "Get door pricing", ask: "quote" },
+      { label: "← Back", go: "root" },
+    ],
+  },
+  hardware: {
+    chips: [
+      { label: "Hardware range", ask: "hardware" },
+      { label: "Hinges & channels", ask: "hinges" },
+      { label: "Locks & handles", ask: "locks" },
+      { label: "Hardware brands", ask: "hardware-brands" },
+      { label: "← Back", go: "root" },
+    ],
+  },
+  contact: {
+    chips: [
+      { label: "Call us", ask: "call" },
+      { label: "WhatsApp", ask: "whatsapp" },
+      { label: "Store timings", ask: "hours" },
+      { label: "Showroom location", ask: "location" },
+      { label: "Get a quote", ask: "quote" },
+      { label: "← Back", go: "root" },
+    ],
+  },
+};
+
+function keyedReply(key: string): Msg | null {
+  if (PRODUCT_DETAILS[key]) return productAnswer(key);
+
+  switch (key) {
+    case "brands":
+      return {
+        from: "bot",
+        text: [
+          `Plywood: ${PLYWOOD_BRAND_LOGOS.map((b) => b.name).join(", ")}`,
+          `Hardware: ${HARDWARE_BRAND_LOGOS.map((b) => b.name).join(", ")}`,
+          `Laminates: ${LAMINATE_BRAND_LOGOS.map((b) => b.name).join(", ")}`,
+        ].join("\n\n"),
+        actions: [{ label: "All products", href: "/products" }, WHATSAPP],
+      };
+    case "kitchen-accessories":
+      return {
+        from: "bot",
+        text: "Kitchen accessories in stock: pull-out baskets, cutlery trays, corner solutions (magic & carousel), tall pantry units, bottle pull-outs, waste bins, soft-close hinges and telescopic channels — from Hettich, Häfele, Blum, Kesseböhmer and Ebco.",
+        actions: [
+          { label: "Modular kitchens page", href: "/products/modular-kitchens" },
+          WHATSAPP,
+        ],
+      };
+    case "kitchen-layouts":
+      return {
+        from: "bot",
+        text: "Layouts: L-shape, U-shape, Parallel and Island.\nShutters: Acrylic, Laminate, PU and Membrane.\nCarcass: BWP Ply or HDHMR — moisture resistant.\nWe include 3D design visualization before you buy.",
+        actions: [{ label: "Modular kitchens page", href: "/products/modular-kitchens" }, CALL],
+      };
+    case "kitchen-visit":
+      return {
+        from: "bot",
+        text: `Happy to plan your kitchen. Share your floor size and layout on WhatsApp, or visit the showroom — ${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city}.`,
+        actions: [WHATSAPP, CONTACT, MAP],
+      };
+    case "door-custom":
+      return {
+        from: "bot",
+        text: "Yes — profile doors are made to custom sizes and designs, in solid wood or engineered warp-resistant cores, with membrane, PU, veneer or laminate finishes. Send us the opening size and we'll suggest options.",
+        actions: [{ label: "Profile doors page", href: "/products/profile-doors" }, WHATSAPP],
+      };
+    case "door-hardware":
+      return {
+        from: "bot",
+        text: "For doors we stock locks, mortise handles, hinges, door closers, floor springs and sliding systems from Häfele, Hettich, Ozone, Ebco and Dorset — all genuine and warranty backed.",
+        actions: [{ label: "Hardware page", href: "/products/hardware" }, CALL],
+      };
+    case "hinges":
+      return {
+        from: "bot",
+        text: "Soft-close hinges (straight, crank, clip-on) and telescopic/tandem drawer channels rated up to 40 kg — Hettich, Häfele, Blum and Ebco. Corrosion-resistant finishes with brand warranty.",
+        actions: [{ label: "Hardware page", href: "/products/hardware" }, WHATSAPP],
+      };
+    case "locks":
+      return {
+        from: "bot",
+        text: "Door locks, digital locks, mortise handles, cabinet handles and bathroom fittings in SS, Chrome, Matte and Antique finishes — Ozone, Dorset, Yale, Godrej, Europa and Häfele.",
+        actions: [{ label: "Hardware page", href: "/products/hardware" }, CALL],
+      };
+    case "hardware-brands":
+      return {
+        from: "bot",
+        text: `Hardware brands we deal with: ${HARDWARE_BRAND_LOGOS.map((b) => b.name).join(", ")}.`,
+        actions: [{ label: "Hardware page", href: "/products/hardware" }, WHATSAPP],
+      };
+    case "hours":
+      return {
+        from: "bot",
+        text: SITE.hours.map((h) => `${h.day}: ${h.time}`).join("\n"),
+        actions: [CALL, MAP],
+      };
+    case "location":
+      return {
+        from: "bot",
+        text: `${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city}.`,
+        actions: [MAP, CALL],
+      };
+    case "call":
+      return { from: "bot", text: `Call us on ${SITE.phone} during store hours — we answer quickly.`, actions: [CALL, WHATSAPP] };
+    case "whatsapp":
+      return { from: "bot", text: "Tap below to message us on WhatsApp with your requirement — photos and sizes help us quote faster.", actions: [WHATSAPP] };
+    case "quote":
+      return {
+        from: "bot",
+        text: `Share your requirement — product, quantity/sizes and location — and our team sends a detailed quote the same day. Fastest on WhatsApp (${SITE.phone}).`,
+        actions: [WHATSAPP, CONTACT, CALL],
+      };
+    default:
+      return null;
+  }
+}
+
+function freeTextReply(q: string): Msg {
   const t = q.toLowerCase();
-  if (/(product|brand|plywood|laminate|veneer|kitchen|door|hardware)/.test(t)) {
-    return `We stock ${CATEGORIES.map((c) => c.title).join(", ")} — from trusted brands like Greenply, CenturyPly, Hettich, Hafele, Merino and Greenlam. Tell me which one you need and I'll guide you.`;
-  }
-  if (/(time|hour|open|close|timing)/.test(t)) {
-    return SITE.hours.map((h) => `${h.day}: ${h.time}`).join("\n");
-  }
-  if (/(where|location|address|map|shop|reach)/.test(t)) {
-    return `${SITE.address.line1}, ${SITE.address.line2}, ${SITE.address.city}.`;
-  }
-  if (/(quote|price|cost|rate|estimate|budget)/.test(t)) {
-    return `Happy to help with pricing. Share your requirement on WhatsApp (${SITE.phone}) or call us and our team will send a detailed quote the same day.`;
-  }
-  if (/(call|contact|talk|phone|whatsapp|number)/.test(t)) {
-    return `Call us at ${SITE.phone} or message on WhatsApp — we reply quickly during store hours.`;
-  }
-  if (/(hi|hello|hey|namaste)/.test(t)) {
-    return "Hello! I'm Durga Assist. Ask me about plywood, laminates, hardware, timings or pricing.";
-  }
-  return `I can help with products, brands, store timings, location and quotes. For anything specific, call ${SITE.phone} — our team is glad to help.`;
+  const slug = CATEGORIES.find(
+    (c) => t.includes(c.title.toLowerCase()) || t.includes(c.slug.replace("-", " ")),
+  )?.slug;
+  if (slug) return productAnswer(slug);
+  if (/(kitchen|basket|pantry|cutlery)/.test(t)) return keyedReply("kitchen-accessories")!;
+  if (/(door)/.test(t)) return productAnswer("profile-doors");
+  if (/(hinge|channel|handle|lock|fitting|hardware)/.test(t)) return keyedReply("hinges")!;
+  if (/(brand)/.test(t)) return keyedReply("brands")!;
+  if (/(time|hour|open|close|timing)/.test(t)) return keyedReply("hours")!;
+  if (/(where|location|address|map|reach|shop)/.test(t)) return keyedReply("location")!;
+  if (/(quote|price|cost|rate|estimate|budget)/.test(t)) return keyedReply("quote")!;
+  if (/(call|contact|talk|phone|whatsapp|number)/.test(t)) return keyedReply("call")!;
+  if (/^(hi|hello|hey|namaste)/.test(t))
+    return { from: "bot", text: "Hello! I'm Durga Assist. Pick a topic below or ask me about plywood, laminates, hardware, kitchens, doors, timings or pricing." };
+  return {
+    from: "bot",
+    text: `I can help with our six product categories, brands, store timings, location and quotes. For anything specific, call ${SITE.phone}.`,
+    actions: [WHATSAPP, CALL, CONTACT],
+  };
 }
 
 export function ChatBot() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [menu, setMenu] = useState<string>("root");
   const [msgs, setMsgs] = useState<Msg[]>([
-    { from: "bot", text: "Hi! I'm Durga Assist 👋 What are you looking for today?" },
+    {
+      from: "bot",
+      text: "Hi! I'm Durga Assist 👋 What are you looking for today?",
+    },
   ]);
   const [typing, setTyping] = useState(false);
   const orbRef = useRef<HTMLDivElement>(null);
@@ -72,17 +266,42 @@ export function ChatBot() {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, typing, open]);
 
-  const send = (text: string) => {
-    const q = text.trim();
-    if (!q) return;
-    setMsgs((m) => [...m, { from: "user", text: q }]);
-    setInput("");
+  const push = (userText: string, botMsg: Msg) => {
+    setMsgs((m) => [...m, { from: "user", text: userText }]);
     setTyping(true);
     window.setTimeout(() => {
       setTyping(false);
-      setMsgs((m) => [...m, { from: "bot", text: reply(q) }]);
-    }, 650);
+      setMsgs((m) => [...m, botMsg]);
+    }, 550);
   };
+
+  const onChip = (chip: Chip) => {
+    if (chip.go) {
+      setMenu(chip.go);
+      if (chip.go !== "root") {
+        push(chip.label, {
+          from: "bot",
+          text:
+            chip.go === "products"
+              ? "Here are our six categories — pick one for details, specs and brands."
+              : chip.go === "contact"
+                ? "Sure — how would you like to reach us?"
+                : `Ask me anything about ${chip.label.toLowerCase()} — pick an option below.`,
+        });
+      }
+      return;
+    }
+    if (chip.ask) push(chip.label, keyedReply(chip.ask) ?? freeTextReply(chip.ask));
+  };
+
+  const send = (text: string) => {
+    const q = text.trim();
+    if (!q) return;
+    setInput("");
+    push(q, freeTextReply(q));
+  };
+
+  const chips = MENUS[menu]?.chips ?? MENUS.root.chips;
 
   return (
     <div className="fixed left-4 bottom-4 sm:left-6 sm:bottom-6 z-40">
@@ -96,6 +315,15 @@ export function ChatBot() {
               <p className="font-display text-sm font-semibold text-white">Durga Assist</p>
               <p className="text-[11px] text-white/60">Typically replies instantly</p>
             </div>
+            {menu !== "root" && (
+              <button
+                onClick={() => setMenu("root")}
+                aria-label="Back to main menu"
+                className="text-white/70 hover:text-gold"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+            )}
             <button onClick={() => setOpen(false)} aria-label="Close chat" className="text-white/70 hover:text-gold">
               <X className="h-4 w-4" />
             </button>
@@ -103,16 +331,42 @@ export function ChatBot() {
 
           <div ref={listRef} className="max-h-72 space-y-3 overflow-y-auto bg-cream px-4 py-4">
             {msgs.map((m, i) => (
-              <div key={i} className={m.from === "user" ? "flex justify-end" : "flex justify-start"}>
+              <div key={i} className={m.from === "user" ? "flex justify-end" : "flex flex-col items-start gap-2"}>
                 <p
                   className={
                     m.from === "user"
                       ? "max-w-[80%] whitespace-pre-line rounded-2xl rounded-br-sm bg-primary px-3 py-2 text-sm text-primary-foreground"
-                      : "max-w-[85%] whitespace-pre-line rounded-2xl rounded-bl-sm bg-card px-3 py-2 text-sm text-foreground shadow-soft"
+                      : "max-w-[90%] whitespace-pre-line rounded-2xl rounded-bl-sm bg-card px-3 py-2 text-sm text-foreground shadow-soft"
                   }
                 >
                   {m.text}
                 </p>
+                {m.actions && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {m.actions.map((a) =>
+                      a.external ? (
+                        <a
+                          key={a.label}
+                          href={a.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-full gradient-gold px-3 py-1 text-[11px] font-medium text-white"
+                        >
+                          {a.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={a.label}
+                          to={a.href}
+                          onClick={() => setOpen(false)}
+                          className="rounded-full border border-gold/60 bg-card px-3 py-1 text-[11px] font-medium text-gold"
+                        >
+                          {a.label}
+                        </Link>
+                      ),
+                    )}
+                  </div>
+                )}
               </div>
             ))}
             {typing && (
@@ -129,13 +383,13 @@ export function ChatBot() {
           </div>
 
           <div className="flex flex-wrap gap-1.5 border-t border-border bg-card px-3 pt-3">
-            {QUICK.map((q) => (
+            {chips.map((c) => (
               <button
-                key={q}
-                onClick={() => send(q)}
+                key={c.label}
+                onClick={() => onChip(c)}
                 className="rounded-full border border-border px-2.5 py-1 text-[11px] text-muted-foreground transition hover:border-gold hover:text-gold"
               >
-                {q}
+                {c.label}
               </button>
             ))}
           </div>
