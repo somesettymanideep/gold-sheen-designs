@@ -14,6 +14,7 @@ import { LaminateFinishSlider } from "@/components/LaminateFinishSlider";
 import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 import { PlywoodApplicationGallery } from "@/components/PlywoodApplicationGallery";
 import { PlywoodProductSlider } from "@/components/PlywoodProductSlider";
+import { HardwareProductSlider, HARDWARE_GALLERY } from "@/components/HardwareProductSlider";
 
 
 
