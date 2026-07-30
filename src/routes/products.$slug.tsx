@@ -17,6 +17,8 @@ import { PlywoodProductSlider } from "@/components/PlywoodProductSlider";
 import { HardwareProductSlider, HARDWARE_GALLERY } from "@/components/HardwareProductSlider";
 import { VeneerProductSlider, VENEER_GALLERY } from "@/components/VeneerProductSlider";
 import { KitchenProductSlider, KITCHEN_GALLERY } from "@/components/KitchenProductSlider";
+import { DoorProductSlider, DOOR_GALLERY } from "@/components/DoorProductSlider";
+
 
 
 
@@ -246,6 +248,9 @@ function ProductDetailPage() {
                 <VeneerProductSlider />
               ) : slug === "modular-kitchens" ? (
                 <KitchenProductSlider />
+              ) : slug === "profile-doors" ? (
+                <DoorProductSlider />
+
 
               ) : (
                 <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
