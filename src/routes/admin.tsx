@@ -126,6 +126,14 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [fFrom, setFFrom] = useState("");
   const [fTo, setFTo] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
+  const [chatOn, setChatOn] = useState(true);
+
+  useEffect(() => setChatOn(isChatBotEnabled()), []);
+  const toggleChat = () => {
+    const next = !chatOn;
+    setChatOn(next);
+    setChatBotEnabled(next);
+  };
 
   const refresh = () => setItems(getSubmissions());
   useEffect(refresh, []);
