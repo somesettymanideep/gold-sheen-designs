@@ -5,11 +5,11 @@ const KEY = "durga-chatbot-enabled";
 const EVENT = "durga-chatbot-setting";
 
 export function isChatBotEnabled(): boolean {
-  if (typeof window === "undefined") return true;
+  if (typeof window === "undefined") return false;
   try {
-    return window.localStorage.getItem(KEY) !== "0";
+    return window.localStorage.getItem(KEY) === "1";
   } catch {
-    return true;
+    return false;
   }
 }
 
