@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Lock,
   Trash2,
@@ -11,6 +11,9 @@ import {
   Mail,
   FileText,
   MessageCircle,
+  Search,
+  SlidersHorizontal,
+  X,
 } from "lucide-react";
 import {
   getSubmissions,
@@ -115,6 +118,13 @@ function formatDate(iso: string) {
 function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [items, setItems] = useState<Submission[]>([]);
   const [filter, setFilter] = useState<"all" | "contact" | "quote" | "chat">("all");
+  const [query, setQuery] = useState("");
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [fName, setFName] = useState("");
+  const [fPhone, setFPhone] = useState("");
+  const [fEmail, setFEmail] = useState("");
+  const [fFrom, setFFrom] = useState("");
+  const [fTo, setFTo] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const refresh = () => setItems(getSubmissions());
@@ -161,7 +171,59 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     e.target.value = "";
   };
 
-  const filtered = items.filter((s) => filter === "all" || s.type === filter);
+  const digits = (v: string) => v.replace(/\D/g, "");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const qName = fName.trim().toLowerCase();
+    const qEmail = fEmail.trim().toLowerCase();
+    const qPhone = digits(fPhone);
+    const from = fFrom ? new Date(`${fFrom}T00:00:00`).getTime() : null;
+    const to = fTo ? new Date(`${fTo}T23:59:59.999`).getTime() : null;
+
+    return items.filter((s) => {
+      if (filter !== "all" && s.type !== filter) return false;
+
+      if (q) {
+        const haystack = [
+          s.name,
+          s.phone,
+          s.email,
+          s.subject,
+          s.message,
+          s.products?.join(" "),
+          s.type,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      if (qName && !(s.name ?? "").toLowerCase().includes(qName)) return false;
+      if (qEmail && !(s.email ?? "").toLowerCase().includes(qEmail)) return false;
+      if (qPhone && !digits(s.phone ?? "").includes(qPhone)) return false;
+
+      if (from || to) {
+        const t = new Date(s.createdAt).getTime();
+        if (Number.isNaN(t)) return false;
+        if (from && t < from) return false;
+        if (to && t > to) return false;
+      }
+      return true;
+    });
+  }, [items, filter, query, fName, fPhone, fEmail, fFrom, fTo]);
+
+  const activeAdvanced = [fName, fPhone, fEmail, fFrom, fTo].filter(Boolean).length;
+  const clearFilters = () => {
+    setQuery("");
+    setFName("");
+    setFPhone("");
+    setFEmail("");
+    setFFrom("");
+    setFTo("");
+  };
+
   const contactCount = items.filter((s) => s.type === "contact").length;
   const quoteCount = items.filter((s) => s.type === "quote").length;
   const chatCount = items.filter((s) => s.type === "chat").length;
@@ -247,17 +309,80 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           )}
         </div>
 
+        {/* Search + advanced filters */}
+        <div className="mb-6 rounded-2xl bg-white p-4 shadow-soft">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative min-w-[220px] flex-1">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search name, phone, email, message…"
+                className="w-full rounded-xl border border-border bg-beige/30 py-2.5 pl-10 pr-9 text-sm text-charcoal outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
+              />
+              {query && (
+                <button
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-2 top-1/2 grid h-6 w-6 -translate-y-1/2 place-items-center rounded-md text-muted-foreground hover:bg-beige"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            <button
+              onClick={() => setShowAdvanced((v) => !v)}
+              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
+                showAdvanced || activeAdvanced
+                  ? "border-gold bg-gold/10 text-charcoal"
+                  : "border-border bg-white text-charcoal hover:border-gold/50"
+              }`}
+            >
+              <SlidersHorizontal className="h-4 w-4" /> Filters
+              {activeAdvanced > 0 && (
+                <span className="rounded-full bg-charcoal px-2 py-0.5 text-[11px] text-white">
+                  {activeAdvanced}
+                </span>
+              )}
+            </button>
+            {(query || activeAdvanced > 0) && (
+              <button
+                onClick={clearFilters}
+                className="rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition hover:border-gold/50"
+              >
+                Reset
+              </button>
+            )}
+          </div>
+
+          {showAdvanced && (
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              <FilterInput label="Name" value={fName} onChange={setFName} placeholder="e.g. Ravi" />
+              <FilterInput label="Phone" value={fPhone} onChange={setFPhone} placeholder="e.g. 98490" />
+              <FilterInput label="Email" value={fEmail} onChange={setFEmail} placeholder="e.g. gmail.com" />
+              <FilterInput label="From date" value={fFrom} onChange={setFFrom} type="date" />
+              <FilterInput label="To date" value={fTo} onChange={setFTo} type="date" />
+            </div>
+          )}
+
+          <p className="mt-3 text-xs text-muted-foreground">
+            Showing {filtered.length} of {items.length} submissions
+          </p>
+        </div>
+
         {filtered.length === 0 ? (
           <div className="grid place-items-center rounded-3xl bg-white py-20 text-center shadow-soft">
             <Inbox className="h-12 w-12 text-muted-foreground/50" />
             <p className="mt-4 font-display text-xl font-bold text-charcoal">
-              No submissions yet
+              {items.length === 0 ? "No submissions yet" : "No matching results"}
             </p>
             <p className="mt-1 max-w-md text-sm text-muted-foreground">
-              Entries from the contact form and the quote popup will appear here.
-              Data is stored only in this browser.
+              {items.length === 0
+                ? "Entries from the contact form and the quote popup will appear here. Data is stored only in this browser."
+                : "Try a different search term or reset the filters."}
             </p>
           </div>
+
         ) : (
           <div className="grid gap-4">
             {filtered.map((s) => (
@@ -330,5 +455,34 @@ function Field({ label, value }: { label: string; value: string }) {
       <dt className="shrink-0 font-semibold text-muted-foreground">{label}:</dt>
       <dd className="break-words text-charcoal">{value}</dd>
     </div>
+  );
+}
+
+function FilterInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        {label}
+      </span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full rounded-xl border border-border bg-beige/30 px-3 py-2.5 text-sm text-charcoal outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
+      />
+    </label>
   );
 }
