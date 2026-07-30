@@ -66,7 +66,7 @@ const CAT_IMG: Record<string, string> = {
   hardware: catHardware,
   veneers: catVeneers,
   kitchen: catKitchen.url,
-  doors: catDoors,
+  doors: catDoors.url,
 };
 
 export const Route = createFileRoute("/")({
