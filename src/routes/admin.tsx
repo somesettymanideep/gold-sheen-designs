@@ -251,6 +251,29 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <button
+              onClick={toggleChat}
+              role="switch"
+              aria-checked={chatOn}
+              className="inline-flex items-center gap-3 rounded-xl border border-border bg-white px-4 py-2.5 text-sm font-semibold text-charcoal transition hover:border-gold/50"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Chat bot
+              <span
+                className={`relative h-5 w-9 rounded-full transition ${
+                  chatOn ? "bg-[#6a3611]" : "bg-border"
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-all ${
+                    chatOn ? "left-[1.125rem]" : "left-0.5"
+                  }`}
+                />
+              </span>
+              <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                {chatOn ? "On" : "Off"}
+              </span>
+            </button>
+            <button
               onClick={refresh}
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-white px-4 py-2.5 text-sm font-semibold text-charcoal transition hover:border-gold/50"
             >
