@@ -15,6 +15,8 @@ import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 import { PlywoodApplicationGallery } from "@/components/PlywoodApplicationGallery";
 import { PlywoodProductSlider } from "@/components/PlywoodProductSlider";
 import { HardwareProductSlider, HARDWARE_GALLERY } from "@/components/HardwareProductSlider";
+import { VeneerProductSlider, VENEER_GALLERY } from "@/components/VeneerProductSlider";
+
 
 
 
@@ -239,6 +241,9 @@ function ProductDetailPage() {
                 <PlywoodProductSlider />
               ) : slug === "hardware" ? (
                 <HardwareProductSlider />
+              ) : slug === "veneers" ? (
+                <VeneerProductSlider />
+
               ) : (
                 <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
                   <img
