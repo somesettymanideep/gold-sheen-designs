@@ -11,6 +11,9 @@ import {
   Mail,
   FileText,
   MessageCircle,
+  Search,
+  SlidersHorizontal,
+  X,
 } from "lucide-react";
 import {
   getSubmissions,
