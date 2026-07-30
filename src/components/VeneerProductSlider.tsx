@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useAutoplayEmbla } from "@/hooks/useAutoplayEmbla";
 import veneerTypesAsset from "@/assets/veneer-types.webp.asset.json";
 import teakWall from "@/assets/veneer-app/teak-wall.jpg";
 import oakWardrobe from "@/assets/veneer-app/oak-wardrobe.jpg";
@@ -64,33 +63,23 @@ const SLIDES = [
 ];
 
 export function VeneerProductSlider() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [selected, setSelected] = useState(0);
-
-  const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", onSelect);
-    onSelect();
-    const id = setInterval(() => emblaApi.scrollNext(), 4000);
-    return () => {
-      clearInterval(id);
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi]);
+  const { emblaRef, emblaApi, selected, scrollTo, pauseHandlers } = useAutoplayEmbla({ interval: 4000 });
 
   return (
-    <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
+    <div
+      className="relative overflow-hidden rounded-2xl shadow-elevated bg-background"
+      {...pauseHandlers}
+    >
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {SLIDES.map((s) => (
+          {SLIDES.map((s, i) => (
             <div key={s.place} className="relative min-w-0 flex-[0_0_100%]">
               <img
                 src={s.img}
                 alt={`${s.type} — ${s.place} | Best veneer shops in Vijayawada`}
-                loading="lazy"
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchPriority={i === 0 ? "high" : "auto"}
                 width={800}
                 height={460}
                 className={
