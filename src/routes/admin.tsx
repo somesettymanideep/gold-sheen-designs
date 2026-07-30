@@ -10,6 +10,7 @@ import {
   Inbox,
   Mail,
   FileText,
+  MessageCircle,
 } from "lucide-react";
 import {
   getSubmissions,
@@ -113,7 +114,7 @@ function formatDate(iso: string) {
 
 function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [items, setItems] = useState<Submission[]>([]);
-  const [filter, setFilter] = useState<"all" | "contact" | "quote">("all");
+  const [filter, setFilter] = useState<"all" | "contact" | "quote" | "chat">("all");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const refresh = () => setItems(getSubmissions());
@@ -163,6 +164,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const filtered = items.filter((s) => filter === "all" || s.type === filter);
   const contactCount = items.filter((s) => s.type === "contact").length;
   const quoteCount = items.filter((s) => s.type === "quote").length;
+  const chatCount = items.filter((s) => s.type === "chat").length;
 
   return (
     <div className="min-h-screen bg-[#F4F0EA]">
@@ -220,6 +222,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
               { key: "all", label: `All (${items.length})` },
               { key: "contact", label: `Contact (${contactCount})` },
               { key: "quote", label: `Quote (${quoteCount})` },
+              { key: "chat", label: `Chat (${chatCount})` },
             ] as const
           ).map((t) => (
             <button
@@ -266,11 +269,17 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                   <div className="flex items-center gap-3">
                     <span
                       className={`grid h-10 w-10 place-items-center rounded-xl text-white ${
-                        s.type === "contact" ? "bg-charcoal" : "gradient-gold"
+                        s.type === "contact"
+                          ? "bg-charcoal"
+                          : s.type === "chat"
+                            ? "bg-[#6a3611]"
+                            : "gradient-gold"
                       }`}
                     >
                       {s.type === "contact" ? (
                         <Mail className="h-5 w-5" />
+                      ) : s.type === "chat" ? (
+                        <MessageCircle className="h-5 w-5" />
                       ) : (
                         <FileText className="h-5 w-5" />
                       )}
@@ -294,7 +303,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                 </div>
 
                 <dl className="mt-4 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
-                  <Field label="Phone" value={s.phone} />
+                  {s.phone && <Field label="Phone" value={s.phone} />}
                   {s.email && <Field label="Email" value={s.email} />}
                   {s.subject && <Field label="Subject" value={s.subject} />}
                   {s.products && s.products.length > 0 && (
@@ -302,7 +311,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                   )}
                 </dl>
                 {s.message && (
-                  <div className="mt-3 rounded-xl bg-beige/40 px-4 py-3 text-sm text-charcoal">
+                  <div className="mt-3 whitespace-pre-wrap rounded-xl bg-beige/40 px-4 py-3 text-sm text-charcoal">
                     {s.message}
                   </div>
                 )}
