@@ -457,3 +457,32 @@ function Field({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
+
+function FilterInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        {label}
+      </span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full rounded-xl border border-border bg-beige/30 px-3 py-2.5 text-sm text-charcoal outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
+      />
+    </label>
+  );
+}
