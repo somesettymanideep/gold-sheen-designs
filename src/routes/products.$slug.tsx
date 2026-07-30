@@ -237,6 +237,8 @@ function ProductDetailPage() {
               <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20" />
               {slug === "plywood" ? (
                 <PlywoodProductSlider />
+              ) : slug === "hardware" ? (
+                <HardwareProductSlider />
               ) : (
                 <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
                   <img
