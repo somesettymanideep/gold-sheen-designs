@@ -2,7 +2,7 @@
 // NOTE: Data lives only in the current browser. Clearing browser storage
 // removes it, and submissions made on other devices are not visible here.
 
-export type SubmissionType = "contact" | "quote";
+export type SubmissionType = "contact" | "quote" | "chat";
 
 export type Submission = {
   id: string;
