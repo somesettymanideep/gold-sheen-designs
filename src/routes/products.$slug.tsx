@@ -13,6 +13,8 @@ import { BrandMarquee } from "@/components/BrandMarquee";
 import { LaminateFinishSlider } from "@/components/LaminateFinishSlider";
 import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 import { PlywoodApplicationGallery } from "@/components/PlywoodApplicationGallery";
+import plywoodTypesAsset from "@/assets/plywood-types.webp.asset.json";
+
 
 
 const BASE_URL = "https://durgahardwareandplywood.com";
@@ -231,16 +233,25 @@ function ProductDetailPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="relative">
               <div className="absolute -top-5 -left-5 w-28 h-28 rounded-2xl gradient-gold opacity-20" />
-              <div className="relative overflow-hidden rounded-2xl shadow-elevated">
+              <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
                 <img
-                  src={img}
-                  alt={seo?.h1 ?? `${cat.title} — Durga Hardware and Plywood, Vijayawada`}
+                  src={slug === "plywood" ? plywoodTypesAsset.url : img}
+                  alt={
+                    slug === "plywood"
+                      ? "Types of plywood for home use — BWP, marine, MR, commercial, flexible, fire retardant, block board and hardwood plywood"
+                      : seo?.h1 ?? `${cat.title} — Durga Hardware and Plywood, Vijayawada`
+                  }
                   width={800}
                   height={460}
                   loading="lazy"
-                  className="w-full h-[460px] object-cover"
+                  className={
+                    slug === "plywood"
+                      ? "w-full h-[460px] object-contain p-3"
+                      : "w-full h-[460px] object-cover"
+                  }
                 />
               </div>
+
             </div>
             <div>
               <span className="eyebrow">Product</span>
