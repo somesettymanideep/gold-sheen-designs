@@ -115,6 +115,13 @@ function formatDate(iso: string) {
 function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [items, setItems] = useState<Submission[]>([]);
   const [filter, setFilter] = useState<"all" | "contact" | "quote" | "chat">("all");
+  const [query, setQuery] = useState("");
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [fName, setFName] = useState("");
+  const [fPhone, setFPhone] = useState("");
+  const [fEmail, setFEmail] = useState("");
+  const [fFrom, setFFrom] = useState("");
+  const [fTo, setFTo] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const refresh = () => setItems(getSubmissions());
