@@ -5,7 +5,7 @@ import doorTypesAsset from "@/assets/profile-doors-showcase.webp.asset.json";
 import mainEntrance from "@/assets/door-app/main-entrance.jpg";
 import bedroomDoor from "@/assets/door-app/bedroom-door.jpg";
 import bathroomDoor from "@/assets/door-app/bathroom-door.jpg";
-import slidingDoor from "@/assets/door-app/sliding-door.jpg";
+import slidingDoor from "@/assets/door-app/sliding-door-balcony.jpg";
 import wardrobeShutter from "@/assets/door-app/wardrobe-shutter.jpg";
 import poojaDoor from "@/assets/door-app/pooja-door.jpg";
 
