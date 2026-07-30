@@ -299,6 +299,27 @@ export function ChatBot() {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, typing, open]);
 
+  // Rotating tooltip nudges beside the orb until the visitor opens the chat.
+  useEffect(() => {
+    if (open || tipDismissed) {
+      setTipOn(false);
+      return;
+    }
+    const show = window.setTimeout(() => setTipOn(true), 2500);
+    const cycle = window.setInterval(() => {
+      setTipOn(false);
+      window.setTimeout(() => {
+        setTipIndex((i) => (i + 1) % TIPS.length);
+        setTipOn(true);
+      }, 500);
+    }, 7000);
+    return () => {
+      window.clearTimeout(show);
+      window.clearInterval(cycle);
+    };
+  }, [open, tipDismissed]);
+
+
   const push = (userText: string, botMsg: Msg) => {
     setMsgs((m) => [...m, { from: "user", text: userText }]);
     setTyping(true);
