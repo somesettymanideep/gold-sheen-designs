@@ -18,6 +18,15 @@ const WHATSAPP: Action = { label: "WhatsApp us", href: SITE.whatsappHref, extern
 const CONTACT: Action = { label: "Contact page", href: "/contact" };
 const MAP: Action = { label: "Open in Maps", href: SITE.mapsHref, external: true };
 
+/** Rotating nudges shown beside the orb to invite a conversation. */
+const TIPS = [
+  "Need help choosing plywood? 👋",
+  "Ask me about laminate & veneer finishes",
+  "Planning a modular kitchen? Let's talk",
+  "Want today's best price? Ask for a quote",
+  "Store timings, location or brands — just ask",
+];
+
 const TITLE_BY_SLUG: Record<string, string> = Object.fromEntries(
   CATEGORIES.map((c) => [c.slug, c.title]),
 );
@@ -237,6 +246,9 @@ export function ChatBot() {
     },
   ]);
   const [typing, setTyping] = useState(false);
+  const [tipIndex, setTipIndex] = useState(0);
+  const [tipOn, setTipOn] = useState(false);
+  const [tipDismissed, setTipDismissed] = useState(false);
   const orbRef = useRef<HTMLDivElement>(null);
   const pupilRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
