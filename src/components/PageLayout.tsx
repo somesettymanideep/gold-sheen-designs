@@ -12,6 +12,8 @@ export function PageLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <FloatingActions />
+      <ChatBot />
+
     </div>
   );
 }
