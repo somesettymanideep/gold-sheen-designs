@@ -66,6 +66,33 @@ export function deleteSubmission(id: string) {
   saveAll(getSubmissions().filter((s) => s.id !== id));
 }
 
+// Chat transcripts: one submission row per chat session, updated as the
+// conversation goes on (so the admin sees the whole thread, not one row per line).
+export function upsertChatSession(
+  sessionId: string,
+  transcript: string,
+  meta?: { name?: string; phone?: string },
+) {
+  const list = getSubmissions();
+  const existing = list.find((s) => s.id === sessionId);
+  if (existing) {
+    existing.message = transcript;
+    if (meta?.name) existing.name = meta.name;
+    if (meta?.phone) existing.phone = meta.phone;
+  } else {
+    list.unshift({
+      id: sessionId,
+      type: "chat",
+      createdAt: new Date().toISOString(),
+      name: meta?.name || "Chat visitor",
+      phone: meta?.phone || "",
+      subject: "Chatbot conversation",
+      message: transcript,
+    });
+  }
+  saveAll(list);
+}
+
 export function clearSubmissions() {
   saveAll([]);
 }
