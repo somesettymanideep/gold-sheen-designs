@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useAutoplayEmbla } from "@/hooks/useAutoplayEmbla";
 import teak from "@/assets/laminates/teak-wood.jpg.asset.json";
 import oak from "@/assets/laminates/european-oak.jpg.asset.json";
 import walnut from "@/assets/laminates/american-walnut.jpg.asset.json";
@@ -16,22 +15,10 @@ const FINISHES = [
 ];
 
 export function LaminateFinishSlider() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
-  const [selected, setSelected] = useState(0);
-
-  const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", onSelect);
-    onSelect();
-    const id = setInterval(() => emblaApi.scrollNext(), 4500);
-    return () => {
-      clearInterval(id);
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi]);
+  const { emblaRef, emblaApi, selected, scrollTo, pauseHandlers } = useAutoplayEmbla({
+    interval: 4500,
+    emblaOptions: { loop: true, align: "start" },
+  });
 
   return (
     <section className="py-[30px] bg-cream">
@@ -45,16 +32,18 @@ export function LaminateFinishSlider() {
           </p>
         </div>
 
-        <div className="relative mt-8">
+        <div className="relative mt-8" {...pauseHandlers}>
           <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
             <div className="flex">
-              {FINISHES.map((f) => (
+              {FINISHES.map((f, i) => (
                 <div key={f.name} className="min-w-0 flex-[0_0_100%] px-1">
                   <figure className="overflow-hidden rounded-2xl bg-white shadow-soft">
                     <img
                       src={f.img}
                       alt={`${f.name} ${f.finish} laminate — kitchen, wardrobe and TV unit applications`}
-                      loading="lazy"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={i === 0 ? "high" : "auto"}
                       className="w-full object-cover"
                     />
                     <figcaption className="px-5 py-3 text-center">
