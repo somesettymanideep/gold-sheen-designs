@@ -11,6 +11,7 @@ import { CATEGORIES, SITE } from "@/lib/site";
 import { BANNER_IMG, CAT_IMG, PRODUCT_DETAILS, PLYWOOD_BRANDS, PLYWOOD_BRAND_LOGOS, HARDWARE_BRAND_LOGOS, LAMINATE_BRAND_LOGOS } from "@/lib/product-data";
 import { BrandMarquee } from "@/components/BrandMarquee";
 import { LaminateFinishSlider } from "@/components/LaminateFinishSlider";
+import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 
 
 const BASE_URL = "https://durgahardwareandplywood.com";
@@ -316,6 +317,9 @@ function ProductDetailPage() {
           </div>
         </div>
       </section>
+
+      {/* Plywood types guide */}
+      {slug === "plywood" && <PlywoodTypesGuide />}
 
       {/* Plywood brands & grades */}
       {slug === "plywood" &&
