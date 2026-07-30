@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { FloatingActions } from "./FloatingActions";
+import { ChatBot } from "./ChatBot";
 import { cn } from "@/lib/utils";
 
 export function PageLayout({ children }: { children: ReactNode }) {
@@ -11,6 +12,8 @@ export function PageLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <FloatingActions />
+      <ChatBot />
+
     </div>
   );
 }
