@@ -18,6 +18,15 @@ const WHATSAPP: Action = { label: "WhatsApp us", href: SITE.whatsappHref, extern
 const CONTACT: Action = { label: "Contact page", href: "/contact" };
 const MAP: Action = { label: "Open in Maps", href: SITE.mapsHref, external: true };
 
+/** Rotating nudges shown beside the orb to invite a conversation. */
+const TIPS = [
+  "Need help choosing plywood? 👋",
+  "Ask me about laminate & veneer finishes",
+  "Planning a modular kitchen? Let's talk",
+  "Want today's best price? Ask for a quote",
+  "Store timings, location or brands — just ask",
+];
+
 const TITLE_BY_SLUG: Record<string, string> = Object.fromEntries(
   CATEGORIES.map((c) => [c.slug, c.title]),
 );
@@ -237,6 +246,9 @@ export function ChatBot() {
     },
   ]);
   const [typing, setTyping] = useState(false);
+  const [tipIndex, setTipIndex] = useState(0);
+  const [tipOn, setTipOn] = useState(false);
+  const [tipDismissed, setTipDismissed] = useState(false);
   const orbRef = useRef<HTMLDivElement>(null);
   const pupilRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -286,6 +298,27 @@ export function ChatBot() {
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, typing, open]);
+
+  // Rotating tooltip nudges beside the orb until the visitor opens the chat.
+  useEffect(() => {
+    if (open || tipDismissed) {
+      setTipOn(false);
+      return;
+    }
+    const show = window.setTimeout(() => setTipOn(true), 2500);
+    const cycle = window.setInterval(() => {
+      setTipOn(false);
+      window.setTimeout(() => {
+        setTipIndex((i) => (i + 1) % TIPS.length);
+        setTipOn(true);
+      }, 500);
+    }, 7000);
+    return () => {
+      window.clearTimeout(show);
+      window.clearInterval(cycle);
+    };
+  }, [open, tipDismissed]);
+
 
   const push = (userText: string, botMsg: Msg) => {
     setMsgs((m) => [...m, { from: "user", text: userText }]);
@@ -439,7 +472,33 @@ export function ChatBot() {
         </div>
       )}
 
+      {!open && !tipDismissed && (
+        <div
+          className={`pointer-events-none absolute bottom-3 left-16 sm:left-[4.5rem] transition-all duration-500 ${
+            tipOn ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+          }`}
+        >
+          <div className="pointer-events-auto relative flex w-max max-w-[15rem] items-center gap-2 rounded-2xl rounded-bl-sm border border-gold/40 bg-card px-3 py-2 shadow-elevated">
+            <span className="absolute -left-1 bottom-2 h-2 w-2 rotate-45 border-b border-l border-gold/40 bg-card" />
+            <button
+              onClick={() => setOpen(true)}
+              className="text-left text-[12px] font-medium leading-snug text-foreground"
+            >
+              {TIPS[tipIndex]}
+            </button>
+            <button
+              onClick={() => setTipDismissed(true)}
+              aria-label="Dismiss chat tip"
+              className="text-muted-foreground hover:text-gold"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div ref={orbRef} className="transition-transform duration-300 ease-out will-change-transform">
+
         <button
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? "Close chat assistant" : "Open chat assistant"}
