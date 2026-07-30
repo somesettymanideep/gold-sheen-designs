@@ -171,7 +171,59 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     e.target.value = "";
   };
 
-  const filtered = items.filter((s) => filter === "all" || s.type === filter);
+  const digits = (v: string) => v.replace(/\D/g, "");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const qName = fName.trim().toLowerCase();
+    const qEmail = fEmail.trim().toLowerCase();
+    const qPhone = digits(fPhone);
+    const from = fFrom ? new Date(`${fFrom}T00:00:00`).getTime() : null;
+    const to = fTo ? new Date(`${fTo}T23:59:59.999`).getTime() : null;
+
+    return items.filter((s) => {
+      if (filter !== "all" && s.type !== filter) return false;
+
+      if (q) {
+        const haystack = [
+          s.name,
+          s.phone,
+          s.email,
+          s.subject,
+          s.message,
+          s.products?.join(" "),
+          s.type,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      if (qName && !(s.name ?? "").toLowerCase().includes(qName)) return false;
+      if (qEmail && !(s.email ?? "").toLowerCase().includes(qEmail)) return false;
+      if (qPhone && !digits(s.phone ?? "").includes(qPhone)) return false;
+
+      if (from || to) {
+        const t = new Date(s.createdAt).getTime();
+        if (Number.isNaN(t)) return false;
+        if (from && t < from) return false;
+        if (to && t > to) return false;
+      }
+      return true;
+    });
+  }, [items, filter, query, fName, fPhone, fEmail, fFrom, fTo]);
+
+  const activeAdvanced = [fName, fPhone, fEmail, fFrom, fTo].filter(Boolean).length;
+  const clearFilters = () => {
+    setQuery("");
+    setFName("");
+    setFPhone("");
+    setFEmail("");
+    setFFrom("");
+    setFTo("");
+  };
+
   const contactCount = items.filter((s) => s.type === "contact").length;
   const quoteCount = items.filter((s) => s.type === "quote").length;
   const chatCount = items.filter((s) => s.type === "chat").length;
