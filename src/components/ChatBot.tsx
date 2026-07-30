@@ -239,6 +239,26 @@ export function ChatBot() {
   const orbRef = useRef<HTMLDivElement>(null);
   const pupilRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const sessionRef = useRef<string>(
+    `chat-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+  );
+
+  // Save the running transcript to the admin panel store once the visitor
+  // has actually interacted (more than the greeting message).
+  useEffect(() => {
+    if (msgs.length < 2) return;
+    const transcript = msgs
+      .map((m) => `${m.from === "user" ? "Visitor" : "Bot"}: ${m.text}`)
+      .join("\n");
+    const firstPhone = msgs
+      .filter((m) => m.from === "user")
+      .map((m) => m.text.match(/(\+?\d[\d\s-]{8,}\d)/)?.[1])
+      .find(Boolean);
+    upsertChatSession(sessionRef.current, transcript, {
+      phone: firstPhone?.replace(/\s+/g, "") ?? undefined,
+    });
+  }, [msgs]);
+
 
   // Cursor interaction: orb leans toward the pointer and its eye follows it.
   useEffect(() => {
