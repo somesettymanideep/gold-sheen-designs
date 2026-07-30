@@ -472,7 +472,33 @@ export function ChatBot() {
         </div>
       )}
 
+      {!open && !tipDismissed && (
+        <div
+          className={`pointer-events-none absolute bottom-3 left-16 sm:left-[4.5rem] transition-all duration-500 ${
+            tipOn ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+          }`}
+        >
+          <div className="pointer-events-auto relative flex w-max max-w-[15rem] items-center gap-2 rounded-2xl rounded-bl-sm border border-gold/40 bg-card px-3 py-2 shadow-elevated">
+            <span className="absolute -left-1 bottom-2 h-2 w-2 rotate-45 border-b border-l border-gold/40 bg-card" />
+            <button
+              onClick={() => setOpen(true)}
+              className="text-left text-[12px] font-medium leading-snug text-foreground"
+            >
+              {TIPS[tipIndex]}
+            </button>
+            <button
+              onClick={() => setTipDismissed(true)}
+              aria-label="Dismiss chat tip"
+              className="text-muted-foreground hover:text-gold"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div ref={orbRef} className="transition-transform duration-300 ease-out will-change-transform">
+
         <button
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? "Close chat assistant" : "Open chat assistant"}
