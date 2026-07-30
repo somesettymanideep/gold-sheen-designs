@@ -13,7 +13,6 @@ import { BrandMarquee } from "@/components/BrandMarquee";
 import { LaminateFinishSlider } from "@/components/LaminateFinishSlider";
 import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 import { PlywoodApplicationGallery } from "@/components/PlywoodApplicationGallery";
-import plywoodTypesAsset from "@/assets/plywood-types.webp.asset.json";
 import { PlywoodProductSlider } from "@/components/PlywoodProductSlider";
 
 
