@@ -5,7 +5,7 @@ import doorBlockboard from "@/assets/plywood-app/door-blockboard.jpg";
 import panellingDecorative from "@/assets/plywood-app/panelling-decorative.jpg";
 import studyCommercial from "@/assets/plywood-app/study-commercial.jpg";
 
-const GALLERY = [
+export const GALLERY = [
   {
     img: kitchenBwp,
     type: "BWP / Marine Plywood",
