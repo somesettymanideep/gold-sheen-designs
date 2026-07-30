@@ -15,6 +15,8 @@ import { PlywoodTypesGuide } from "@/components/PlywoodTypesGuide";
 import { PlywoodApplicationGallery } from "@/components/PlywoodApplicationGallery";
 import { PlywoodProductSlider } from "@/components/PlywoodProductSlider";
 import { HardwareProductSlider, HARDWARE_GALLERY } from "@/components/HardwareProductSlider";
+import { VeneerProductSlider, VENEER_GALLERY } from "@/components/VeneerProductSlider";
+
 
 
 
@@ -239,6 +241,9 @@ function ProductDetailPage() {
                 <PlywoodProductSlider />
               ) : slug === "hardware" ? (
                 <HardwareProductSlider />
+              ) : slug === "veneers" ? (
+                <VeneerProductSlider />
+
               ) : (
                 <div className="relative overflow-hidden rounded-2xl shadow-elevated bg-background">
                   <img
@@ -378,6 +383,50 @@ function ProductDetailPage() {
           </div>
         </section>
       )}
+
+      {/* Veneer real home application gallery */}
+      {slug === "veneers" && (
+        <section className="py-[30px] bg-cream">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="eyebrow">Applications</span>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl font-bold text-charcoal">
+                Veneer Applications at Home
+              </h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed">
+                See how teak, oak, walnut, maple and burl veneers are used across living
+                rooms, wardrobes, doors and ceilings.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {VENEER_GALLERY.map((g) => (
+                <div
+                  key={g.place}
+                  className="group overflow-hidden rounded-2xl bg-background shadow-soft hover:shadow-elevated transition duration-500"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={g.img}
+                      alt={`${g.type} — ${g.place} | Best veneer shops in Vijayawada`}
+                      loading="lazy"
+                      className="h-full w-full object-cover group-hover:scale-105 transition duration-700"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+                      {g.type}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-lg font-bold text-charcoal">{g.place}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{g.note}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+
 
 
       {/* Plywood brands & grades */}
