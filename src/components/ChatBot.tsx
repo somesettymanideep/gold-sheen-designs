@@ -8,6 +8,7 @@ import {
   HARDWARE_BRAND_LOGOS,
   LAMINATE_BRAND_LOGOS,
 } from "@/lib/product-data";
+import { upsertChatSession } from "@/lib/submissions";
 
 type Action = { label: string; href: string; external?: boolean };
 type Msg = { from: "bot" | "user"; text: string; actions?: Action[] };
