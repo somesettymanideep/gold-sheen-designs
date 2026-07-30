@@ -51,7 +51,7 @@ import catLaminates from "@/assets/cat-laminates.jpg";
 import catHardware from "@/assets/cat-hardware.jpg";
 import catVeneers from "@/assets/cat-veneers.jpg";
 import catKitchen from "@/assets/beautiful-kitchen-interior-design.webp.asset.json";
-import catDoors from "@/assets/cat-doors.jpg";
+import catDoors from "@/assets/profile-door-category.avif.asset.json";
 import ctaBg from "@/assets/cta-bg-1.webp.asset.json";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
