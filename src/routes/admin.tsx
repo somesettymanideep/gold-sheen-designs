@@ -23,6 +23,7 @@ import {
   importCsv,
   type Submission,
 } from "@/lib/submissions";
+import { isChatBotEnabled, setChatBotEnabled } from "@/lib/chatbot-setting";
 
 // Dummy admin gate. This is NOT real security — the password lives in the
 // client bundle. Change it here if needed.
