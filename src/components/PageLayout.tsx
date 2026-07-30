@@ -1,22 +1,32 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { FloatingActions } from "./FloatingActions";
 import { ChatBot } from "./ChatBot";
+import { isChatBotEnabled, subscribeChatBotSetting } from "@/lib/chatbot-setting";
 import { cn } from "@/lib/utils";
 
 export function PageLayout({ children }: { children: ReactNode }) {
+  const [chatOn, setChatOn] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setChatOn(isChatBotEnabled());
+    sync();
+    return subscribeChatBotSetting(sync);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <FloatingActions />
-      <ChatBot />
+      {chatOn && <ChatBot />}
 
     </div>
   );
 }
+
 
 export function PageHero({
   eyebrow,
