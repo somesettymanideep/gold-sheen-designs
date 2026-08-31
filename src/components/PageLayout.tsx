@@ -44,7 +44,12 @@ export function PageHero({
   className?: string;
 }) {
   return (
-    <section className={cn("relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark", className)}>
+    <section
+      className={cn(
+        "relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden gradient-dark",
+        className,
+      )}
+    >
       {bgImage && (
         <>
           <img
@@ -58,7 +63,8 @@ export function PageHero({
           <div className="absolute inset-0 bg-charcoal/75" />
         </>
       )}
-      <div className="absolute inset-0 opacity-20"
+      <div
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
             "radial-gradient(circle at 20% 20%, rgba(172,134,71,0.4), transparent 50%), radial-gradient(circle at 80% 60%, rgba(100,55,26,0.3), transparent 50%)",
@@ -73,7 +79,9 @@ export function PageHero({
           <p className="mt-5 max-w-2xl mx-auto text-white/70 text-base sm:text-lg">{subtitle}</p>
         )}
         <nav className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/50">
-          <a href="/" className="hover:text-gold">Home</a>
+          <a href="/" className="hover:text-gold">
+            Home
+          </a>
           <span>/</span>
           <span className="text-gold">{crumb}</span>
         </nav>

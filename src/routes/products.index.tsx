@@ -139,8 +139,9 @@ function ProductsPage() {
               <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
                 {c.title}
               </h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">{c.blurb} Sourced from
-                trusted Indian and international brands, finished to last.</p>
+              <p className="mt-5 text-muted-foreground leading-relaxed">
+                {c.blurb} Sourced from trusted Indian and international brands, finished to last.
+              </p>
               <ul className="mt-8 grid sm:grid-cols-2 gap-3">
                 {FEATURES[c.slug].map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-charcoal">

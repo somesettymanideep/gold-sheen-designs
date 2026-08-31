@@ -32,10 +32,7 @@ const SESSION_KEY = "durga-admin-authed";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
-    meta: [
-      { title: "Admin — Submissions" },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
+    meta: [{ title: "Admin — Submissions" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: AdminPage,
 });
@@ -44,10 +41,7 @@ function AdminPage() {
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.sessionStorage.getItem(SESSION_KEY) === "1"
-    ) {
+    if (typeof window !== "undefined" && window.sessionStorage.getItem(SESSION_KEY) === "1") {
       setAuthed(true);
     }
   }, []);
@@ -72,16 +66,11 @@ function LoginGate({ onSuccess }: { onSuccess: () => void }) {
 
   return (
     <div className="min-h-screen grid place-items-center bg-[#F4F0EA] px-4">
-      <form
-        onSubmit={submit}
-        className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-soft"
-      >
+      <form onSubmit={submit} className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-soft">
         <span className="grid h-14 w-14 place-items-center rounded-2xl gradient-gold text-white shadow-gold">
           <Lock className="h-6 w-6" />
         </span>
-        <h1 className="mt-6 font-display text-2xl font-bold text-charcoal">
-          Admin Login
-        </h1>
+        <h1 className="mt-6 font-display text-2xl font-bold text-charcoal">Admin Login</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Enter the admin password to view form submissions.
         </p>
@@ -96,9 +85,7 @@ function LoginGate({ onSuccess }: { onSuccess: () => void }) {
           placeholder="Password"
           className="mt-6 w-full rounded-xl border border-border bg-beige/40 px-4 py-3 text-sm text-charcoal outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
         />
-        {error && (
-          <p className="mt-2 text-sm text-red-600">Incorrect password.</p>
-        )}
+        {error && <p className="mt-2 text-sm text-red-600">Incorrect password.</p>}
         <button
           type="submit"
           className="mt-5 w-full rounded-xl gradient-gold px-6 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.01]"
@@ -242,12 +229,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       <header className="border-b border-border bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-5 sm:px-6">
           <div>
-            <h1 className="font-display text-2xl font-bold text-charcoal">
-              Submissions
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Contact form &amp; quote popup entries
-            </p>
+            <h1 className="font-display text-2xl font-bold text-charcoal">Submissions</h1>
+            <p className="text-sm text-muted-foreground">Contact form &amp; quote popup entries</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <button
@@ -418,10 +401,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         ) : (
           <div className="grid gap-4">
             {filtered.map((s) => (
-              <article
-                key={s.id}
-                className="rounded-2xl bg-white p-5 shadow-soft sm:p-6"
-              >
+              <article key={s.id} className="rounded-2xl bg-white p-5 shadow-soft sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span

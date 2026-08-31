@@ -1,6 +1,18 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
-import { Menu, X, Phone, ChevronDown, Layers, LayoutPanelTop, Wrench, Trees, CookingPot, DoorOpen, type LucideIcon } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ChevronDown,
+  Layers,
+  LayoutPanelTop,
+  Wrench,
+  Trees,
+  CookingPot,
+  DoorOpen,
+  type LucideIcon,
+} from "lucide-react";
 import logo from "@/assets/durga-logo.asset.json";
 import { SITE, CATEGORIES } from "@/lib/site";
 
@@ -16,6 +28,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 const baseNav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -52,7 +65,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3">
         <Link to="/" className="flex items-center gap-3 min-w-0">
-        <img
+          <img
             src={logo.url}
             alt="Durga Hardware and Plywood"
             width={96}
@@ -83,7 +96,9 @@ export function SiteHeader() {
               aria-haspopup="menu"
             >
               Products
-              <ChevronDown className={`h-4 w-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`h-4 w-4 transition-transform ${desktopProductsOpen ? "rotate-180" : ""}`}
+              />
               <span className="absolute left-4 right-4 -bottom-0.5 h-px gradient-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
             </button>
             {desktopProductsOpen && (
@@ -163,7 +178,9 @@ export function SiteHeader() {
                 aria-expanded={mobileProductsOpen}
               >
                 Products
-                <ChevronDown className={`h-4 w-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${mobileProductsOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {mobileProductsOpen && (
                 <div className="flex flex-col pl-4">

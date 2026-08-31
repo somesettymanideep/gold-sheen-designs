@@ -58,7 +58,8 @@ export type PlywoodBrand = {
 export const PLYWOOD_BRANDS: PlywoodBrand[] = [
   {
     name: "Decobond 710",
-    tagline: "100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer & termite resistant, built to last.",
+    tagline:
+      "100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer & termite resistant, built to last.",
     thicknesses: ["19mm", "16mm", "12mm", "9mm", "6mm"],
     grades: [
       { name: "Decobond 710", warranty: "15 Years Warranty", img: decobond710.url },
@@ -70,16 +71,24 @@ export const PLYWOOD_BRANDS: PlywoodBrand[] = [
   },
   {
     name: "Decobond Block Board",
-    tagline: "BWP boiling-waterproof block board with a cured zero-gap core — light, strong and warp-resistant for shutters, tables and partitions.",
+    tagline:
+      "BWP boiling-waterproof block board with a cured zero-gap core — light, strong and warp-resistant for shutters, tables and partitions.",
     thicknesses: ["25mm", "19mm"],
     sizes: ["8x4", "7x4", "7x3"],
     grades: [
-      { name: "Decobond 710 Eco", warranty: "Semi Pine • 20 Years Warranty", img: decobond710Eco.url },
-      { name: "Decobond 710 Pine", warranty: "Premium New Zealand Pine • 30 Years Warranty", img: decobond710Pine.url },
+      {
+        name: "Decobond 710 Eco",
+        warranty: "Semi Pine • 20 Years Warranty",
+        img: decobond710Eco.url,
+      },
+      {
+        name: "Decobond 710 Pine",
+        warranty: "Premium New Zealand Pine • 30 Years Warranty",
+        img: decobond710Pine.url,
+      },
     ],
   },
 ];
-
 
 export const CAT_IMG: Record<string, string> = {
   plywood: catPlywood,

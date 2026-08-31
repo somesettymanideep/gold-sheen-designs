@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { CATEGORIES } from "@/lib/site";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 const BASE_URL = "https://durgahardwareandplywood.com";
 
@@ -25,7 +26,6 @@ export const Route = createFileRoute("/sitemap.xml")({
           })),
           { path: "/contact/", changefreq: "monthly", priority: "0.7" },
         ];
-
 
         const urls = entries.map(
           (e) =>

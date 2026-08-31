@@ -80,12 +80,12 @@ function ContactPage() {
                 <Icon className="h-7 w-7" />
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <h3 className="font-display text-xl font-bold text-charcoal">
-                  {title}
-                </h3>
+                <h3 className="font-display text-xl font-bold text-charcoal">{title}</h3>
                 <div className="mt-3 text-[15px] leading-relaxed text-muted-foreground break-words">
                   {lines.map((l, i) => (
-                    <div key={i} className="break-words">{l}</div>
+                    <div key={i} className="break-words">
+                      {l}
+                    </div>
                   ))}
                 </div>
               </div>

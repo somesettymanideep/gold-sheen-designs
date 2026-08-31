@@ -1,6 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronLeft, ChevronRight, ShieldCheck, Droplets, Bug, Award } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  ShieldCheck,
+  Droplets,
+  Bug,
+  Award,
+} from "lucide-react";
 
 import decobond710 from "@/assets/decobond/decobond-710.jpg.asset.json";
 import decobond710Nature from "@/assets/decobond/decobond-710-nature.jpg.asset.json";
@@ -56,8 +64,9 @@ export function DecobondShowcase() {
           </h2>
           <p className="mt-6 text-base text-muted-foreground leading-relaxed max-w-xl">
             100% Gurjan marine-grade BWP plywood — boiling-waterproof, borer &amp; termite resistant
-            and built to last. From the trusted Decobond 710 to the lifetime-warranty Platinum range,
-            every sheet is engineered for strength, stability and decades of reliable performance.
+            and built to last. From the trusted Decobond 710 to the lifetime-warranty Platinum
+            range, every sheet is engineered for strength, stability and decades of reliable
+            performance.
           </p>
 
           <ul className="mt-8 grid sm:grid-cols-2 gap-4">

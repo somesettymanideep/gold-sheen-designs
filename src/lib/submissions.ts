@@ -48,9 +48,7 @@ function makeId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
-export function addSubmission(
-  data: Omit<Submission, "id" | "createdAt">,
-): Submission {
+export function addSubmission(data: Omit<Submission, "id" | "createdAt">): Submission {
   const submission: Submission = {
     ...data,
     id: makeId(),
@@ -213,7 +211,10 @@ export function importCsv(text: string): ImportResult {
       email: get("email") || undefined,
       subject: get("subject") || undefined,
       products: productsRaw
-        ? productsRaw.split(";").map((p) => p.trim()).filter(Boolean)
+        ? productsRaw
+            .split(";")
+            .map((p) => p.trim())
+            .filter(Boolean)
         : undefined,
       message: get("message") || undefined,
     };

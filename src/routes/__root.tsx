@@ -88,7 +88,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Vijayawada's premium destination for plywood, laminates, veneers, modular kitchens, hardware accessories & profile doors. Trusted brands. Expert guidance.",
       },
       { name: "author", content: "Durga Hardware and Plywood" },
-      { property: "og:title", content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada" },
+      {
+        property: "og:title",
+        content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada",
+      },
       {
         property: "og:description",
         content:
@@ -97,9 +100,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Durga Hardware and Plywood" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png" },
+      {
+        name: "twitter:title",
+        content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",
+      },
     ],
     scripts: [
       {
@@ -163,7 +177,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/14330d4c-586b-4ba2-8caf-59a3dbe700a0/id-preview-1fa098b5--7726ac25-862a-4e71-b16a-1b3788e17f02.lovable.app-1781848545532.png",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "27/37/11 M.G. Road, Gopala Reddy Rd, Opposite Manorama Hotel, Governor Peta",
+            streetAddress:
+              "27/37/11 M.G. Road, Gopala Reddy Rd, Opposite Manorama Hotel, Governor Peta",
             addressLocality: "Vijayawada",
             addressRegion: "Andhra Pradesh",
             postalCode: "520002",
@@ -197,8 +212,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png" },
-      { rel: "apple-touch-icon", href: "/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png" },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "https://gold-sheen-designs.lovable.app/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "https://gold-sheen-designs.lovable.app/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -212,7 +234,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
 
 function RootShell({ children }: { children: ReactNode }) {
   return (

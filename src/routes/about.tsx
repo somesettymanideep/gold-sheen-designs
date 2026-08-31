@@ -1,6 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useId, useRef, useState } from "react";
-import { Eye, Target, Gem, Trophy, Award, Star, Medal, Crown, Users, CalendarDays, Diamond, Grid3x3, type LucideIcon } from "lucide-react";
+import {
+  Eye,
+  Target,
+  Gem,
+  Trophy,
+  Award,
+  Star,
+  Medal,
+  Crown,
+  Users,
+  CalendarDays,
+  Diamond,
+  Grid3x3,
+  type LucideIcon,
+} from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import aboutStore from "@/assets/durga-storefront.webp.asset.json";
 import bannerAbout from "@/assets/banner-about.jpg";
@@ -11,7 +25,6 @@ import awardHafeleTrophy from "@/assets/awards/award-hafele-trophy.png.asset.jso
 import awardHafeleCert from "@/assets/awards/award-hafele-certificate.png.asset.json";
 import awardMikasa from "@/assets/awards/award-mikasa.png.asset.json";
 import awardEbco from "@/assets/awards/award-ebco.png.asset.json";
-
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -33,9 +46,6 @@ export const Route = createFileRoute("/about")({
   }),
   component: AboutPage,
 });
-
-
-
 
 function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   const ref = useRef<T | null>(null);
@@ -59,8 +69,6 @@ function useInView<T extends HTMLElement>(threshold = 0.2, rootMargin = "0px") {
   }, [threshold, rootMargin]);
   return { ref, inView };
 }
-
-
 
 type AwardItem = {
   image: string;
@@ -105,9 +113,7 @@ function AwardCard({ award, delay }: { award: AwardItem; delay: number }) {
         </span>
       </div>
       <div className="p-6">
-        <h3 className="font-display text-xl font-bold text-charcoal leading-snug">
-          {award.title}
-        </h3>
+        <h3 className="font-display text-xl font-bold text-charcoal leading-snug">{award.title}</h3>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{award.desc}</p>
       </div>
     </div>
@@ -197,14 +203,16 @@ function AwardsSection() {
               Pidilite Partner — FY 2024-25
             </h3>
             <p className="mt-4 text-charcoal/70 leading-relaxed">
-              Awarded to Durga Hardware and Plywood, Coastal AP, for outstanding business
-              support to Pidilite in FY 2024-25 — a proud Fevicol Partner Program member.
+              Awarded to Durga Hardware and Plywood, Coastal AP, for outstanding business support to
+              Pidilite in FY 2024-25 — a proud Fevicol Partner Program member.
             </p>
             <div className="mt-6 flex items-center gap-3 text-gold">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-semibold text-charcoal/80">Pidilite Partner 2024-25</span>
+              <span className="ml-2 text-sm font-semibold text-charcoal/80">
+                Pidilite Partner 2024-25
+              </span>
             </div>
           </div>
         </div>
@@ -244,7 +252,6 @@ function AboutPage() {
     { name: "Bharat Gilda", role: "CEO", photo: teamBharat },
   ];
 
-
   return (
     <PageLayout>
       <PageHero
@@ -272,24 +279,23 @@ function AboutPage() {
           <div>
             <span className="eyebrow">Our Story</span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
-              A decade of <span className="text-gradient-gold">premium service</span> in
-              Vijayawada
+              A decade of <span className="text-gradient-gold">premium service</span> in Vijayawada
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                What began as a small storefront on M.G. Road has grown into Vijayawada's
-                premier destination for plywood, laminates, hardware and modular kitchen
-                solutions. Through every project we've taken on, one principle has stayed
-                constant: never compromise on quality.
+                What began as a small storefront on M.G. Road has grown into Vijayawada's premier
+                destination for plywood, laminates, hardware and modular kitchen solutions. Through
+                every project we've taken on, one principle has stayed constant: never compromise on
+                quality.
               </p>
               <p>
-                Today we partner with India's most respected brands — Greenply, CenturyPly,
-                Hettich, Hafele, Godrej and many more — and our showroom welcomes thousands of
-                homeowners, contractors and interior designers each year.
+                Today we partner with India's most respected brands — Greenply, CenturyPly, Hettich,
+                Hafele, Godrej and many more — and our showroom welcomes thousands of homeowners,
+                contractors and interior designers each year.
               </p>
               <p>
-                Our story is written by our customers. Their homes, their kitchens, their
-                interiors — every one of them is a chapter we're proud of.
+                Our story is written by our customers. Their homes, their kitchens, their interiors
+                — every one of them is a chapter we're proud of.
               </p>
             </div>
           </div>
@@ -328,7 +334,8 @@ function AboutPage() {
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">Meet The Team</span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal">
-              The people behind <span className="text-gradient-gold">Durga Hardware and Plywood</span>
+              The people behind{" "}
+              <span className="text-gradient-gold">Durga Hardware and Plywood</span>
             </h2>
           </div>
           <div className="mt-14 grid gap-6 sm:gap-7 sm:grid-cols-2 max-w-2xl mx-auto">
@@ -357,13 +364,11 @@ function AboutPage() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* Awards & Recognition */}
       <AwardsSection />
-
 
       {/* Stats — circular highlights */}
       <StatsSection />
@@ -516,7 +521,6 @@ function StatCard({
             </span>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -542,8 +546,14 @@ function StatsSection() {
         aria-hidden
       />
       {/* floating blurred shapes */}
-      <div className="pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[#A97747] opacity-[0.05] blur-[160px] animate-float" aria-hidden />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#7A5430] opacity-[0.05] blur-[160px] animate-float [animation-delay:2s]" aria-hidden />
+      <div
+        className="pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[#A97747] opacity-[0.05] blur-[160px] animate-float"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#7A5430] opacity-[0.05] blur-[160px] animate-float [animation-delay:2s]"
+        aria-hidden
+      />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div
@@ -581,7 +591,8 @@ function StatsSection() {
         <div className="mt-14 flex items-center justify-center gap-5">
           <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#E8E3DE]" />
           <p className="text-center text-sm text-[#6D6D6D]">
-            Trusted by <span className="font-semibold text-[#7A5430]">5000+ customers</span> across India
+            Trusted by <span className="font-semibold text-[#7A5430]">5000+ customers</span> across
+            India
           </p>
           <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#E8E3DE]" />
         </div>
@@ -589,6 +600,3 @@ function StatsSection() {
     </section>
   );
 }
-
-
-

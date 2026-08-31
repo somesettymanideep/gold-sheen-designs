@@ -74,10 +74,7 @@ async function main() {
     for (const file of textFiles) {
       const content = await fs.readFile(file, "utf8");
       if (!content.includes("/__l5e/assets-v1/")) continue;
-      const rewritten = content.replaceAll(
-        "/__l5e/assets-v1/",
-        `${BASE}__l5e/assets-v1/`,
-      );
+      const rewritten = content.replaceAll("/__l5e/assets-v1/", `${BASE}__l5e/assets-v1/`);
       await fs.writeFile(file, rewritten);
     }
     console.log("[ghpages] Rewrote asset references to the base path.");
