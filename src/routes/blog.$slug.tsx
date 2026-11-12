@@ -10,7 +10,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
-import { BLOG_POSTS } from "@/lib/blog-data";
+import { BLOG_POSTS, type BlogPost } from "@/lib/blog-data";
 import { SITE } from "@/lib/site";
 import {
   Accordion,
@@ -75,7 +75,7 @@ export const Route = createFileRoute("/blog/$slug")({
         : [],
     };
   },
-  loader: ({ params }) => {
+  loader: ({ params }): { post: BlogPost } => {
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
     if (!post) {
       throw notFound();

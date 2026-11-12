@@ -110,6 +110,44 @@ export const Route = createFileRoute("/")({
           })),
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HardwareStore",
+          name: "Bharat gilda",
+          image:
+            "https://gold-sheen-designs.lovable.app/__l5e/assets-v1/26ca5f6e-1042-4ccb-9e71-475099d84969/durga-logo.png",
+          url: "https://durgahardwareandplywood.com/",
+          telephone: "9164092272",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress:
+              "27/37/11 M.G. ROAD, Gopala Reddy Rd, opposite Manorama Hotel, Governor Peta, Vijayawada, Andhra Pradesh 520002",
+            addressLocality: "Vijayawada",
+            postalCode: "520002",
+            addressCountry: "IN",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 16.511754411982267,
+            longitude: 80.62070026290147,
+          },
+          openingHoursSpecification: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ].map((dayOfWeek) => ({
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek,
+            opens: "10:00",
+            closes: "21:30",
+          })),
+        }),
+      },
     ],
   }),
   component: HomePage,
