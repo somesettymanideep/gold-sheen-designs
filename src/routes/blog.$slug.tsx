@@ -101,7 +101,12 @@ function formatText(text: string) {
 }
 
 function BlogDetailsPage() {
-  const { post } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const post = BLOG_POSTS.find((blogPost) => blogPost.slug === slug);
+
+  if (!post) {
+    throw notFound();
+  }
 
   return (
     <PageLayout>
