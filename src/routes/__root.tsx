@@ -90,6 +90,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Durga Hardware and Plywood" },
       {
+        name: "google-site-verification",
+        content: "5hnk-2RH3ykNNd1HK-MMiT7Rh1Mgf3RJGDCpzprEYFQ",
+      },
+      {
         property: "og:title",
         content: "Durga Hardware and Plywood — Premium Plywood, Laminates & Kitchens, Vijayawada",
       },
